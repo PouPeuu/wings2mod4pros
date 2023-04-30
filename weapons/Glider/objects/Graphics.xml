@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation
+  name="g_fragment" 
+  file="g_fragment.png"
+  width="16"
+  height="16"
+  frames="1"
+  army_color="1"
+></animation>
+
+</graphics>

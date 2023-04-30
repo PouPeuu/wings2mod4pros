@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="thruster_particle"
+  file="thruster_particle.png"
+  width="15" 
+  height="15" 
+  frames="10"
+  time="0.3"
+  _blend_style="add"
+  x="0"
+  y="0"
+></animation>
+
+</graphics>

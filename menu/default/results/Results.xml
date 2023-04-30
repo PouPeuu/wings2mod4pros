@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<GUI>
+
+  <class name="text_1">
+    <label
+      font="menufont"
+      color="255, 255, 255, 255"
+      select_color="200, 200, 200, 255"
+      disabled_color="160, 160, 160. 255"
+      border_width="4"
+    ></label>
+  </class>
+
+  <class name="text_button_1">
+    <button
+      font="menufont"
+      color="155, 155, 255, 255"
+      select_color="200, 200, 255, 255"
+      disabled_color="160, 160, 160. 255"
+      border_width="4"
+    ></button>
+  </class>
+
+  <class name="text_button_2">
+    <button
+      font="menufont"
+      color="155, 155, 255, 255"
+      select_color="200, 200, 255, 255"
+      disabled_color="100, 100, 160. 255"
+      border_width="4"
+    ></button>
+  </class>
+
+  <class name="list_box_1">
+    <list_box
+      image_left="listbox_left"
+      image_right="listbox_right"
+      image_center="listbox_center"
+      image_button="button_down"
+      image_scroll_up="button_up"
+      image_scroll_down="button_down"
+      image_scrollblock_top="scrollblock_top"
+      image_scrollblock_middle="scrollblock_middle"
+      image_scrollblock_bottom="scrollblock_bottom"
+      font="menufont"
+      list_color="0, 0, 60, 255"
+      list_border_color="100, 100, 100, 255"
+      scrollbar_color="100, 100, 100, 255"
+      size="10"
+      text_x="5"
+      text_y="8"
+    ></list_box>
+  </class>
+
+  <class name="selection_list_1">
+    <selection_list
+      font="menufont"
+      color="0, 0, 60, 255"
+      border_color="100, 100, 100, 255"
+      text_color="255, 255, 255, 255"
+      selection_color="112, 112, 112"
+      image_scroll_up="button_up"
+      image_scroll_down="button_down"
+      image_scrollblock_top="scrollblock_top"
+      image_scrollblock_middle="scrollblock_middle"
+      image_scrollblock_bottom="scrollblock_bottom"
+      x_margin="5"
+      y_margin="3"
+    ></selection_list>
+  </class>
+
+  <class name="text_area_1">
+    <text_area
+      image_scroll_up="button_up"
+      image_scroll_down="button_down"
+      image_scrollblock_top="scrollblock_top"
+      image_scrollblock_middle="scrollblock_middle"
+      image_scrollblock_bottom="scrollblock_bottom"
+      font="chat_font"
+    ></text_area>
+  </class>
+
+  <class name="text_field_1">
+    <text_field
+      image_scroll_up="button_up"
+      image_scroll_down="button_down"
+      image_scrollblock_top="scrollblock_top"
+      image_scrollblock_middle="scrollblock_middle"
+      image_scrollblock_bottom="scrollblock_bottom"
+      image_left="textfield_left"
+      image_right="textfield_right"
+      image_center="textfield_center"
+      font="chat_font"
+      text_color="255, 255, 255, 255"
+      text_x="5"
+      text_y="9"
+    ></text_field>
+  </class>
+
+  <class name="status_line_1">
+    <status_line
+      font="menufont"
+      x_margin="5"
+      color="0, 0, 0, 0"
+      border_color="0, 0, 0, 0"
+      text_color="255, 255, 255, 255"
+  ></status_line>
+  </class>
+
+
+  <panel 
+    name="main" 
+    image="menu2"
+    x="0"
+    y="0"
+	scale_to_screen="true"
+	scale_pivot_y="0.75"
+	width="640"
+	height="480"
+  ></panel>
+
+  <panel 
+    name="main" 
+    x="0"
+    y="0"
+	offset_screen="true"
+	relative_offset="0.5"
+  >
+
+    <panel
+      name="result_screen"
+      image="menuframe2"
+      x="30"
+      y="50"
+	  width="587"
+	  height="387"
+    >
+
+      <label 
+        text="Match results"
+        font="menufont"
+        x="10"
+        y="3"
+      ></label>
+
+      <label
+        x="40"
+        y="40"
+        font="menufont"
+        text="Rounds played"
+      ></label>
+
+      <table
+        x="160"
+        y="40"
+        column_width="50"
+        row_height="20"
+        font="menufont"
+        data_command="levels_played"
+      ></table>
+
+      <if info_command="match_wait_mode" req_value="true">
+
+        <panel>
+          <label
+            x="40"
+            y="62"
+            font="menufont"
+            text="Current"
+          ></label>
+          <label
+            text_command="current_level"
+            x="98"
+            y="62"
+            column_width="50"
+            row_height="20"
+            font="menufont"
+          ></label>
+        </panel>
+
+        <if info_command="game_over" req_value="no">
+          <panel>
+            <label
+              x="40"
+              y="80"
+              font="menufont"
+              text="Next"
+            ></label>
+            <label
+              text_command="next_level"
+              x="98"
+              y="80"
+              column_width="50"
+              row_height="20"
+              font="menufont"
+            ></label>
+          </panel>
+
+          <panel>
+            <label 
+              text="Match time"
+              class="text_1"
+              x="40"
+              y="104"
+            ></label>
+            <label 
+              text_command="match_time"
+              class="text_1"
+              x="160"
+              y="104"
+            ></label>
+          </panel>
+
+          <table
+            x="40"
+            y="132"
+            column_width="150"
+            row_height="20"
+            font="menufont"
+            formatted_data_command="game_status"
+          ></table>
+        </if>
+
+        <if info_command="game_over" req_value="yes">
+
+          <panel>
+            <label 
+              text="Match time"
+              class="text_1"
+              x="40"
+              y="84"
+            ></label>
+            <label 
+              text_command="match_time"
+              class="text_1"
+              x="160"
+              y="84"
+            ></label>
+          </panel>
+
+          <table
+            x="40"
+            y="112"
+            column_width="150"
+            row_height="20"
+            font="menufont"
+            formatted_data_command="game_status"
+          ></table>
+        </if>
+
+      </if>
+
+
+
+      <if info_command="match_wait_mode" req_value="false">
+
+        <panel>
+          <label
+            x="40"
+            y="62"
+            font="menufont"
+            text="Last"
+          ></label>
+          <label
+            text_command="current_level"
+            x="90"
+            y="62"
+            column_width="50"
+            row_height="20"
+            font="menufont"
+          ></label>
+        </panel>
+
+        <if info_command="game_over" req_value="no">
+          <panel>
+            <label
+              x="40"
+              y="80"
+              font="menufont"
+              text="Next"
+            ></label>
+            <label
+              text_command="next_level"
+              x="90"
+              y="80"
+              column_width="50"
+              row_height="20"
+              font="menufont"
+            ></label>
+          </panel>
+          
+          <table
+            x="40"
+            y="110"
+            column_width="150, 0"
+            row_height="20"
+            font="menufont"
+            formatted_data_command="results"
+          ></table>
+        </if>
+
+        <if info_command="game_over" req_value="yes">
+          <table
+            x="40"
+            y="92"
+            column_width="150, 0"
+            row_height="20"
+            font="menufont"
+            formatted_data_command="results"
+          ></table>
+        </if>
+
+        
+        <if info_command="can_control_game" req_value="true">
+          <if info_command="game_over" req_value="no">
+            <button 
+              name="continue"
+              key="return"
+              text="Continue"
+              class="text_button_1"
+              command="continue"
+              x="30"
+              y="310"
+            ></button>
+            <button
+              name="end"
+              text="End"
+              class="text_button_1"
+              command="end"
+              x="130"
+              y="310"
+            ></button>
+            <if info_command="is_client" req_value="yes">
+              <button 
+                name="disconnect"
+                key=""
+                text="Disconnect"
+                class="text_button_1"
+                command="disconnect"
+                x="305"
+                y="310"
+              ></button>
+            </if>
+          </if>
+          <if info_command="game_over" req_value="yes">
+            <button 
+              name="close"
+              key="return"
+              text="Close"
+              class="text_button_1"
+              command="end"
+              x="30"
+              y="310"
+            ></button>
+          </if>
+        </if>
+        
+      </if>
+      
+      
+
+      <if info_command="can_control_game" req_value="false">
+        <if info_command="can_vote" req_value="true">
+          <if info_command="game_over" req_value="yes">
+            <button 
+              name="close"
+              key="return"
+              text="Close"
+              class="text_button_1"
+              command="vote_continue"
+              info_command="voted_continue"
+              enable_if="false"
+              x="30"
+              y="310"
+            ></button>
+          </if>
+          <if info_command="game_over" req_value="no">
+            <button 
+              name="vote_continue"
+              text="Continue"
+              class="text_button_1"
+              command="vote_continue"
+              info_command="voted_continue"
+              enable_if="false"
+              x="30"
+              y="310"
+            ></button>
+          </if>
+          <button 
+            name="disconnect"
+            text="Disconnect"
+            class="text_button_1"
+            command="disconnect"
+            x="130"
+            y="310"
+          ></button>
+        </if>
+        <if info_command="can_vote" req_value="false">
+          <button 
+            name="disconnect"
+            text="Disconnect"
+            class="text_button_1"
+            command="disconnect"
+            x="30"
+            y="310"
+          ></button>
+        </if>
+      </if>
+
+      <if info_command="can_control_game" req_value="true">
+        <if info_command="match_wait_mode" req_value="true">
+          <button 
+            name="disconnect"
+            text="Disconnect"
+            class="text_button_1"
+            command="disconnect"
+            x="30"
+            y="310"
+          ></button>
+          <button
+            name="end_level"
+            text="End level"
+            class="text_button_1"
+            command="end_level"
+            x="130"
+            y="310"
+          ></button>
+        </if>
+      </if>
+
+
+      <if info_command="match_wait_mode" req_value="true">
+        <button 
+          name="observe_game"
+          text="Observe"
+          class="text_button_1"
+          command="observe_game"
+          x="220"
+          y="310"
+        ></button>
+      </if>
+
+      <if info_command="can_pause" req_value="true">
+        <if info_command="pause" req_value="on">
+          <button 
+            name="pause_off"
+            text="Pause/Continue"
+            class="text_button_1"
+            command="pause off"
+            x="180"
+            y="310"
+          ></button>
+        </if>
+        <if info_command="pause" req_value="off">
+          <button 
+            name="pause_on"
+            text="Pause"
+            class="text_button_1"
+            command="pause on"
+            x="200"
+            y="310"
+          ></button>
+        </if>
+      </if>
+
+
+      <if info_command="can_control_game" req_value="true">
+        <button 
+          name="server_info"
+          text="Info"
+          class="text_button_1"
+          command="current_server_info"
+          remove_focus="true"
+          x="400"
+          y="310"
+        ></button>
+
+        <if info_command="match_wait_mode" req_value="false">
+          <button 
+            name="player_settings"
+            text="Teams"
+            class="text_button_1"
+            command="@main @player_view select player_settings"
+            x="445"
+            y="310"
+          ></button>
+        </if>
+      </if>
+
+      <if info_command="can_control_game" req_value="false">
+        <button 
+          name="server_info"
+          text="Info"
+          class="text_button_1"
+          command="current_server_info"
+          x="462"
+          y="310"
+        ></button>
+      </if>
+
+
+      <panel
+        x="292"
+        y="40"
+      >
+        <label 
+          text="Weapons"
+          class="text_1"
+          x="6"
+        ></label>
+
+        <list_box
+          name="weapon_set"
+          class="list_box_1"
+          command="use_weapon_set $value"
+          info_command="use_weapon_set"
+          list_command="weapon_sets"
+          empty_name="By game mode"
+          empty_command="use_weapon_set By game mode"
+          x="75"
+          y="-3"
+          size="9"
+        >
+        </list_box>
+      </panel>
+
+      <panel
+        x="292"
+        y="70"
+      >
+      
+        <text_area
+          name="console_text"
+          class="text_area_1"
+          color="0, 0, 60, 255"
+          border_color="100, 100, 100, 255"
+          text_color="255, 255, 255, 255"
+          x_margin="4"
+          y_margin="2"
+          width="212"
+          height="200"
+          y="0"
+        ></text_area>
+
+      
+        <text_field
+          name="console"
+          console_mode="on"
+          command="message $value"
+          class="text_field_1"
+          width="198"
+          y="205"
+        ></text_field>
+      
+      
+      </panel>
+      
+      
+      <if info_command="view_player_list" req_value="true">
+        <selection_list
+          name="player_list"
+          list_command="list"
+          x="230"
+          y="40"
+          line_height="16"
+          x_margin="5"
+          y_margin="3"
+          font = "chat_font"
+          flexible_size = "true"
+          width="95"
+          selection_color="0, 0, 0, 0"
+          context_menu_condition="is_server_admin"
+        >
+          <context_menu_item name="kick" value="close $value"></context_menu_item>
+          <context_menu_item name="ban" value="ban $value"></context_menu_item>
+        ></selection_list>
+      </if>
+
+      
+
+    </panel>
+
+
+
+    <view name="player_view">
+       <view name="player_settings" type="2">
+         <panel>
+         <panel
+           name="player_settings"
+           image="player_settings"
+           x="55"
+           y="80"
+		   width="200"
+		   height="300"
+         >
+           
+           <list
+             x="10"
+             y="10"
+             width="350"
+             height="300"
+             x_space="175"
+             y_space="30"
+           >
+           <panel>
+           <if info_command="player_name 1" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 1"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 2" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 2"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 3" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 3"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 4" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 4"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 5" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 5"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 6" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 6"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 7" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 7"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 8" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 8"></include>
+           </if>
+           </panel>
+           <panel>
+             <button 
+               name="randomize_teams"
+               text="Randomize teams"
+               class="text_button_1"
+               command="randomize_teams"
+               x="12"
+               y="18"
+             ></button>
+           </panel>
+           </list>
+         </panel>
+         
+         <if info_command="player_name 10" is_defined="true">
+         <panel
+           name="player_settings"
+           image="player_settings"
+           x="255"
+           y="80"
+		   width="200"
+		   height="300"
+         >
+           
+           <list
+             x="10"
+             y="10"
+             width="350"
+             height="300"
+             x_space="175"
+             y_space="30"
+           >
+           <panel>
+           <if info_command="player_name 9" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 9"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 10" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 10"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 11" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 11"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 12" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 12"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 13" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 13"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 14" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 14"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 15" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 15"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 16" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 16"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 17" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 17"></include>
+           </if>
+           </panel>
+           </list>
+         </panel>
+         </if>
+         </panel>
+       </view>
+    </view>
+
+
+
+
+
+    <if info_command="loading_level" req_value="true">
+      <label 
+        text="Loading level..."
+        class="text_1"
+        x="20"
+        y="445"
+      ></label>
+    </if>
+
+    <if
+      info_command="level_transfer_state"
+      req_value="receiving"
+    >
+      <label
+        text="Receiving"
+        class="text_1"
+        x="175"
+        y="450"
+      ></label>
+      <label
+        text_command="level_transfer_name"
+        class="text_1"
+        x="245"
+        y="450"
+      ></label>
+      
+      <progress_bar
+        status_command="level_transfer_status"
+        x="380"
+        y="450"
+        width="200"
+        height="12"
+        color="20, 20, 255"
+        border_color="108, 108, 108"
+      ></progress_bar>
+    </if>
+
+    <if
+      info_command="level_transfer_state"
+      req_value="sending"
+    >
+      <label
+        text="Sending"
+        class="text_1"
+        x="175"
+        y="450"
+      ></label>
+      <label
+        text_command="level_transfer_name"
+        class="text_1"
+        x="245"
+        y="450"
+      ></label>
+      
+      <progress_bar
+        status_command="level_transfer_status"
+        x="380"
+        y="450"
+        width="200"
+        height="12"
+        color="20, 20, 255"
+        border_color="108, 108, 108"
+      ></progress_bar>
+    </if>
+
+    <if
+      info_command="level_transfer_state"
+      req_value="observing"
+    >
+      <progress_bar
+        status_command="level_transfer_status"
+        x="220"
+        y="450"
+        width="200"
+        height="12"
+        color="20, 20, 255"
+        border_color="108, 108, 108"
+      ></progress_bar>
+    </if>
+
+
+
+    <progress_bar
+      status_command="continue_status"
+      x="58"
+      y="400"
+      width="478"
+      height="2"
+      color="20, 20, 255, 128"
+      border_color="108, 108, 108"
+      max_status="10000"
+      simple_style="true"
+    ></progress_bar>
+
+
+  </panel>
+
+</GUI>

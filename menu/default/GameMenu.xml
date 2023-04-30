@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel
+  name="gamemenu"
+  image="menuframe"
+  x="150"
+  y="50"
+  width="472"
+  height="387"
+>
+
+
+  <tab_list name="game_options_list"
+    info_command="@gamemenu @game_options_frames @game_options_view selected_name"
+    next_key="right"
+    prev_key="left"
+  >
+
+    <button 
+      name="game_page1"
+      text="Main settings"
+      class="text_button_2"
+      command="@gamemenu @game_options_frames @game_options_view select game_page1"
+      x="30"
+      y="320"
+    ></button>
+
+    <button 
+      name="game_page2"
+      text="Extra settings"
+      class="text_button_2"
+      command="@gamemenu @game_options_frames @game_options_view select game_page2"
+      x="160"
+      y="320"
+    ></button>
+
+  </tab_list>
+
+
+  <panel name="game_options_frames">
+  
+  <view name="game_options_view" type="2">
+
+    <include
+      file="Game_Page1.xml" 
+    ></include>
+
+    <include 
+      file="Game_Page2.xml"
+    ></include>
+    
+  </view>
+  
+  </panel>
+
+</panel>

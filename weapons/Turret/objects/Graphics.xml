@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation
+  name="turret" 
+  file="turret.png"
+  width="16" 
+  height="16"
+  frames="1"
+  time="0"
+  army_color="1"
+></animation>
+
+<animation
+  name="turret_hit" 
+  file="turret.png"
+  width="16" 
+  height="16"
+  frames="1"
+  time="0"
+  hit_image="1"
+></animation>
+
+<image
+  name="turret_gun" 
+  file="turret_gun.png"
+></image>
+
+<image
+  name="turret_gun_hit" 
+  file="turret_gun.png"
+  hit_image="1"
+></image>
+
+<image
+  name="fragment" 
+  file="fragment.png"
+></image>
+
+</graphics>

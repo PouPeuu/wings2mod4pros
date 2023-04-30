@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="common_keys">
+
+  <label 
+    text="Common keys"
+    class="text_1"
+    x="10"
+    y="3"
+  ></label>
+
+  <list
+    name="toplist"
+    x="30"
+    y="60"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="23"
+  >
+
+    <panel>
+    <!--
+    <label 
+      text="Controls for"
+      class="text_1"
+      x="50"
+      y="3"
+    ></label>
+    -->
+
+    <list_box
+      name="controls"
+      class="list_box_1"
+      command="@toplist @viewpanel @keyset_view select $value"
+      x="50"
+      size="6"
+    >
+      <item name="Page 1" value="page_1"></item>
+      <item name="Page 2" value="page_2"></item>
+    </list_box>
+    </panel>
+
+     <panel name="viewpanel" y="10">
+     <view name="keyset_view" type="2">
+
+      <panel name="page_1">
+      <list
+        width="350"
+        height="300"
+        x_space="175"
+        y_space="19"
+      >
+
+        <key_selector
+          control_name="Toggle fullscreen"
+          column_width="180"
+          command="control PLAYER_NUM toggle_fullscreen $value"
+          info_command="control PLAYER_NUM toggle_fullscreen"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Quit"
+          column_width="180"
+          command="control PLAYER_NUM quit $value"
+          info_command="control PLAYER_NUM quit"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Chat"
+          column_width="180"
+          command="control PLAYER_NUM chat $value"
+          info_command="control PLAYER_NUM chat"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Team chat"
+          column_width="180"
+          command="control PLAYER_NUM team_chat $value"
+          info_command="control PLAYER_NUM team_chat"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Names"
+          column_width="180"
+          command="control PLAYER_NUM names $value"
+          info_command="control PLAYER_NUM names"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+        
+        <key_selector
+          control_name="Scoretable"
+          column_width="180"
+          command="control PLAYER_NUM score $value"
+          info_command="control PLAYER_NUM score"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+        
+        <key_selector
+          control_name="Chat window style"
+          column_width="180"
+          command="control PLAYER_NUM next_chat_pos $value"
+          info_command="control PLAYER_NUM next_chat_pos"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+  		
+        <key_selector
+          control_name="Show/hide radar"
+          column_width="180"
+          command="control PLAYER_NUM show_radar $value"
+          info_command="control PLAYER_NUM show_radar"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+        
+        <key_selector
+          control_name="View, next"
+          column_width="180"
+          command="control PLAYER_NUM next_view $value"
+          info_command="control PLAYER_NUM next_view"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="View, prev"
+          column_width="180"
+          command="control PLAYER_NUM prev_view $value"
+          info_command="control PLAYER_NUM prev_view"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Show connections"
+          column_width="180"
+          command="control PLAYER_NUM show_connections $value"
+          info_command="control PLAYER_NUM show_connections"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+      </list>
+      </panel>
+
+      <panel name="page_2">
+      <list
+        width="350"
+        height="300"
+        x_space="175"
+        y_space="19"
+      >
+
+        <key_selector
+          control_name="Pause"
+          column_width="180"
+          command="control PLAYER_NUM pause $value"
+          info_command="control PLAYER_NUM pause"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Step"
+          column_width="180"
+          command="control PLAYER_NUM step $value"
+          info_command="control PLAYER_NUM step"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Sound, pause"
+          column_width="180"
+          command="control PLAYER_NUM sound_pause $value"
+          info_command="control PLAYER_NUM sound_pause"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Sound, next track"
+          column_width="180"
+          command="control PLAYER_NUM sound_next $value"
+          info_command="control PLAYER_NUM sound_next"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Sound, prev track"
+          column_width="180"
+          command="control PLAYER_NUM sound_prev $value"
+          info_command="control PLAYER_NUM sound_prev"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Show fps/ping"
+          column_width="180"
+          command="control PLAYER_NUM show_fps $value"
+          info_command="control PLAYER_NUM show_fps"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Reset gamma"
+          column_width="180"
+          command="control PLAYER_NUM reset_gamma $value"
+          info_command="control PLAYER_NUM reset_gamma"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Increase gamma"
+          column_width="180"
+          command="control PLAYER_NUM increase_gamma $value"
+          info_command="control PLAYER_NUM increase_gamma"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Decrease gamma"
+          column_width="180"
+          command="control PLAYER_NUM decrease_gamma $value"
+          info_command="control PLAYER_NUM decrease_gamma"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Disable backgrounds"
+          column_width="180"
+          command="control PLAYER_NUM disable_backgrounds $value"
+          info_command="control PLAYER_NUM disable_backgrounds"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Take screenshot"
+          column_width="180"
+          command="control PLAYER_NUM screenshot $value"
+          info_command="control PLAYER_NUM screenshot"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name="Console"
+          column_width="180"
+          command="control PLAYER_NUM console $value"
+          info_command="control PLAYER_NUM console"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+
+      </list>
+      </panel>
+
+    </view>
+    </panel>
+      
+  </list>
+
+
+</panel>

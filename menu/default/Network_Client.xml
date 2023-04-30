@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="network_client">
+
+
+  <label 
+    text="Client"
+    class="heading"
+    x="10"
+    y="4"
+  ></label>
+
+
+  <panel 
+    name="panel1"
+    x="40"
+    y="40"
+  >
+    <panel>
+      <label text="Player name:" y="3" font="menufont"></label>
+      <label text_command="name" x="100" y="3" font="menufont"></label>
+<!--
+      <text_field
+        name="player_name"
+        command="name $value"
+        info_command="name"
+        class="text_field_1"
+        width="164"
+        x="120"
+      ></text_field>
+-->
+    </panel>
+
+    <label 
+      text="Servers"
+      y="30"
+      class="text_1"
+    ></label>
+
+
+    <selection_list
+      name="serverlist"
+      list_command="servers"
+      class="selection_list_1"
+      lines="7"
+      line_height="16"
+      y="55"
+      width="345"
+      double_click_command="connect $value"
+    >
+      <context_menu_item name="Info" value="server_info $value"></context_menu_item>
+      <context_menu_item name="Connect" value="connect $value"></context_menu_item>
+    </selection_list>
+
+
+    <button 
+      name="refresh"
+      text="Refresh"
+      class="text_button_1"
+      command="find"
+      y="180"
+    ></button>
+
+    <button 
+      name="connect"
+      text="Connect"
+      class="text_button_1"
+      value_command="@panel1 @serverlist get_value"
+      command="connect_2 $value"
+      info_command="can_connect $value"
+      enable_if="yes"
+      x="90"
+      y="180"
+    ></button>
+
+    <button 
+      name="disconnect"
+      text="Disconnect"
+      class="text_button_1"
+      command="close"
+      info_command="is_connected_client"
+      enable_if="yes"
+      x="180"
+      y="180"
+    ></button>
+
+    <button 
+      name="info"
+      text="Info"
+      class="text_button_1"
+      value_command="@panel1 @serverlist get_value"
+      command="server_info $value"
+      remove_focus="true"
+      info_command="@panel1 @serverlist get_value"
+      enable_if="!empty"
+      x="285"
+      y="180"
+    ></button>
+
+
+    <panel 
+      name="direct_connect" 
+      y="225"
+    >
+      <button 
+        name="connect"
+        text="Connect to"
+        class="text_button_1"
+        value_command="@direct_connect @server_address get_value"
+        command="connect_direct_2 $value"
+        info_command="can_connect_direct $value"
+        enable_if="yes"
+      ></button>
+
+      <text_field
+        name="server_address"
+        command="connect_direct_2 $value"
+        image_left="textfield_left"
+        image_right="textfield_right"
+        image_center="textfield_center"
+        font="menufont"
+        text_color="255, 255, 255, 255"
+        text_x="5"
+        text_y="9"
+        width="160"
+        x="100"
+      ></text_field>
+
+      <text_field
+        name="server_port"
+        info_command="connect_port"
+        command="connect_port $value"
+        image_left="textfield_left"
+        image_right="textfield_right"
+        image_center="textfield_center"
+        font="menufont"
+        text_color="255, 255, 255, 255"
+        text_x="5"
+        text_y="9"
+        width="55"
+        x="277"
+      ></text_field>
+
+      <status_line
+        name="connection_status"
+        class="status_line_1"
+        width="286"
+        height="22"
+        y="25"
+      >
+        <item name="connecting" value="Trying to connect..."></item>
+        <item name="connected" value="Connection established"></item>
+        <item name="connection_failed" value="Connection failed"></item>
+        <item name="connection_closed" value="Connection closed"></item>
+        <item name="name_not_set" value="Please set a name first"></item>
+      </status_line>
+
+<!--
+      <status_line
+        name="server_status"
+        class="status_line_1"
+        width="286"
+        height="22"
+        x="175"
+        y="25"
+      >
+        <item name="wrong_version" value="Wrong program version"></item>
+        <item name="missing_weapons" value="Missing required weapons"></item>
+      </status_line>
+-->      
+
+      <event_handler
+        event="server_ok"
+        command="@network_menu @network_tab_panel @network_tabs select network_players"
+      ></event_handler>
+
+    </panel>
+    
+  </panel>
+	
+</panel>

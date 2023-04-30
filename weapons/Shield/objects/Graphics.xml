@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="fshield"
+  file="fshield24x24_8.png"
+  width="24" 
+  height="24" 
+  frames="8"
+  time="0.2"
+  blend_style="add"
+  x="0"
+  y="0"
+></animation>
+
+</graphics>

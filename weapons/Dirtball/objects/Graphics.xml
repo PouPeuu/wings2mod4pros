@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="dirtball"
+  file="dirtball.png"
+  width="11" 
+  height="11" 
+  frames="1"
+  time="1"
+></animation >
+
+</graphics>

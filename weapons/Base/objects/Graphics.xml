@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<image
+  name="base_drop" 
+  file="base_drop.png"
+></image>
+
+<animation 
+  name="base_build" 
+  file="base_build.png"
+  width="32" 
+  height="16" 
+  frames="6"
+  time="0.5"
+></animation>
+
+</graphics>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="network_players">
+
+  <label 
+    text="Network game"
+    font="menufont"
+    x="10"
+    y="3"
+  ></label>
+
+
+  <panel
+    name="panel1"
+    x="38"
+    y="40"
+  >
+  
+    <label 
+      text="Players"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <selection_list
+      name="player_list"
+      class="selection_list_1"
+      list_command="list"
+      check_command="is_ready"
+      x="0"
+      y="32"
+      font="menufont"
+      lines="8"
+      line_height="16"
+      width="95"
+      color="0, 0, 60, 255"
+      border_color="100, 100, 100, 255"
+      text_color="255, 255, 255, 255"
+      shaded_text_color="180, 180, 180, 255"
+      selection_color="0, 0, 60, 255"
+      x_margin="5"
+      y_margin="3"
+      context_menu_condition="is_server_admin"
+    >
+      <context_menu_item name="kick" value="close $value"></context_menu_item>
+      <context_menu_item name="ban" value="ban $value"></context_menu_item>
+    </selection_list>
+
+    <selection_list
+      name="team_list"
+      class="selection_list_1"
+      list_command="team_list"
+      format_command="team_list_colors"
+      scroll_command="@panel1 @player_list get_scroll_position"
+      x="94"
+      y="32"
+      font="menufont"
+      lines="8"
+      line_height="16"
+      width="16"
+      color="0, 0, 60, 255"
+      border_color="100, 100, 100, 255"
+      text_color="255, 255, 255, 255"
+      shaded_text_color="200, 200, 200, 255"
+      selection_color="0, 0, 60, 255"
+      x_margin="5"
+      y_margin="3"
+    ></selection_list>
+
+    
+    
+    <panel y="172">
+      <label 
+        text="Ready"
+        class="text_1"
+        y="4"
+      ></label>
+      <checkbox
+        name="ready"
+        check_command="ready on"
+        clear_command="ready off"
+        info_command="ready"
+        image="checkbox"
+        check_image="checkbox_ok"
+        x="49"
+        y="0"
+      ></checkbox>
+      <label
+        text="Mode:"
+        class="text_2"
+        y="40"
+      ></label>
+      <label
+         text_command="match_time"
+         class="text_2"
+         xy="45, 40"
+         y="70"
+         x="0"
+      ></label>
+      <if info_command="game_mode" req_value="BaseDefence">
+        <label text="Base defence" class="text_2" y="55"></label>
+      </if>
+      <if info_command="game_mode" req_value="Deathmatch">
+        <label text="Deathmatch" class="text_2" y="55"></label>
+      </if>
+      <if info_command="game_mode" req_value="FlagCapture">
+        <label text="Flag capture" class="text_2" y="55"></label>
+      </if>
+      <if info_command="game_mode" req_value="LastManStanding">
+        <label text="Last man standing" class="text_2" y="55"></label>
+      </if>
+      <if info_command="game_mode" req_value="Hunt">
+        <label text="The Hunt" class="text_2" y="55"></label>
+      </if>
+      <if info_command="game_mode" req_value="Practice">
+        <label text="Practice" class="text_2" y="55"></label>
+      </if>
+    </panel>
+
+
+    <text_area
+      name="console_text"
+      class="text_area_1"
+      font="chat_font"
+      color="0, 0, 60, 255"
+      border_color="100, 100, 100, 255"
+      text_color="255, 255, 255, 255"
+      x_margin="4"
+      y_margin="2"
+      width="227"
+      height="220"
+      x="130"
+      y="0"
+    ></text_area>
+
+  
+    <text_field
+      name="console"
+      console_mode="on"
+      command="message $value"
+      class="text_field_2"
+      width="227"
+      x="130"
+      y="225"
+    ></text_field>
+  
+  
+  </panel>
+
+</panel>

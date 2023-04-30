@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="graphics">
+
+  <label 
+    text="Graphics"
+    class="heading"
+    x="10"
+    y="4"
+  ></label>
+
+
+  <list
+    x="50"
+    y="35"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="28"
+  >
+
+
+    <panel>
+    <label 
+      text="Graphics mode"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <list_box
+      name="mode"
+      class="list_box_1"
+      command="fullscreen $value"
+      info_command="fullscreen"
+      x="155"
+      size="10"
+    >
+      <item name="Windowed" value="off"></item>
+      <item name="Fullscreen" value="on"></item>
+    </list_box>
+    </panel>
+
+
+    <panel>
+    <label 
+      text="Window size"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <list_box
+      name="resolution"
+      class="list_box_1"
+      command="window_size $value"
+      info_command="window_size"
+      x="155"
+      size="10"
+    >
+      <item name="640x480" value="640 480"></item>
+      <item name="800x600" value="800 600"></item>
+      <item name="1024x768" value="1024 768"></item>
+      <item name="1920x1080" value="1920 1080"></item>
+    </list_box>
+    </panel>
+
+
+    <panel>
+    <label 
+      text="Two-player view"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <list_box
+      name="view"
+      class="list_box_1"
+      command="view $value"
+      info_command="view"
+      x="155"
+      size="10"
+    >
+      <item name="Quarter" value="1"></item>
+      <item name="Square" value="2"></item>
+      <item name="Maximum" value="3"></item>
+    </list_box>
+    </panel>
+
+    <panel>
+    <label 
+      text="Network view"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <list_box
+      name="network_view"
+      class="list_box_1"
+      command="network_view $value"
+      info_command="network_view"
+      x="155"
+      size="10"
+    >
+      <item name="Fullscreen" value="1"></item>
+      <item name="Splitscreen" value="2"></item>
+    </list_box>
+    </panel>
+    
+    <panel>
+    <label 
+      text="Ship style"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <list_box
+      name="ship_style"
+      class="list_box_1"
+      command="ship_style $value"
+      info_command="ship_style"
+      x="155"
+      size="10"
+    >
+      <item name="Classic" value="1"></item>
+      <item name="New" value="2"></item>
+    </list_box>
+    </panel>
+
+
+
+
+    <panel>
+    <label 
+      text="Weapon change"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <list_box
+      name="draw_weapon_change"
+      class="list_box_1"
+      command="draw_weapon_change $value"
+      info_command="draw_weapon_change"
+      x="155"
+      size="7"
+    >
+      <item name="Show none" value="0"></item>
+      <item name="Show own" value="1"></item>
+      <item name="Show team" value="2"></item>
+    </list_box>
+    </panel>
+
+
+    <panel>
+      <label text="Frame rate limit" y="3" font="menufont"></label>
+      <list_box
+        name="view"
+        class="list_box_1"
+        command="fps_limit $value"
+        info_command="fps_limit"
+        x="155"
+        size="5"
+      >
+        <item name="None" value="-1"></item>
+        <item name="VSync" value="0"></item>
+        <item name="25" value="25"></item>
+        <item name="30" value="30"></item>
+        <item name="40" value="40"></item>
+        <item name="50" value="50"></item>
+        <item name="60" value="60"></item>
+        <item name="90" value="90"></item>
+        <item name="100" value="100"></item>
+        <item name="120" value="120"></item>
+        <item name="200" value="200"></item>
+        <item name="240" value="240"></item>
+        <item name="500" value="500"></item>
+      </list_box>
+    </panel>
+
+
+    <panel>
+      <label 
+        text="Draw backgrounds"
+        class="text_1"
+        y="3"
+      ></label>
+      <checkbox
+        name="backgrounds"
+        check_command="backgrounds on"
+        clear_command="backgrounds off"
+        info_command="backgrounds"
+        image="checkbox"
+        check_image="checkbox_ok"
+        x="155"
+      ></checkbox>
+    </panel>
+
+
+
+    <panel>
+    <label 
+      text="Game messages"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <checkbox
+      name="game_messages"
+      check_command="game_messages on"
+      clear_command="game_messages off"
+      info_command="game_messages"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="155"
+    ></checkbox>
+    </panel>
+
+    <panel>
+    <label 
+      text="Show song names"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <checkbox
+      name="song_names"
+      check_command="show_song_names on"
+      clear_command="show_song_names off"
+      info_command="show_song_names"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="155"
+    ></checkbox>
+    </panel>
+
+  </list>
+
+</panel>
+

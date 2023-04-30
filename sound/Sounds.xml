@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- Default and maximum volume is 128. -->
+
+<sounds>
+
+<sound
+  name="reload"
+  file="gunreload.wav"
+></sound>
+
+<sound
+  name="explosion1"
+  file="explode.wav"
+></sound>
+
+<sound
+  name="explosion2"
+  file="explode.wav"
+></sound>
+
+<sound
+  name="big_explosion"
+  file="big_explosion.wav"
+></sound>
+
+<sound
+  name="gun"
+  file="gun.wav"
+  volume="24"
+></sound>
+
+<sound
+  name="dumbfire"
+  file="dumbfire.wav"
+  volume="96"
+></sound>
+
+<sound
+  name="grenade"
+  file="grenade.wav"
+></sound>
+
+<sound
+  name="freezer"
+  file="freezer.wav"
+></sound>
+
+<sound
+  name="harpoon"
+  file="harpoon.wav"
+  volume="64"
+></sound>
+
+<sound
+  name="harpoon_hit"
+  file="harpoon_hit.wav"
+  volume="64"
+></sound>
+
+<sound
+  name="harpoon_remove"
+  file=""
+  volume="64"
+></sound>
+
+<sound
+  name="rope"
+  file="harpoon.wav"
+  volume="32"
+></sound>
+
+<sound
+  name="pilot_hurt"
+  file="pilot_hurt.wav"
+></sound>
+
+<sound
+  name="pilot_fallhurt"
+  file="pilot_fallhurt.wav"
+></sound>
+
+<sound
+  name="ship_hit"
+  file="ship_hit.wav"
+  volume="64"
+></sound>
+
+<sound
+  name="ship_wallhit"
+  file="ship_wallhit.wav"
+></sound>
+
+<sound
+  name="trooper_hurt"
+  file="pilot_hurt.wav"
+  volume="32"
+></sound>
+
+<sound
+  name="trooper_fallhurt"
+  file="pilot_fallhurt.wav"
+  volume="64"
+></sound>
+
+<sound
+  name="trooper_death"
+  file="pilot_hurt.wav"
+  volume="64"
+></sound>
+
+<sound
+  name="splash"
+  file="splash.wav"
+></sound>
+
+<sound
+  name="shotgun"
+  file="shotgun.wav"
+  volume="96"
+></sound>
+
+<sound
+  name="mine"
+  file="mine.wav"
+  volume="128"
+></sound>
+
+<sound
+  name="trooper"
+  file=""
+></sound>
+
+<sound
+  name="timeslicer"
+  file=""
+></sound>
+
+<sound
+  name="explosive_material"
+  file=""
+></sound>
+
+<sound
+  name="cannon"
+  file=""
+></sound>
+
+<sound
+  name="fall"
+  file="fall.wav"
+></sound>
+
+<sound
+  name="gas"
+  file="explosion3.wav"
+></sound>
+
+<sound
+  name="shoot_gl"
+  file="shoot_gl.wav"
+></sound>
+
+<sound
+  name="explosion3"
+  file="explosion3.wav"
+></sound>
+
+
+
+
+</sounds>
+

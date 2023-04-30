@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="cpulse"
+  file="cpulse.png"
+  width="3" 
+  height="16" 
+  frames="1"
+  blend_style="add"
+  army_color="1"
+></animation >
+
+</graphics>

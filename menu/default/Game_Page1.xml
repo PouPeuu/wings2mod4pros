@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="game_page1">
+
+<label 
+  text="Game settings 1"
+  class="heading"
+  x="10"
+  y="4"
+></label>
+
+<list
+  x="50"
+  y="33"
+  width="350"
+  height="300"
+  x_space="175"
+  y_space="28"
+>
+
+  <panel>
+  <label 
+    text="Players"
+    class="text_1"
+    y="3"
+  ></label>
+
+  <list_box
+    name="players"
+    class="list_box_1"
+    command="setup $value"
+    info_command="num_players"
+    x="120"
+    size="4"
+  >
+    <item name="1" value="1"></item>
+    <item name="2" value="2"></item>
+    <item name="3" value="3"></item>
+    <item name="4" value="4"></item>
+  </list_box>
+
+  <button 
+    name="player_settings"
+    text="Settings"
+    class="text_button_1"
+    command="@game_page1 @player_view select player_settings"
+    x="200"
+  ></button>
+
+  </panel>
+
+ 
+  <panel>
+  <label 
+    text="Match time"
+    class="text_1"
+    y="3"
+  ></label>
+
+  <list_box
+    name="match_time"
+    class="list_box_1"
+    command="match_time $value"
+    info_command="match_time"
+    x="120"
+    size="4"
+  >
+    <item name="-" value="0"></item>
+    <item name="0:30" value="30"></item>
+    <item name="1:00" value="60"></item>
+    <item name="2:00" value="120"></item>
+    <item name="3:00" value="180"></item>
+    <item name="4:00" value="240"></item>
+    <item name="5:00" value="300"></item>
+    <item name="7:00" value="420"></item>
+    <item name="10:00" value="600"></item>
+    <item name="12:00" value="720"></item>
+    <item name="15:00" value="900"></item>
+    <item name="20:00" value="1200"></item>
+    <item name="30:00" value="1800"></item>
+    <item name="40:00" value="2400"></item>
+    <item name="50:00" value="3000"></item>
+    <item name="60:00" value="3600"></item>
+  </list_box>
+
+  <if info_command="game_mode" req_value="FlagCapture">
+    <label 
+      text="Flags"
+      class="text_1"
+      y="3"
+      x="205"
+    ></label>
+
+    <list_box
+      name="flags"
+      class="list_box_1"
+      command="num_flags $value"
+      info_command="num_flags"
+      x="250"
+      size="5"
+    >
+      <item name="Default" value="0"></item>
+      <item name="1" value="1"></item>
+      <item name="2" value="2"></item>
+      <item name="3" value="3"></item>
+      <item name="4" value="4"></item>
+      <item name="5" value="5"></item>
+      <item name="6" value="6"></item>
+      <item name="7" value="7"></item>
+      <item name="8" value="8"></item>
+      <item name="9" value="9"></item>
+      <item name="10" value="10"></item>
+      <item name="11" value="11"></item>
+      <item name="12" value="12"></item>
+      <item name="13" value="13"></item>
+      <item name="14" value="14"></item>
+      <item name="15" value="15"></item>
+      <item name="16" value="16"></item>
+    </list_box>
+  </if>          
+
+  <if info_command="game_mode" req_value="BaseDefence">
+    <label 
+      text="Build"
+      class="text_1"
+      y="3"
+      x="205"
+    ></label>
+
+    <list_box
+      name="build_time"
+      class="list_box_1"
+      command="build_time $value"
+      info_command="build_time"
+      x="250"
+      size="5"
+    >
+      <item name="0:00" value="0"></item>
+      <item name="0:30" value="30"></item>
+      <item name="1:00" value="60"></item>
+      <item name="1:30" value="90"></item>
+      <item name="2:00" value="120"></item>
+      <item name="2:30" value="150"></item>
+      <item name="3:00" value="180"></item>
+      <item name="3:30" value="210"></item>
+      <item name="4:00" value="240"></item>
+      <item name="4:30" value="270"></item>
+      <item name="5:00" value="300"></item>
+    </list_box>
+  </if>          
+
+  <if info_command="game_mode" req_value="Practice">
+    <label 
+      text="Opponents"
+      class="text_1"
+      y="3"
+      x="205"
+    ></label>
+
+    <list_box
+      name="opponents"
+      class="list_box_1"
+      command="num_opponents $value"
+      info_command="num_opponents"
+      x="285"
+      size="3"
+    >
+      <item name="1" value="1"></item>
+      <item name="2" value="2"></item>
+      <item name="3" value="3"></item>
+      <item name="4" value="4"></item>
+      <item name="5" value="5"></item>
+      <item name="6" value="6"></item>
+      <item name="7" value="7"></item>
+      <item name="8" value="8"></item>
+      <item name="9" value="9"></item>
+      <item name="10" value="10"></item>
+    </list_box>
+  </if>          
+
+
+
+  </panel>
+
+
+  <panel>
+  <label 
+    text="Game mode"
+    class="text_1"
+    y="3"
+  ></label>
+
+  <list_box
+    name="game_mode"
+    class="list_box_1"
+    command="game_mode $value"
+    info_command="game_mode"
+    list_command="game_modes"
+    x="120"
+    size="10"
+  >
+    <!--
+    <item name="Base defence" value="BaseDefence"></item>
+    <item name="Deathmatch" value="Deathmatch"></item>
+    <item name="Flag capture" value="FlagCapture"></item>
+    <item name="Last man standing" value="LastManStanding"></item>
+    <item name="The Hunt" value="Hunt"></item>
+    -->
+  </list_box>
+
+  <button 
+    name="gamemode_settings"
+    text="Info"
+    class="text_button_1"
+    command="@game_page1 @gamemode_view select gamemode_settings"
+    x="290"
+  ></button>
+  </panel>
+
+
+  <panel y="-2">
+  <label 
+    text="Levels:"
+    class="text_1"
+    y="3"
+  ></label>
+
+  <label 
+    text_command="num_selected_levels"
+    class="text_1"
+    x="55"
+    y="3"
+  ></label>
+
+  <button
+    text="Shuffle"
+    class="text_button_1"
+    command="shuffle_levels"
+    x="75"
+    y="-1"
+  ></button>
+
+  <button
+    text="Random"
+    class="text_button_1"
+    command="add_random_level"
+    x="180"
+  ></button>
+
+  <list_box
+    name="level_subdir"
+    class="list_box_1"
+    command="level_subdir $value"
+    info_command="level_subdir"
+    list_command="level_subdirs"
+    empty_name="All levels"
+    empty_command="level_subdir -"
+    x="244"
+    size="6"
+  >
+    <item name="All levels" value="-"></item>
+  </list_box>
+
+
+
+
+  <selection_list
+    name="selected_levels"
+    class="selection_list_1"
+    list_command="selected_levels"
+    select_command="rem_level $pos"
+    disabled_item_command="rem_level $pos"
+    y="23"
+    lines="9"
+    line_height="18"
+    width="164"
+    selection_color="0, 0, 0, 0"
+  ></selection_list>
+
+  <selection_list
+    name="level"
+    class="selection_list_1"
+    list_command="levels"
+    refresh_time="2"
+    select_command="add_level $value"
+    disabled_item_command="add_level $value"
+    x="180"
+    y="23"
+    lines="9"
+    line_height="18"
+    width="164"
+    selection_color="0, 0, 0, 0"
+  ></selection_list>
+
+  </panel>
+
+
+  </list>
+
+  <view name="player_view">
+     <view name="player_settings" type="2">
+       <panel>
+       <panel
+         name="player_settings"
+         image="player_settings"
+         x="35"
+         y="55"
+		 width="200"
+		 height="300"
+       >
+         
+         <list
+           x="10"
+           y="10"
+           width="350"
+           height="300"
+           x_space="175"
+           y_space="30"
+         >
+           <panel>
+           <if info_command="player_name 1" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 1"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 2" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 2"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 3" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 3"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 4" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 4"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 5" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 5"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 6" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 6"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 7" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 7"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 8" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 8"></include>
+           </if>
+           </panel>
+           <panel>
+             <button 
+               name="randomize_teams"
+               text="Randomize teams"
+               class="text_button_1"
+               command="randomize_teams"
+               x="12"
+               y="18"
+             ></button>
+           </panel>
+         </list>
+       </panel>
+       
+       <if info_command="player_name 9" is_defined="true">
+       <panel
+         name="player_settings"
+         image="player_settings"
+         x="235"
+         y="55"
+		 width="200"
+		 height="300"
+       >
+         
+         <list
+           x="10"
+           y="10"
+           width="350"
+           height="300"
+           x_space="175"
+           y_space="30"
+         >
+           <panel>
+           <if info_command="player_name 9" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 9"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 10" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 10"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 11" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 11"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 12" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 12"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 13" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 13"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 14" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 14"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 15" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 15"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 16" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 16"></include>
+           </if>
+           </panel>
+           <panel>
+           <if info_command="player_name 17" is_defined="true">
+             <include file="PlayerSettings.xml" defs="PLAYER_NUM = 17"></include>
+           </if>
+           </panel>
+         </list>
+       </panel>
+       </if>
+       </panel>
+     </view>
+  </view>
+
+  <view name="gamemode_view">
+    <view name="limited_view_info" type="2">
+      <panel
+        name="limited_view_info"
+        image="gamemode_settings"
+        x="170"
+        y="135"
+		width="200"
+		height="206"
+      >
+        <text_area
+          name=""
+          class="text_area_1"
+          font="chat_font"
+          color="0, 0, 0, 0"
+          border_color="0, 0, 0, 0"
+          text_color="255, 255, 255, 255"
+          x_margin="0"
+          y_margin="0"
+          width="165"
+          height="200"
+          x="20"
+          y="20"
+          dir="top_down"
+          paragraph_style="true"
+          scrollbar="false"
+          text="Ships: Enables ships.&#10;&#10;Limited view: Only views of players in the same team can be selected. Radar range is limited. Pilots are not shown in the radar. This setting only affects network game."
+          static="true"
+        ></text_area>
+      </panel>
+    </view>
+    <view name="balancing_info" type="2">
+      <panel
+        name="limited_view_info"
+        image="gamemode_settings"
+        x="170"
+        y="168"
+		width="200"
+		height="206"
+      >
+        <text_area
+          name=""
+          class="text_area_1"
+          font="chat_font"
+          color="0, 0, 0, 0"
+          border_color="0, 0, 0, 0"
+          text_color="255, 255, 255, 255"
+          x_margin="0"
+          y_margin="0"
+          width="165"
+          height="200"
+          x="20"
+          y="20"
+          dir="top_down"
+          paragraph_style="true"
+          scrollbar="false"
+          text="Buildings: Enables cannons, turrets, troopers, mines, laser walls, walls and bumpers.&#10;&#10;Team balancing: Teams with less players get faster loading times and stronger ships."
+          static="true"
+        ></text_area>
+      </panel>
+    </view>
+    <view name="gamemode_settings" type="2">
+      <panel
+        name="gamemode_settings"
+        image="gamemode_settings"
+        x="170"
+        y="111"
+		width="200"
+		height="206"
+      >
+        <if info_command="game_mode" req_value="BaseDefence">
+          <text_area
+            name="gamemode_text"
+            class="text_area_1"
+            font="chat_font"
+            color="0, 0, 0, 0"
+            border_color="0, 0, 0, 0"
+            text_color="255, 255, 255, 255"
+            x_margin="0"
+            y_margin="0"
+            width="165"
+            height="190"
+            x="20"
+            y="20"
+            dir="top_down"
+            paragraph_style="true"
+            scrollbar="false"
+            text="After initial building period you get points for destroyed enemy objects: factory (250), ship (15), walker (10), cannon (8), turret (6), pilot (5), laser wall (2), trooper (1), mine (1). Damaging the factory gives 0-100 points. The game ends when score difference is more than 200, or both factories are destroyed."
+            static="true"
+          ></text_area>
+        </if>
+        <if info_command="game_mode" req_value="Deathmatch">
+          <text_area
+            name="gamemode_text"
+            class="text_area_1"
+            font="chat_font"
+            color="0, 0, 0, 0"
+            border_color="0, 0, 0, 0"
+            text_color="255, 255, 255, 255"
+            x_margin="0"
+            y_margin="0"
+            width="165"
+            height="140"
+            x="20"
+            y="20"
+            dir="top_down"
+            paragraph_style="true"
+            scrollbar="false"
+            text="You get one point for killing an opponent, -1 for crashing yourself."
+            static="true"
+          ></text_area>
+        </if>
+        <if info_command="game_mode" req_value="FlagCapture">
+          <text_area
+            name="gamemode_text"
+            class="text_area_1"
+            font="chat_font"
+            color="0, 0, 0, 0"
+            border_color="0, 0, 0, 0"
+            text_color="255, 255, 255, 255"
+            x_margin="0"
+            y_margin="0"
+            width="165"
+            height="140"
+            x="20"
+            y="20"
+            dir="top_down"
+            paragraph_style="true"
+            scrollbar="false"
+            text="You get one point for holding a flag for 5 seconds."
+            static="true"
+          ></text_area>
+
+        </if>
+
+        <if info_command="game_mode" req_value="LastManStanding">
+          <text_area
+            name="gamemode_text"
+            class="text_area_1"
+            font="chat_font"
+            color="0, 0, 0, 0"
+            border_color="0, 0, 0, 0"
+            text_color="255, 255, 255, 255"
+            x_margin="0"
+            y_margin="0"
+            width="165"
+            height="190"
+            x="20"
+            y="20"
+            dir="top_down"
+            paragraph_style="true"
+            scrollbar="false"
+            text="The goal is to survive. When someone dies, everyone else gets a point. He can still continue playing, but will not get any more points and can not use ships. The killer gets his ship repaired. A team is considered alive if someone in the team is alive, and team counts as one point."
+            static="true"
+          ></text_area>
+        </if>
+        <if info_command="game_mode" req_value="Hunt">
+          <text_area
+            name="gamemode_text"
+            class="text_area_1"
+            font="chat_font"
+            color="0, 0, 0, 0"
+            border_color="0, 0, 0, 0"
+            text_color="255, 255, 255, 255"
+            x_margin="0"
+            y_margin="0"
+            width="165"
+            height="140"
+            x="20"
+            y="20"
+            dir="top_down"
+            paragraph_style="true"
+            scrollbar="false"
+            text="One player in turn is hunted by the others. When he dies, next one is selected. The hunted gets one point for every 5 seconds he survives. He is marked by having a red ship."
+            static="true"
+          ></text_area>
+        </if>
+        <if info_command="game_mode" req_value="Practice">
+          <text_area
+            name="gamemode_text"
+            class="text_area_1"
+            font="chat_font"
+            color="0, 0, 0, 0"
+            border_color="0, 0, 0, 0"
+            text_color="255, 255, 255, 255"
+            x_margin="0"
+            y_margin="0"
+            width="165"
+            height="140"
+            x="20"
+            y="20"
+            dir="top_down"
+            paragraph_style="true"
+            scrollbar="false"
+            text="Single player mode. Fight against computer controlled ships. One point for a kill, -1 for death."
+            static="true"
+          ></text_area>
+        </if>
+      </panel>
+    </view>
+  </view>
+
+
+</panel>

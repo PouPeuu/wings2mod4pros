@@ -1,0 +1,559 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+    "http://www.w3.org/TR/REC-html40/strict.dtd"> 
+
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Wings 2 Manual</title>
+
+
+
+
+<style type="text/css">
+
+  body { margin-left: 5%; margin-right: 14%; }
+  body { margin-top: 2em; margin-bottom: 3em; }
+
+  h1,h2,h3,h4,h5 { font-family: arial, serif; }
+  h1 { font-size: 150%; font-family: arial, serif; } 
+  h2 { font-size: 120%; margin-top: 2.5em; margin-bottom: 0.75em; }
+  h3 { font-size: 100%; margin-top: 1.3em; margin-bottom: 0.75em; }
+  h4 { font-size: 90%; margin-top: 1.3em; margin-bottom: 0.75em; }
+  pre.function { font-size: 100%; font-family: monospace; font-style: normal; margin-top: 0.5em; margin-bottom: 0.5em; }
+  pre.strong { font-size: 90%; font-family: monospace }
+  div.cr { margin-left: 3ex; }
+  em.file { font-size: 100%; font-family: monospace; font-style: normal; }
+
+  address {
+    margin-top: 3em;
+  }
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+
+<h1><img src="wings2_logo.jpg" alt="Wings 2" /></h1>
+
+
+<h2>Contents</h2>
+
+<ol class="toc">
+  <li class="tocline1"><a href="#install" class="tocxref">Installation and requirements</a>
+  <li class="tocline1"><a href="#controls" class="tocxref">User interface and controls</a>
+  <li class="tocline1"><a href="#game_modes" class="tocxref">Game modes</a>
+  <li class="tocline1"><a href="#network" class="tocxref">Network configuration</a>
+  <li class="tocline1"><a href="#server" class="tocxref">Dedicated server</a>
+  <li class="tocline1"><a href="#levels" class="tocxref">Creating levels</a>
+  <li class="tocline1"><a href="#debugging" class="tocxref">Debugging functions</a>
+  <li class="tocline1"><a href="#freesound" class="tocxref">Freesound attribution list</a>
+  <li class="tocline1"><a href="#license" class="tocxref">Software license</a>
+  <li class="tocline1"><a href="#credits" class="tocxref">Credits</a>
+</ol>
+
+
+
+<h2><a name="install">Installation and requirements</a></h2>
+
+
+<h3>Installing in Windows</h3>
+
+<p>
+Run the installer and select your preferred installation path and options.
+
+<h3>Installing in Linux</h3>
+
+<p>
+Use appropriate tools to uncompress the .tar.gz packet to the directory of your choosing.
+
+<p>
+<em class="file">Wings2/bin/Wings</em> is 32bit version of the game. <em class="file">Wings2/bin/Wings64</em> is AMD 64bit binary.
+
+<p>
+The game requires the following libraries to run: SDL, SDL_image, SDL_net, SDL_mixer.
+
+<p>
+In addition to the installation directory, the game also looks <em class="file">~/.wings2</em> for
+configuration files, levels and music.
+
+<p>
+You can also define paths by using command line parameters -data_path and
+-config_path.
+
+
+
+<h3>Installing additional levels and music</h3>
+
+There are separate level and music packs available, and you can also add your own. Mostly these
+will be available as .zip packets, which you need to extract to the correct folders.
+
+<p>
+For example, if you installed the game in <em class="file">C:\Program Files\Wings 2</em> (this is usually the default
+in Windows), you need to place the files in <em class="file">C:\Program Files\Wings 2\levels</em> and <em class="file">C:\Program Files\Wings 2\music</em>.
+
+
+<h3>Minimum system requirements</h3>
+    <ul class="req">
+
+      <li>Windows 98/ME/2000/XP <b>or</b> Linux</li>
+
+      <li>300Mhz Pentium II or equivalent processor</li>
+      <li>128 MB RAM</li>
+
+      <li>8MB video card with OpenGL 3D hardware acceleration
+
+    </ul>
+
+<p>
+Video card is the most critical part. If OpenGL is not working on hardware,
+the game will run very slowly (possibly 10fps on otherwise fast computer.) If this happens,
+you should try updating your drivers.
+
+
+
+
+
+<h2><a name="controls">User interface and controls</a></h2>
+
+<h3>Ship controls</h3>
+
+<p>
+Control keys are described in-game. Please see Options / Controls. All keys are configurable,
+supporting keyboard and game controllers.
+
+
+<h3>Selecting weapons</h3>
+
+<p>
+Ships can use 4 weapons at the same time. During a game, you can change this weapon set by landing
+on a base (repair platform), and pressing the next weapon key. This will open a weapon list, which
+can be changed with the menu keys (up/down/left/right.) 
+
+<p>
+In the weapons menu you can define weapon sets which will be used in different game modes. If you define
+more than one set for the same mode, the game will select one randomly. If there is no set defined for
+a certain mode, the game will select a set marked with '-', if one exists, or the first set in the list
+if not.
+
+
+<h3>Admin controls: Kicking/banning on servers</h3>
+
+<p>
+In start menu: Right click player name.
+
+<p>
+During game: Open connection list (backspace) and right click player name.
+
+
+<h3>Console commands</h3>
+
+<p>
+Currently there are few commands which are only
+available through the console:
+
+<pre>
+/server_admin_password [password]   - sets password for server administrators
+/admin_login [password]             - logs in as an admin in the server you are connected to
+/admin_logout                       - logs out, ie. gives up admin privileges
+
+/observe true|false                 - selects whether the server observes or participates in games
+                       
+/chat_mode 1                        - in-game chat window is not closed after every message
+</pre>
+
+
+
+
+<h2><a name="game_modes">Game modes</a></h2>
+
+
+<h3>Base Defence</h3>
+
+<p>
+The game begins with a base building period where teams are restricted on their own side of the map.
+After this you get points for destroyed enemy objects. Killed players respawn at their own base (factory).
+
+<p>
+<i>Note: You can respawn after the ship condition indicator turns green by pressing thrust key. This allows you to
+start loading weapons while repairing the ship, or wait a bit longer if there is trouble at the base.
+</i>
+
+<p>
+The points are as following:
+
+<table>
+<tr><td width="90">Factory</td><td>250</td></tr>
+<tr><td>Ship</td><td>15</td></tr>
+<tr><td>Walker</td><td>10</tr>
+<tr><td>Cannon</td><td>8</td></tr>
+<tr><td>Turret</td><td>6</td></tr>
+<tr><td>Pilot</td><td>5</td></tr>
+<tr><td>Laser wall</td><td>2</td></tr>
+<tr><td>Trooper</td><td>1</td></tr>
+<tr><td>Mine</td><td>1</td></tr>
+</table>
+
+<p>
+<i>Note: Walkers are not available as a weapon in the Free Edition, but can appear when playing 
+on full version servers.</I>
+
+<p>
+Damaging the factory gives additional 0-100 points, so the total for destroying it is 350.
+
+<p>
+The game ends when score difference is more than 200, both factories are destroyed, or time limit is reached.
+
+<p>
+The factory building protects ships of the same from gas and some other weapons, and causes damage
+to enemy ships.
+
+<p>
+Digger (full version only) is disabled in this game mode, because it makes destroying defences very easy.
+
+
+<h3>Deathmatch</h3>
+
+<p>
+You get one point for killing an opponent, -1 for crashing yourself. Killed players get a new ship,
+and the game continues until time limit is reached.
+
+
+<h3>Flag Capture</h3>
+
+<p>
+You get one point for holding a flag for 5 seconds.
+
+<p>
+The team holding smaller number of flags gets 10% loading speed and respawn time bonus for each flag.
+
+<p>
+The game ends when time limit is reached.
+
+<p>
+<i>Note: You can respawn after the ship condition indicator turns green by pressing thrust key.</i>
+
+
+<h3>Last Man Standing</h3>
+
+<p>
+The goal is to survive. When someone dies, everyone else gets a point. 
+He can still continue playing, but will not get any more points and can 
+not use ships. The killer also gets his ship repaired. So, if there are
+four players (in different teams), their points will end up as 3, 2, 1, 0.
+
+<p>
+In a team game a team is considered alive if someone in the team is alive, 
+and team counts as one point.
+
+<p>
+The game ends when there is only one player (who has not been killed
+yet) or team left.
+
+
+<h3>The Hunt</h3>
+
+<p>
+One player in turn is hunted by the others. When he dies, next one is 
+selected. The hunted gets one point for every 5 seconds he survives. 
+He is marked by having a red ship, while the others are green.
+
+<p>
+After time limit is reached, the last round will be finished in
+overtime (OT), so that all players get the same number of turns.
+
+
+<h3>Practice</h3>
+
+<p>
+Single player mode. Fight against computer controlled ships. 
+One point for a kill, -1 for death.
+
+
+
+<p>
+<h2><a name="network">Network configuration</a></h2>
+
+<p>
+To play in network games, you first need to register at 
+<a href="http://www.wings2.net">www.wings2.net</a>.
+Enter your name and password in the network configuration menu, and click the Login-button 
+to check that things are working correctly. (You can also connect directly to servers,
+without pressing Login first. The name and password must be correct, however.)
+
+<p>
+You also need to set your upload/download rates correctly. (These of course depend
+on your network connection.) Too low values mean some extra lag, and too high
+values mean likely congestion and even more lag. It is not recommended to set
+upload rate to unlimited unless you are playing a LAN game.
+
+<p>
+Packet rate and port settings in network config menu only matter if you are running a server.
+
+<p>
+Packet rate means how many packets the server will send in a second to every client.
+The default is 20, which mostly seems to work fine. Higher values may help in a LAN 
+game with a fast network and server. Lower values will save bandwidth, but cause some 
+extra lag.
+
+<p>
+When you announce a server, the information is sent to wings2.net, and can be seen
+by all other players. If you do not set server IP address manually, the system will use the
+IP address which is seen by wings2.net. If this does not seem to work, you should try
+setting the correct address in the server menu. Depending on your network connection,
+you may also have to change your NAT and firewall settings, to allow incoming connections
+to the ports the game uses.
+
+
+
+<h2><a name="server">Dedicated server</a></h2>
+<p>
+You can start Wings 2 in dedicated server mode by giving it command line parameter
+-dedicated_server. This will run the game with no graphics output, and it will 
+automatically start server and announce itself. (Of course, name and password
+must be set correctly in the configuration file (config.xml) for this to work.)
+
+<p>
+Dedicated server can be controlled by logging in with a client using the same account,
+or by setting server admin password (see console commands).
+
+
+
+
+<h2><a name="levels">Creating levels</a></h3>
+
+<p>
+There is a simple example level in the doc\level -folder. 
+You can try it by placing the files somewhere under the 
+levels -folder. You can also pack it to a .lev file by 
+using the Makelev program on ground.xml. 
+
+<p>
+The idea is that the level consist of a data map, which defines
+terrain types (see data_colors.png for reference), visual map,
+which defines what the level looks like, and optionally one or
+more background layers. 
+
+<p>
+Please see <a href="http://www.wings2.net">www.wings2.net</a>
+forum and links for more information.
+
+
+
+
+
+
+<h2><a name="debugging">Debugging functions</a></h2>
+
+<pre>
+´ -key (next to backspace) displays some network info:
+
+  ul_rate: current upload rate
+
+  drop: dropped packets 
+
+      Some packets will be dropped instead of sending when you (or server) are 
+      low on bandwidth. This may result in, for example, bullets not actually
+      hitting enemy ship even if you thought they did. For the server dropping 
+      some packets is normal, since players do not always need all information.
+
+  udp: 1 if the game is using udp, 0 if tcp
+
+  ping_t: time in milliseconds since the last ping got through. Normally this
+      should count to 1000. At 7000 the game will print "Connection problem".
+
+  s_n: Number of reliable packets sent
+
+  r_n: Number of reliable packets received
+
+  s_b: Send buffer size
+
+  r_b: Receive buffer size
+
+      Some information like "ship created/destroyed" and "terrain changed" is sent
+      through a reliable protocol which guarantees that no packets are missed. 
+      If the receive buffer counter gets high, there has been a connection problem 
+      or there is not enough bandwidth to sent all data right away. In game this 
+      can show as terrain changes appearing in delayed manner.
+
+  max_s: Maximum packet payload size in bytes. This is limited by packet rate,
+      your upload rate, and download rate of the other end.
+</pre>
+
+
+
+
+<h2><a name="freesound">Freesound attribution list</a></h2>
+
+<p>
+The following samples from the Freesound Project have been used in Wings 2.
+
+<pre>
+--------------------------------------
+ April 11, 2006
+     By cognito perceptu (http://freesound.iua.upf.edu/usersViewSingle.php?id=57789)
+         unknown woodenish bang bang.wav (http://freesound.iua.upf.edu/samplesViewSingle.php?id=17017)
+     By schluppipuppie (http://freesound.iua.upf.edu/usersViewSingle.php?id=4942)
+         messer - holz - 12.wav (http://freesound.iua.upf.edu/samplesViewSingle.php?id=12860)
+     By lostchocolatelab (http://freesound.iua.upf.edu/usersViewSingle.php?id=1402)
+         06SWORD04.aif (http://freesound.iua.upf.edu/samplesViewSingle.php?id=1451)
+     By mich3d (http://freesound.iua.upf.edu/usersViewSingle.php?id=32482)
+         Whoosh_Swish_02.wav (http://freesound.iua.upf.edu/samplesViewSingle.php?id=12657)
+     By SpeedY (http://freesound.iua.upf.edu/usersViewSingle.php?id=6479)
+         pretty_close_thunder_clap.wav (http://freesound.iua.upf.edu/samplesViewSingle.php?id=17056)
+---------------------------------------
+ March 4, 2007
+     By inferno (http://freesound.iua.upf.edu/usersViewSingle.php?id=71614)
+         smalllas.wav (http://freesound.iua.upf.edu/samplesViewSingle.php?id=18397)
+         hvylas.wav (http://freesound.iua.upf.edu/samplesViewSingle.php?id=18382)
+---------------------------------------
+</pre>
+
+
+
+<h2><a name="license">Software license</a></h2>
+
+<p>
+The license is available as a separate document in the <em class="file">Wings2/doc</em> folder.
+
+<p>
+<a href="License.txt">License.txt</a>
+
+
+
+
+<h2><a name="credits">Credits</a></h2>
+
+
+<h4>GAME DESIGN & PROGRAMMING</h4>
+<div class="cr">
+   Miika Virpioja<br>
+</div>
+
+<h4>WEAPON DESIGN & SCRIPTING</h4>
+
+<div class="cr">
+   Miika Virpioja<br>
+   Sami Virpioja<br>
+   Jarkko Iso-Heiko (JTS)<br>
+</div>
+   
+<h4>MENU DESIGN & GRAPHICS</h4>
+
+<div class="cr">
+   Miika Virpioja<br>
+   DiCola<br>
+   Pege<br>
+   Zounas<br>
+</div>
+
+<h4>GRAPHICS & LEVEL DESIGN</h4>
+
+<div class="cr">
+   Eero Kotimäki (seero)<br>
+   Ilkka Sjöstedt<br>
+   Jouko Joensuu (Jogge)<br>
+   Jukka Jokinen (JJ45)<br>
+   Lassi Hirvisaari (letq)<br>
+   Miika Virpioja<br>
+   DiCola<br>
+   Evil-Ville<br>
+   Theme<br>
+</div>
+
+<h4>SOUND EFFECTS</h4>
+
+<div class="cr">
+  InferiS<br>
+  Yle_24<br>
+</div>
+
+<h4>MUSIC</h4>
+
+<div class="cr">
+   Arto Järvinen<br>
+   Axid<br>
+   Black Smetana<br>
+   Janne Sinisalo (Jansku)<br>
+   Jussi Huhtala<br>
+   Lassi Hirvisaari (lateq)<br>
+   Mikko Koivisto (Xns) <br>
+   Paradigma<br>
+   SaFter<br>
+   Sami J<br>
+   Toni Puronvarsi (Puke)<br>
+   Touko Jaakkola<br>
+   NES1<br>
+   Unholy<br>
+   Welli<br>
+   Yle_24<br>
+</div>
+
+<h4>WEB DESIGN & PROGRAMMING</h4>
+
+<div class="cr">
+   Miika Virpioja<br>
+   Jarkko Iso-Heiko (JTS)<br>
+</div>
+
+<h4>TESTING</h4>
+
+<div class="cr">
+   Eero Kotimäki (seero) <br>
+   Eero Viitaniemi <br>
+   Erno Soihtu <br>
+   Heikki Niemi <br>
+   Ilmari Kinnunen <br>
+   Ilkka Sjöstedt <br>
+   Janne Sinisalo (Jansku) <br>
+   Jarkko Iso-Heiko (JTS) <br>
+   Jouko Joensuu (Jogge) <br>
+   Joshua Szanto <br>
+   Jouni Joensuu (JTJ) <br>
+   Juho Saarelainen <br>
+   Jukka Jokinen (JJ45) <br>
+   Lassi Hirvisaari (letq) <br>
+   Mikko Lähteenmäki <br>
+   Mikko Perttunen (cyndis) <br>
+   Olli Huhtinen <br>
+   Otso Korhonen <br>
+   Sami Salminen <br>
+   Toni Puronvarsi (Puke) <br>
+   <br>
+   A1win * Alakala * Andows <br>
+   Anssi * Anttu * Ape * Aulis <br>
+   Capsizer * BansiKKaBoju <br>
+   BigLebowski * DiCola * Grulps <br>
+   BuGi * Clord * Crimsoni <br>
+   dicko21 * do45 * Eiskis <br>
+   EnKeksiMt * Evil-Ville * FearMTC <br>
+   Final_Frontier * Freshmaker <br>
+   Hempsa * Heppuli * hopeatikari <br>
+   Hullumurhari * InferiS <br>
+   Infernal DJ * Jaztee * Juntunen <br>
+   Jutaky * knome * lemonade <br>
+   Lokken * Makkara * MiikaH <br>
+   mikeful * mooseproduce * Moxie <br>
+   MP83 * mr.tp * ninnnu <br>
+   Ohcanep * Onion King * paagi <br>
+   Pakkanen * Paradigma * Pernicio <br>
+   Pege * Peruna * rale <br>
+   Rasse * SaFter * scirmast <br>
+   Sergeant * Theme * The_Oak <br>
+   Tomppu * toodles * TonZa <br>
+   treble * TZ * wille <br>
+   Yle_24 * Zounas <br>
+</div>
+
+
+
+
+
+
+</body>
+</html>

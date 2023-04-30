@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation
+  name="bubble"
+  file="bubbleani.png"
+  width="28"
+  height="28"
+  frames="21"
+  blend_style="add"
+  time="1"
+></animation>
+
+
+</graphics>

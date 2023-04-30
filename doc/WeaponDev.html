@@ -1,0 +1,1919 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd"> 
+
+
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>Wings 2 weapon scripting manual</title>
+
+<style type="text/css">
+  body { margin-left: 5%; margin-right: 14%; }
+  body { margin-top: 3em; margin-bottom: 3em; }
+
+  h1,h2,h3,h4,h5 { font-family: arial, serif; }
+  h1 { font-size: 150%; font-family: arial, serif; } 
+  h2 { font-size: 120%; margin-top: 1.5em; margin-bottom: 0.75em; }
+  h3 { font-size: 90%; margin-top: 1.5em; margin-bottom: 0.75em; }
+  pre.function { font-size: 100%; font-family: monospace; font-style: normal; margin-top: 0.5em; margin-bottom: 0.5em; }
+  pre.strong { font-size: 90%; font-family: monospace }
+
+address {
+  margin-top: 3em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+<h1>Wings 2 Weapon scripting manual</h1>
+<i>Last modified: 18.7.2006</i>
+
+<h2>Contents</h2>
+
+<ol class="toc">
+  <li class="tocline1"><a href="#introduction" class="tocxref">Introduction</a>
+  <li class="tocline1"><a href="#loading" class="tocxref">Loading modes</a>
+  <li class="tocline1"><a href="#state" class="tocxref">Weapon state</a>
+  <li class="tocline1"><a href="#objects" class="tocxref">Creating objects</a>
+  <li class="tocline1"><a href="#API" class="tocxref">Wings Lua API</a>
+</ol>
+
+
+<h2><a name="introduction">Introduction</a></h2>
+
+<p>
+The scripting system uses programming language Lua:
+<br><a href="http://www.lua.org/">http://www.lua.org/</a>
+
+<p>
+To add a new weapon, you need to place a script
+WeaponName.lua in the weapons folder. To take the
+weapon into use, you need to add it to the lists
+in Weapons.dat.
+
+<p>
+Alternatively, you can create a subdirectory for the weapon,
+which must have the same name as the weapon. 
+(weapons/WeaponName/WeaponName.lua). This way you can 
+put all additional files needed by the weapon in the 
+same place. This is discussed in chapter 4.
+
+<p>
+This script could be used to define the "dumbfire" weapon:
+
+<pre>
+max_energy = 60
+req_energy = 60
+recoil = 175
+
+function launch()
+  dir = get_platform_dir()
+  dx, dy = get_dir_vector(dir)
+  create_object("dumbfire", dx*8, dy*8, dx*200, dy*200)
+end
+</pre>
+
+<p>
+The launch method is called whenever the weapon is fired.
+It can use the Wings Lua API to create game objects, play 
+sounds, etc.
+
+
+<h2><a name="loading">Loading modes</a></h2>
+
+<p>
+The first lines define the weapon loading time (or energy use):
+
+<pre>
+max_energy - maximum energy load of the weapon
+req_energy - energy required to launch the weapon
+recoil     - how hard the weapon "kicks"
+</pre>
+
+<p>
+It is also possible to define:
+
+<pre>
+req_energy_level - how much energy is required to
+  start firing the weapon, even if req_energy is lower.
+</pre>
+
+<p>
+Example:
+<pre>
+max_energy = 200
+req_energy = 2
+req_energy_level = 60
+delay = 0.03
+</pre>
+
+<p>
+The delay gives (in seconds) the minimum time between two
+shots. If the delay is not given, the firing rate would
+depend only on framarate, which is not a good idea.
+
+<p>
+To create weapons which require several steps (trigger presses) 
+to use, such as the harpoon, you can define the number of phases:
+
+<pre>
+max_energy = 20
+req_energy = 20
+phases = 2
+</pre>
+
+<p>
+There is also an alternative load mode, which is currently
+used in the shotgun. It can be used to define weapons which
+can be shot multiple times before reloading.
+
+<p>
+Example:
+<pre>
+load_mode = 2
+req_energy = 110
+num_shots = 6
+shot_energy = 5
+</pre>
+
+<p>
+Here req_energy is the reloading energy, shot_energy is the
+energy required for each shot, and num_shots is the number of 
+times the weapon can be launched before reloading.
+
+<p>
+To create weapons like the "gun", where you need to release
+and press the fire key again between two shots, you can define:
+
+<pre>
+trigger_mode = 2
+</pre>
+
+<p>
+To create weapons like the grenade, where you can change the
+throwing strength by holding the key down, you can define:
+
+<pre>
+trigger_mode = 3
+max_power_time = 1
+</pre>
+
+<p>
+The time defines how long (in seconds) you need to hold the 
+key for maximum power. The power (0-1) is given as an argument
+of the launch function:
+
+<pre>
+function launch(power)
+  ...
+end
+</pre>
+
+
+<h2><a name="state">Weapon state</a></h2>
+
+<p>
+The variables initialized at the start of the script are
+global - their values are same for all weapons of this type.
+For this reason, there is a special global table 'this',
+which may used to store the state of the the current weapon
+instance. (Say, the weapon in the ship of player 1.)
+
+<pre>
+x = 0
+
+function init()
+  this.x = 0
+end
+
+function launch()
+  x = x + 1
+  this.x = this.x + 1
+end
+</pre>
+
+<p>
+Here, 'x' is global, and using it will probably have unwanted
+effects when more than one player uses the weapon. 'this.x'
+will work correctly. The init() -function can be used to 
+initialize the weapon state. (Using 'this' outside of a 
+function will not work correctly.)
+
+<p>
+If you need to continuously check for something, for 
+example state of an object you created (like a rope),
+you can add a new funtion:
+
+<pre>
+function run()
+  do_something()
+end
+</pre>
+
+
+<h2><a name="objects">Creating objects</a></h2>
+
+<p>
+Game objects (such as bullets) can be created in the same way
+as weapons. Place script file object_name.lua in the main objects 
+folder, or in a weapon object folder (weapons/WeaponName/objects).
+
+<p>
+Note that you can have only one object with a given name, no 
+matter where the file is placed.
+
+<p>
+Graphics files needed by the objects can also be placed in
+the object folder. You also need to add file named "Graphics.xml",
+which defines the used images.
+
+<p>
+Similarly, sound files and "Sounds.xml" file can be added to 
+weapon and object folders.
+
+<p>
+The following example script defines a simple projectile which
+causes some damage and vanishes when it hits the ship or some
+other object.
+
+<pre>
+image = "bomb"
+condition = 12.0
+bounding_circle_radius = 3
+hit_damage = 10
+hit_impulse = 1.5
+mass = 2.0
+volume = 0.5
+air_resistance = 1.0
+
+function init(x_pos, y_pos, x_vel, y_vel, owner_id)
+  px, py = get_object_pos(owner_id)
+  vx, vy = get_object_vel(owner_id)
+  px, py = find_last_clear_point(px, py, px+x_pos, py+y_pos)
+  set_pos(px, py)
+  set_vel(vx+x_vel, vy+y_vel)
+  set_owner(owner_id)
+end
+</pre>
+
+<p>
+The first part of the script defines some constants for the 
+weapon. Changing the value of these variables later in the
+script has no effect.
+
+<p>
+The following list describes supported variables and default values.
+
+<pre class="strong">
+gravity = true
+  Selects whether this object is affected by gravity
+  
+volume = 1.0
+
+mass = 100.0
+
+thrust = 0
+  Forward thrusting force. Object direction must have been
+  defined with set_dir() for this to have an effect. This
+  variable must be defined if set_thrust() function is used.
+
+lifetime = n
+  If variable is defined, the object has limited lifetime of 
+  n seconds.
+
+static = true
+  If this variable is defined, the object is attached to 
+  the ground.
+
+has_dir = false
+  This must be defined true to use set_dir() -function.
+
+static_dir = false
+  If this variable is defined as true, the object's direction 
+  will not be changed by any physical forces.
+
+image = ""
+  If this variable is defined as non-empty string, the object 
+  will use a static image defined by the image name.
+
+hit_animation = ""
+  If this variable is defined as non-empty string, the object 
+  will use this image when it is hit.
+
+image_x = 0
+image_y = 0
+  Relative position of the image.
+
+animation = ""
+  If this variable is defined as non-empty string, the object 
+  will use an animation defined by the animation name.
+  
+hit_animation = ""
+  If this variable is defined as non-empty string, the object 
+  will use this animation when it is hit.
+
+loop_animation = false
+  If this variable is defined as true, the animation will loop.
+
+mirror_animation = false
+  If this variable is defined as true, the animation will be
+  mirrored when the object direction is to the left.
+  
+pixel_size = 0
+pixel_alpha = 0
+pixel_r = 0
+pixel_g = 0
+pixel_b = 0
+  If this is defined as > 0, and no image or animation is defined,
+  the object will be drawn as a point (or circle) of this size and
+  color.
+  
+condition = 0
+  If this variable is non-zero, the object will have condition, 
+  ie. it may take damage before it is destroyed.
+  
+bounding_circle_radius = 1.0
+  Maximum distance used in collision detection.
+  
+shoot_from_inside = true
+  Selects whether the object to which this object is attached can
+  shoot without hitting the attached object. (Example: the bubble)
+
+hit_damage = 0
+  The damage caused by this object.
+
+hit_impulse = 0
+  The impulse (kick) caused by this object.
+
+touch_damage = 0
+  If the object is not destroyed at first hit, this can be used
+  to cause continuous damage.
+  
+hit_ground = true
+  If false, the object can pass through ground.
+  
+ground_kills = true
+  If true, the object will be destroyed when it hits ground.
+  
+network_updates = false
+  This must be be set true if the object uses network_update() 
+  function.
+  
+send_reliably = false
+  If true, created objects will be sent to clients using reliable
+  protocol.
+
+check_hits = false
+  If true, forces collision detection to be performed with these
+  objects, even if max_condition is 0.
+  
+can_hit_same_type = true
+  If false, collisions between objects of this type will not be
+  detected.
+  
+remote_check_hits = false
+  If true, collisions will also be detected on clients.
+
+remote_callbakcs = false
+  If true, script callback function will be called also on clients.
+
+</pre>
+
+
+<p>
+In addition to the static definition, you can define several
+functions which are called when various events occur.
+
+<pre class="strong">
+init([args])
+  Initialization function takes the arguments given by 
+  create_object() call.
+
+network_init()
+  This function is called when the object is received from
+  a remote machine, before reading its data. (Normal init 
+  function is not called, because arguments are not available.)
+
+on_call([args])
+  Called from this or an another object with function 
+  call_object(id, [args])
+  
+on_timer()
+  Used with function set_timer(seconds)
+  
+on_lifetime_end()
+  If lifetime is defined, this function is called when it ends.
+
+on_hit_ground()
+  Called when the object hits ground.
+
+on_hit_water()
+  Called when the object hits water.
+
+on_hit_object()
+  Called when the object hits another object. 
+  
+on_break()
+  If condition is defined, this function is called when the 
+  object is broken.
+
+write_data()
+read_data()
+  If the object has state variables in the script (this.something),
+  then these functions are called to send and receive the state 
+  in network game. (See functions write_intX(), read_intX().)
+</pre>
+
+
+<p>
+These functions are only called in the server end, so all
+changes must be transferred over the network with an explicit
+call to the network_update() function.
+
+<p>
+Objects can use state variables (with 'this') in the same way
+as weapons, but their state must be transferred over the network.
+(See functions write_data(), read_data()).
+
+
+
+
+
+<h2><a name="API">Wings Lua API</a></h2>
+
+
+<h3>Global functions</h3>
+
+<pre class="function"><a href= "#id = create_object(name, ...)">id = create_object(name, ...)</a></pre>
+<pre class="function"><a href= "#object_list = get_objects_from(x, y, radius)">object_list = get_objects_from(x, y, radius)</a></pre>
+<pre class="function"><a href= "#object_list = get_objects_from_line(x1, y1, x2, y2, radius)">object_list = get_objects_from_line(x1, y1, x2, y2, radius)</a></pre>
+<pre class="function"><a href= "#call_object(id)">call_object(id)</a></pre>
+<pre class="function"><a href= "#remote_call_object(id)">remote_call_object(id)</a></pre>
+<pre class="function"><a href= "#set_effect(id, effect_name, status)">set_effect(id, effect_name, status)</a></pre>
+<pre class="function"><a href= "#state = is_alive(id)">state = is_alive(id)</a></pre>
+<pre class="function"><a href= "#s = is_solid(id)">s = is_solid(id)</a></pre>
+<pre class="function"><a href= "#type = get_object_type(id)">type = get_object_type(id)</a></pre>
+<pre class="function"><a href= "#team = get_object_team(id)">team = get_object_team(id)</a></pre>
+<pre class="function"><a href= "#team = get_object_owner(id)">team = get_object_owner(id)</a></pre>
+<pre class="function"><a href= "#team = get_object_player(id)">team = get_object_player(id)</a></pre>
+<pre class="function"><a href= "#set_object_team(id, team)">set_object_team(id, team)</a></pre>
+<pre class="function"><a href= "#c = get_object_condition(id)">c = get_object_condition(id)</a></pre>
+<pre class="function"><a href= "#c = get_object_max_condition(id)">c = get_object_max_condition(id)</a></pre>
+<pre class="function"><a href= "#m = get_object_mass(id)">m = get_object_mass(id)</a></pre>
+<pre class="function"><a href= "#m = get_object_size(id)">m = get_object_size(id)</a></pre>
+<pre class="function"><a href= "#x, y = get_object_pos(id)">x, y = get_object_pos(id)</a></pre>
+<pre class="function"><a href= "#x, y = get_object_shoot_pos(id)">x, y = get_object_shoot_pos(id)</a></pre>
+<pre class="function"><a href= "#x, y = get_object_vel(id)">x, y = get_object_vel(id)</a></pre>
+<pre class="function"><a href= "#x, y = get_object_force(id)">x, y = get_object_force(id)</a></pre>
+<pre class="function"><a href= "#dir = get_object_dir(id)">dir = get_object_dir(id)</a></pre>
+<pre class="function"><a href= "#set_object_pos(id, x, y)">set_object_pos(id, x, y)</a></pre>
+<pre class="function"><a href= "#set_object_vel(id, vx, vy)">set_object_vel(id, vx, vy)</a></pre>
+<pre class="function"><a href= "#set_hold(held, holder)">set_hold(held, holder)</a></pre>
+<pre class="function"><a href= "#cause_damage(id, damage)">cause_damage(id, damage)</a></pre>
+<pre class="function"><a href= "#kill_object(id)">kill_object(id)</a></pre>
+<pre class="function"><a href= "#enter_object(pilot_id, object_id)">enter_object(pilot_id, object_id)</a></pre>
+<pre class="function"><a href= "#EMP_hit(id, power)">EMP_hit(id, power)</a></pre>
+<pre class="function"><a href= "#add_object_force(id, x, y)">add_object_force(id, x, y)</a></pre>
+<pre class="function"><a href= "#add_object_impulse(id, x, y)">add_object_impulse(id, x, y)</a></pre>
+<pre class="function"><a href= "#set_rope_endpoint(rope_id, endpoint, object_id)">set_rope_endpoint(rope_id, endpoint, object_id)</a></pre>
+<pre class="function"><a href= "#t = get_time()">t = get_time()</a></pre>
+<pre class="function"><a href= "#t = is_server()">t = is_server()</a></pre>
+<pre class="function"><a href= "#t = is_object_host(id)">t = is_object_host(id)</a></pre>
+<pre class="function"><a href= "#dt = get_dt()">dt = get_dt()</a></pre>
+<pre class="function"><a href= "#x, y = get_dir_vector(dir)">x, y = get_dir_vector(dir)</a></pre>
+<pre class="function"><a href= "#dir = get_vector_dir(x, y)">dir = get_vector_dir(x, y)</a></pre>
+<pre class="function"><a href= "#x, y = random_vector()">x, y = random_vector()</a></pre>
+<pre class="function"><a href= "#c = dir_change(dir1, dir2)">c = dir_change(dir1, dir2)</a></pre>
+<pre class="function"><a href= "#dir2 = change_dir(dir1, c)">dir2 = change_dir(dir1, c)</a></pre>
+<pre class="function"><a href= "#d = distance(x1, y1, x2, y2)">d = distance(x1, y1, x2, y2)</a></pre>
+<pre class="function"><a href= "#find_first_solid_point(x1, y1, x2, y2)">find_first_solid_point(x1, y1, x2, y2)</a></pre>
+<pre class="function"><a href= "#find_last_clear_point(x1, y1, x2, y2)">find_last_clear_point(x1, y1, x2, y2)</a></pre>
+<pre class="function"><a href= "#find_last_nonsolid_point(x1, y1, x2, y2)">find_last_nonsolid_point(x1, y1, x2, y2)</a></pre>
+<pre class="function"><a href= "#mx, my = get_map_pos(wx, wy)">mx, my = get_map_pos(wx, wy)</a></pre>
+<pre class="function"><a href= "#mx, my = get_map_pos_rel(wx, wy)">mx, my = get_map_pos_rel(wx, wy)</a></pre>
+<pre class="function"><a href= "#wx, wy = get_world_pos(mx, my)">wx, wy = get_world_pos(mx, my)</a></pre>
+<pre class="function"><a href= "#wx, wy = get_world_pos_rel(mx, my)">wx, wy = get_world_pos_rel(mx, my)</a></pre>
+<pre class="function"><a href= "#type = get_map_type(x, y)">type = get_map_type(x, y)</a></pre>
+<pre class="function"><a href= "#(r,g,b,a) = get_map_color(x, y)">(r,g,b,a) = get_map_color(x, y)</a></pre>
+<pre class="function"><a href= "#set_map_pixel(x, y, type, r, g, b, a)">set_map_pixel(x, y, type, r, g, b, a)</a></pre>
+<pre class="function"><a href= "#local_set_map_pixel(x, y, type, r, g, b, a)">local_set_map_pixel(x, y, type, r, g, b, a)</a></pre>
+<pre class="function"><a href= "#remove_map_pixel(x, y)">remove_map_pixel(x, y)</a></pre>
+<pre class="function"><a href= "#local_remove_map_pixel(x, y)">local_remove_map_pixel(x, y)</a></pre>
+<pre class="function"><a href= "#fire(x, y)">fire(x, y)</a></pre>
+<pre class="function"><a href= "#explode(x, y)">explode(x, y)</a></pre>
+<pre class="function"><a href= "#fg_activate(x, y, rad)">fg_activate(x, y, rad)</a></pre>
+<pre class="function"><a href= "#play_sound(name, [volume, [importance]])">play_sound(name, [volume, [importance]])</a></pre>
+<pre class="function"><a href= "#add_team_points(team, points)">add_team_points(team, points)</a></pre>
+<pre class="function"><a href= "#r = build_time_on()">r = build_time_on()</a></pre>
+<pre class="function"><a href= "#send_game_message(text)">send_game_message(text)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_clear(type)">b = terrain.is_clear(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_solid(type)">b = terrain.is_solid(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_normal(type)">b = terrain.is_normal(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_water(type)">b = terrain.is_water(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_mud(type)">b = terrain.is_mud(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_sand(type)">b = terrain.is_sand(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_snow(type)">b = terrain.is_snow(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_strong(type)">b = terrain.is_strong(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_indestructible(type)">b = terrain.is_indestructible(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_base(type)">b = terrain.is_base(type)</a></pre>
+<pre class="function"><a href= "#b = terrain.is_platform(type)">b = terrain.is_platform(type)</a></pre>
+<p>
+
+
+<h3>Weapon functions</h3>
+
+<pre class="function"><a href= "#dir = get_platform_dir()">dir = get_platform_dir()</a></pre>
+<pre class="function"><a href= "#set_platform_dir(dir)">set_platform_dir(dir)</a></pre>
+<pre class="function"><a href= "#id = get_platform_id()">id = get_platform_id()</a></pre>
+<pre class="function"><a href= "#x, y = get_platform_pos()">x, y = get_platform_pos()</a></pre>
+<pre class="function"><a href= "#x, y = get_platform_vel()">x, y = get_platform_vel()</a></pre>
+<pre class="function"><a href= "#set_platform_pos(x, y)">set_platform_pos(x, y)</a></pre>
+<pre class="function"><a href= "#set_platform_vel(x, y)">set_platform_vel(x, y)</a></pre>
+<pre class="function"><a href= "#add_platform_impulse(x, y)">add_platform_impulse(x, y)</a></pre>
+<pre class="function"><a href= "#add_platform_force(x, y)">add_platform_force(x, y)</a></pre>
+<pre class="function"><a href= "#id = get_platform_load_speed()">id = get_platform_load_speed()</a></pre>
+<pre class="function"><a href= "#power = get_current_power()">power = get_current_power()</a></pre>
+<pre class="function"><a href= "#is_first_shot()">is_first_shot()</a></pre>
+<pre class="function"><a href= "#phase = get_phase()">phase = get_phase()</a></pre>
+<pre class="function"><a href= "#set_phase(phase)">set_phase(phase)</a></pre>
+<pre class="function"><a href= "#reset()">reset()</a></pre>
+<pre class="function"><a href= "#reset_phase()">reset_phase()</a></pre>
+<pre class="function"><a href= "#set_wait_object(id)">set_wait_object(id)</a></pre>
+
+
+<h3>Object functions</h3>
+
+<pre class="function"><a href= "#set_pos(x, y)">set_pos(x, y)</a></pre>
+<pre class="function"><a href= "#set_vel(x, y)">set_vel(x, y)</a></pre>
+<pre class="function"><a href= "#set_dir(dir)">set_dir(dir)</a></pre>
+<pre class="function"><a href= "#set_angular_vel(a)">set_angular_vel(a)</a></pre>
+<pre class="function"><a href= "#set_thrust(t)">set_thrust(t)</a></pre>
+<pre class="function"><a href= "#set_mass(m)">set_mass(m)</a></pre>
+<pre class="function"><a href= "#set_owner(id)">set_owner(id)</a></pre>
+<pre class="function"><a href= "#set_team(id)">set_team(id)</a></pre>
+<pre class="function"><a href= "#set_text(name)">set_text(name)</a></pre>
+<pre class="function"><a href= "#show_timer(time)">show_timer(time)</a></pre>
+<pre class="function"><a href= "#set_effect(name, status)">set_effect(name, status)</a></pre>
+<pre class="function"><a href= "#set_image(name)">set_image(name)</a></pre>
+<pre class="function"><a href= "#set_animation(name)">set_animation(name)</a></pre>
+<pre class="function"><a href= "#set_anim_pos(time)">set_anim_pos(time)</a></pre>
+<pre class="function"><a href= "#set_pixel_size(size)">set_pixel_size(size)</a></pre>
+<pre class="function"><a href= "#set_pixel_color(r, g, b, a)">set_pixel_color(r, g, b, a)</a></pre>
+<pre class="function"><a href= "#set_active(a)">set_active(a)</a></pre>
+<pre class="function"><a href= "#id = get_owner()">id = get_owner()</a></pre>
+<pre class="function"><a href= "#id = get_team()">id = get_team()</a></pre>
+<pre class="function"><a href= "#x, y = get_pos()">x, y = get_pos()</a></pre>
+<pre class="function"><a href= "#x, y = get_vel()">x, y = get_vel()</a></pre>
+<pre class="function"><a href= "#dir = get_dir()">dir = get_dir()</a></pre>
+<pre class="function"><a href= "#id = get_id()">id = get_id()</a></pre>
+<pre class="function"><a href= "#type = get_type()">type = get_type()</a></pre>
+<pre class="function"><a href= "#c = get_condition()">c = get_condition()</a></pre>
+<pre class="function"><a href= "#a = get_age()">a = get_age()</a></pre>
+<pre class="function"><a href= "#kill()">kill()</a></pre>
+<pre class="function"><a href= "#kill_local()">kill_local()</a></pre>
+<pre class="function"><a href= "#set_timer(t)">set_timer(t)</a></pre>
+<pre class="function"><a href= "#set_lifetime(t)">set_lifetime(t)</a></pre>
+<pre class="function"><a href= "#stop_timer()">stop_timer()</a></pre>
+<pre class="function"><a href= "#f = timer_is_set()">f = timer_is_set()</a></pre>
+<pre class="function"><a href= "#attach_to(id)">attach_to(id)</a></pre>
+<pre class="function"><a href= "#id = get_attached_object()">id = get_attached_object()</a></pre>
+<pre class="function"><a href= "#attach_to_ground(b)">attach_to_ground(b)</a></pre>
+<pre class="function"><a href= "#attached_to_ground()">attached_to_ground()</a></pre>
+<pre class="function"><a href= "#set_attach_pos(dir, dist, dir2, fixed)">set_attach_pos(dir, dist, dir2, fixed)</a></pre>
+<pre class="function"><a href= "#x, y = get_force()">x, y = get_force()</a></pre>
+<pre class="function"><a href= "#add_force(x, y)">add_force(x, y)</a></pre>
+<pre class="function"><a href= "#add_impulse(x, y)">add_impulse(x, y)</a></pre>
+<pre class="function"><a href= "#set_force(x, y)">set_force(x, y)</a></pre>
+<pre class="function"><a href= "#write_int8(value)">write_int8(value)</a></pre>
+<pre class="function"><a href= "#write_int16(value)">write_int16(value)</a></pre>
+<pre class="function"><a href= "#write_int32(value)">write_int32(value)</a></pre>
+<pre class="function"><a href= "#value = read_int8()">value = read_int8()</a></pre>
+<pre class="function"><a href= "#value = read_int16()">value = read_int16()</a></pre>
+<pre class="function"><a href= "#value = read_int32()">value = read_int32()</a></pre>
+<pre class="function"><a href= "#network_uodate(t)">network_uodate(t)</a></pre>
+<p>
+
+<hr>
+<a name = "id = create_object(name, ...)"></a>
+<b><pre>
+id = create_object(name, ...)
+</b></pre>
+<p>
+Creates an object, returns id number of the created object.
+If the object could not be created, returns 0.
+<p>
+
+Arguments depend on the object being created. If it is a scripted
+object, see the init() function of the object.
+<p>
+
+Built-in objects:
+<p>
+<pre>
+bullet, dumbfire, explosion, explosion2, nucleus_explosion,
+freezer, grenade, mine, shot, trooper:
+create_object(name, x_pos, y_pos, x_vel, y_vel)
+x_pos and y_pos and displacement in pixels from the
+center of the platform. x_vel and y_vel are start
+velocity. (Default bullet velocity is 220.)
+Note: setting velocity does not work for mines.
+
+harpoon
+create_object("harpoon", type, x_pos, y_pos, x_vel, y_vel, dir)
+Type 1 is large, type 2 is small.
+
+particle
+create_object("particle", x_pos, y_pos, x_vel, y_vel,
+color_r, color_g, color_b,
+size, water, lifetime, paint)
+Particles are "visual only" objects, with no other effects.
+Color is defined with RGB components, 0-255. Size is in pixels.
+(Only size < 10 is supported, >= 10 is currently a special case.)
+'water' tells whether the particle can move in water, true/false.
+'lifetime' is time in seconds before the particle vanishes
+'paint' tells whether and how much the particle changes color of
+the ground it hits. It is a floating point number 0-1.
+
+rope
+create_object("rope", type, lifetime, obj1_id, obj2_id)
+Type 1 is the "harpoon rope", type 2 is the "pilot rope".
+Lifetime is time in seconds before the rope disappears.
+Object ids define where the rope endpoints are attached.
+Id 0 is valid input, but the rope will not be created.
+Note: lifetime has no effect on type 2 rope.
+
+laser beam
+create_object("laser", obj1, obj2, team)
+
+smoke
+create_object("smoke", x_pos, y_pos, x_vel, y_vel,
+color_r, color_g, color_b, lifetime)
+
+ship
+create_object("ship", x_pos, y_pos, x_vel, y_vel, dir)
+
+splinter
+create_object(name, x_pos, y_pos, x_vel, y_vel,
+color_r, color_g, color_b)
+Color is defined with RGB components, 0-255.
+
+wave_particle
+create_object("wave_particle_1", x_pos, y_pos, x_vel, y_vel, lifetime)
+create_object("wave_particle_2", x_pos, y_pos, x_vel, y_vel, lifetime, [power])
+Special invisible objects used in explosions. Type 1 destroys ground,
+type 2 causes damage to objects. Default power is 1.</pre>
+<p>
+<hr>
+<a name = "object_list = get_objects_from(x, y, radius)"></a>
+<b><pre>
+object_list = get_objects_from(x, y, radius)
+</b></pre>
+<p>
+Returns list of object id's which are located
+near the given position
+<p>
+<hr>
+<a name = "object_list = get_objects_from_line(x1, y1, x2, y2, radius)"></a>
+<b><pre>
+object_list = get_objects_from_line(x1, y1, x2, y2, radius)
+</b></pre>
+<p>
+Returns list of object id's which are located
+near the given line.
+<p>
+<hr>
+<a name = "call_object(id)"></a>
+<b><pre>
+call_object(id)
+</b></pre>
+<p>
+Calls the on_event() function of the given object, if it exists.
+<p>
+<hr>
+<a name = "remote_call_object(id)"></a>
+<b><pre>
+remote_call_object(id)
+</b></pre>
+<p>
+Calls the on_event() function of the given object on server, if it exists.
+<p>
+<hr>
+<a name = "set_effect(id, effect_name, status)"></a>
+<b><pre>
+set_effect(id, effect_name, status)
+</b></pre>
+<p>
+Sets effect effect_name on object id on/off
+<p>
+<hr>
+<a name = "state = is_alive(id)"></a>
+<b><pre>
+state = is_alive(id)
+</b></pre>
+<p>
+Returns true if object 'id' is alive, false if not.
+<p>
+<hr>
+<a name = "s = is_solid(id)"></a>
+<b><pre>
+s = is_solid(id)
+</b></pre>
+<p>
+Returns true if object 'id' is solid, false if not.
+<p>
+<hr>
+<a name = "type = get_object_type(id)"></a>
+<b><pre>
+type = get_object_type(id)
+</b></pre>
+<p>
+Returns type name of the object 'id'.
+<p>
+<hr>
+<a name = "team = get_object_team(id)"></a>
+<b><pre>
+team = get_object_team(id)
+</b></pre>
+<p>
+Returns team number of the object 'id'.
+<p>
+<hr>
+<a name = "team = get_object_owner(id)"></a>
+<b><pre>
+team = get_object_owner(id)
+</b></pre>
+<p>
+Returns owner of the object 'id'.
+<p>
+<hr>
+<a name = "team = get_object_player(id)"></a>
+<b><pre>
+team = get_object_player(id)
+</b></pre>
+<p>
+If the object 'id' is controlled by a player, return player id.
+Otherwise returns 0.
+<p>
+<hr>
+<a name = "set_object_team(id, team)"></a>
+<b><pre>
+set_object_team(id, team)
+</b></pre>
+<p>
+Sets team number of the object 'id'.
+<p>
+<hr>
+<a name = "c = get_object_condition(id)"></a>
+<b><pre>
+c = get_object_condition(id)
+</b></pre>
+<p>
+Returns condition of the object 'id'.
+<p>
+<hr>
+<a name = "c = get_object_max_condition(id)"></a>
+<b><pre>
+c = get_object_max_condition(id)
+</b></pre>
+<p>
+Returns maximum condition of the object 'id'.
+<p>
+<hr>
+<a name = "m = get_object_mass(id)"></a>
+<b><pre>
+m = get_object_mass(id)
+</b></pre>
+<p>
+Returns mass of the object 'id'.
+<p>
+<hr>
+<a name = "m = get_object_size(id)"></a>
+<b><pre>
+m = get_object_size(id)
+</b></pre>
+<p>
+Returns size (bounding circle radius) of the object 'id'.
+<p>
+<hr>
+<a name = "x, y = get_object_pos(id)"></a>
+<b><pre>
+x, y = get_object_pos(id)
+</b></pre>
+<p>
+Returns position of object 'id'.
+<p>
+<hr>
+<a name = "x, y = get_object_shoot_pos(id)"></a>
+<b><pre>
+x, y = get_object_shoot_pos(id)
+</b></pre>
+<p>
+Returns position where bullets shot by object 'id' should start from.
+<p>
+<hr>
+<a name = "x, y = get_object_vel(id)"></a>
+<b><pre>
+x, y = get_object_vel(id)
+</b></pre>
+<p>
+Returns velocity of object 'id'.
+<p>
+<hr>
+<a name = "x, y = get_object_force(id)"></a>
+<b><pre>
+x, y = get_object_force(id)
+</b></pre>
+<p>
+Returns force affecting the object.
+<p>
+<hr>
+<a name = "dir = get_object_dir(id)"></a>
+<b><pre>
+dir = get_object_dir(id)
+</b></pre>
+<p>
+Returns facing direction of object 'id'.
+<p>
+<hr>
+<a name = "set_object_pos(id, x, y)"></a>
+<b><pre>
+set_object_pos(id, x, y)
+</b></pre>
+<p>
+Sets position of object 'id'.
+<p>
+<hr>
+<a name = "set_object_vel(id, vx, vy)"></a>
+<b><pre>
+set_object_vel(id, vx, vy)
+</b></pre>
+<p>
+Sets velocity of object 'id'.
+<p>
+<hr>
+<a name = "set_hold(held, holder)"></a>
+<b><pre>
+set_hold(held, holder)
+</b></pre>
+<p>
+Notifies object 'held' that it is being hold/attached by another object.
+<p>
+<hr>
+<a name = "cause_damage(id, damage)"></a>
+<b><pre>
+cause_damage(id, damage)
+</b></pre>
+<p>
+Damages object 'id'.
+<p>
+<hr>
+<a name = "kill_object(id)"></a>
+<b><pre>
+kill_object(id)
+</b></pre>
+<p>
+Removes object 'id'.
+<p>
+<hr>
+<a name = "enter_object(pilot_id, object_id)"></a>
+<b><pre>
+enter_object(pilot_id, object_id)
+</b></pre>
+<p>
+Enters ship/cannon/glider/etc, if possible.
+<p>
+<hr>
+<a name = "EMP_hit(id, power)"></a>
+<b><pre>
+EMP_hit(id, power)
+</b></pre>
+<p>
+Causes an EMP hit to object 'id'. Power is the length of
+the effect in seconds.
+<p>
+<hr>
+<a name = "add_object_force(id, x, y)"></a>
+<b><pre>
+add_object_force(id, x, y)
+</b></pre>
+<p>
+Adds a force to object 'id'.
+<p>
+<hr>
+<a name = "add_object_impulse(id, x, y)"></a>
+<b><pre>
+add_object_impulse(id, x, y)
+</b></pre>
+<p>
+Gives object 'id' an impulse.
+<p>
+<hr>
+<a name = "set_rope_endpoint(rope_id, endpoint, object_id)"></a>
+<b><pre>
+set_rope_endpoint(rope_id, endpoint, object_id)
+</b></pre>
+<p>
+Attaches rope endpoint (0 or 1) to an object.
+<p>
+<hr>
+<a name = "t = get_time()"></a>
+<b><pre>
+t = get_time()
+</b></pre>
+<p>
+Returns current game world time in seconds.
+<p>
+<hr>
+<a name = "t = is_server()"></a>
+<b><pre>
+t = is_server()
+</b></pre>
+<p>
+Returns true if the script is running on server.
+<p>
+<hr>
+<a name = "t = is_object_host(id)"></a>
+<b><pre>
+t = is_object_host(id)
+</b></pre>
+<p>
+Returns true if object 'id' is controlled by this computer.
+<p>
+<hr>
+<a name = "dt = get_dt()"></a>
+<b><pre>
+dt = get_dt()
+</b></pre>
+<p>
+Returns length of the last frame in seconds.
+<p>
+<hr>
+<a name = "x, y = get_dir_vector(dir)"></a>
+<b><pre>
+x, y = get_dir_vector(dir)
+</b></pre>
+<p>
+Returns unit vector pointing at the given direction.
+<p>
+<hr>
+<a name = "dir = get_vector_dir(x, y)"></a>
+<b><pre>
+dir = get_vector_dir(x, y)
+</b></pre>
+<p>
+Returns direction of the vector in degrees.
+<p>
+<hr>
+<a name = "x, y = random_vector()"></a>
+<b><pre>
+x, y = random_vector()
+</b></pre>
+<p>
+Returns a random vector, length < 1.
+<p>
+<hr>
+<a name = "c = dir_change(dir1, dir2)"></a>
+<b><pre>
+c = dir_change(dir1, dir2)
+</b></pre>
+<p>
+dir1, dir2 = [0, 360), dir2 = c + dir1, c < 180.
+<p>
+<hr>
+<a name = "dir2 = change_dir(dir1, c)"></a>
+<b><pre>
+dir2 = change_dir(dir1, c)
+</b></pre>
+<p>
+dir1, dir2 = [0, 360), dir2 = c + dir1, c < 180.
+<p>
+<hr>
+<a name = "d = distance(x1, y1, x2, y2)"></a>
+<b><pre>
+d = distance(x1, y1, x2, y2)
+</b></pre>
+<p>
+Returns distance between (x1, y1) and (x2, y2)
+<p>
+<hr>
+<a name = "find_first_solid_point(x1, y1, x2, y2)"></a>
+<b><pre>
+find_first_solid_point(x1, y1, x2, y2)
+</b></pre>
+<p>
+Returns the first solid terrain point in the line
+(x1, y1) - (x2, y2).
+Arguments are world coordinates.
+<p>
+<hr>
+<a name = "find_last_clear_point(x1, y1, x2, y2)"></a>
+<b><pre>
+find_last_clear_point(x1, y1, x2, y2)
+</b></pre>
+<p>
+Returns the last clear (air) terrain point in the line
+(x1, y1) - (x2, y2).
+Arguments are world coordinates.
+<p>
+<hr>
+<a name = "find_last_nonsolid_point(x1, y1, x2, y2)"></a>
+<b><pre>
+find_last_nonsolid_point(x1, y1, x2, y2)
+</b></pre>
+<p>
+Returns the last non-solid terrain point in the line
+(x1, y1) - (x2, y2).
+Arguments are world coordinates.
+<p>
+<hr>
+<a name = "mx, my = get_map_pos(wx, wy)"></a>
+<b><pre>
+mx, my = get_map_pos(wx, wy)
+</b></pre>
+<p>
+Converts world coordinates to map coordinates.
+World coordinates are used for object positions, map
+coordinates for terrain pixels.
+<p>
+<hr>
+<a name = "mx, my = get_map_pos_rel(wx, wy)"></a>
+<b><pre>
+mx, my = get_map_pos_rel(wx, wy)
+</b></pre>
+<p>
+Converts relative (to the calling object) world coordinates
+to map coordinates.
+<p>
+<hr>
+<a name = "wx, wy = get_world_pos(mx, my)"></a>
+<b><pre>
+wx, wy = get_world_pos(mx, my)
+</b></pre>
+<p>
+Converts map coordinates to world coordinates.
+World coordinates are used for object positions, map
+coordinates for terrain pixels.
+<p>
+<hr>
+<a name = "wx, wy = get_world_pos_rel(mx, my)"></a>
+<b><pre>
+wx, wy = get_world_pos_rel(mx, my)
+</b></pre>
+<p>
+Converts map coordinates to relative (to the calling
+object) world coordinates.
+<p>
+<hr>
+<a name = "type = get_map_type(x, y)"></a>
+<b><pre>
+type = get_map_type(x, y)
+</b></pre>
+<p>
+Returns terrain type in the map pixel (x, y).
+<p>
+<hr>
+<a name = "(r,g,b,a) = get_map_color(x, y)"></a>
+<b><pre>
+(r,g,b,a) = get_map_color(x, y)
+</b></pre>
+<p>
+Returns color of the map pixel in (x, y).
+<p>
+<hr>
+<a name = "set_map_pixel(x, y, type, r, g, b, a)"></a>
+<b><pre>
+set_map_pixel(x, y, type, r, g, b, a)
+</b></pre>
+<p>
+Sets terrain type and color of the map pixel (x, y).
+<p>
+<hr>
+<a name = "local_set_map_pixel(x, y, type, r, g, b, a)"></a>
+<b><pre>
+local_set_map_pixel(x, y, type, r, g, b, a)
+</b></pre>
+<p>
+Sets terrain type and color of the map pixel (x, y).
+The change is not sent to other clients.
+<p>
+<hr>
+<a name = "remove_map_pixel(x, y)"></a>
+<b><pre>
+remove_map_pixel(x, y)
+</b></pre>
+<p>
+Clears map pixel (x, y).
+<p>
+<hr>
+<a name = "local_remove_map_pixel(x, y)"></a>
+<b><pre>
+local_remove_map_pixel(x, y)
+</b></pre>
+<p>
+Clears map pixel (x, y).
+The change is not sent to other clients.
+<p>
+<hr>
+<a name = "fire(x, y)"></a>
+<b><pre>
+fire(x, y)
+</b></pre>
+<p>
+Starts up fire if used on flammable material.
+<p>
+<hr>
+<a name = "explode(x, y)"></a>
+<b><pre>
+explode(x, y)
+</b></pre>
+<p>
+Starts up explosion if used on explosive.material.
+<p>
+<hr>
+<a name = "fg_activate(x, y, rad)"></a>
+<b><pre>
+fg_activate(x, y, rad)
+</b></pre>
+<p>
+Activates 'force grid'
+<p>
+<hr>
+<a name = "play_sound(name, [volume, [importance]])"></a>
+<b><pre>
+play_sound(name, [volume, [importance]])
+</b></pre>
+<p>
+Plays a sound effect. The effect name must be defined
+in Sounds.xml in sounds folder. Volume is an integer
+between 0-128, importance is 1 or 2, 2 is considered more
+important. Default values are 128, 1.
+<p>
+<hr>
+<a name = "add_team_points(team, points)"></a>
+<b><pre>
+add_team_points(team, points)
+</b></pre>
+<p>
+Adds points to the team.
+<p>
+<hr>
+<a name = "r = build_time_on()"></a>
+<b><pre>
+r = build_time_on()
+</b></pre>
+<p>
+Returns true if base defence build time is on.
+<p>
+<hr>
+<a name = "send_game_message(text)"></a>
+<b><pre>
+send_game_message(text)
+</b></pre>
+<p>
+Sends a game message. (Writes text in chat stream.)
+<p>
+<hr>
+<a name = "b = terrain.is_clear(type)"></a>
+<b><pre>
+b = terrain.is_clear(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_solid(type)"></a>
+<b><pre>
+b = terrain.is_solid(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_normal(type)"></a>
+<b><pre>
+b = terrain.is_normal(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_water(type)"></a>
+<b><pre>
+b = terrain.is_water(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_mud(type)"></a>
+<b><pre>
+b = terrain.is_mud(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_sand(type)"></a>
+<b><pre>
+b = terrain.is_sand(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_snow(type)"></a>
+<b><pre>
+b = terrain.is_snow(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_strong(type)"></a>
+<b><pre>
+b = terrain.is_strong(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_indestructible(type)"></a>
+<b><pre>
+b = terrain.is_indestructible(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_base(type)"></a>
+<b><pre>
+b = terrain.is_base(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_platform(type)"></a>
+<b><pre>
+b = terrain.is_platform(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_solid(type)"></a>
+<b><pre>
+b = terrain.is_solid(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_normal(type)"></a>
+<b><pre>
+b = terrain.is_normal(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_water(type)"></a>
+<b><pre>
+b = terrain.is_water(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_mud(type)"></a>
+<b><pre>
+b = terrain.is_mud(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_sand(type)"></a>
+<b><pre>
+b = terrain.is_sand(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_snow(type)"></a>
+<b><pre>
+b = terrain.is_snow(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_strong(type)"></a>
+<b><pre>
+b = terrain.is_strong(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_indestructible(type)"></a>
+<b><pre>
+b = terrain.is_indestructible(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_base(type)"></a>
+<b><pre>
+b = terrain.is_base(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+<a name = "b = terrain.is_platform(type)"></a>
+<b><pre>
+b = terrain.is_platform(type)
+</b></pre>
+<p>
+
+<p>
+<hr>
+
+
+
+<p>
+<hr>
+<a name = "dir = get_platform_dir()"></a>
+<b><pre>
+dir = get_platform_dir()
+</b></pre>
+<p>
+Returns direction of weapons platform (ship or pilot).
+Directions are in degrees, 0 is up, 90 right.
+<p>
+<hr>
+<a name = "set_platform_dir(dir)"></a>
+<b><pre>
+set_platform_dir(dir)
+</b></pre>
+<p>
+Sets the direction of weapons platform (ship or pilot).
+Directions are in degrees, 0 is up, 90 right.
+<p>
+<hr>
+<a name = "id = get_platform_id()"></a>
+<b><pre>
+id = get_platform_id()
+</b></pre>
+<p>
+Returns object id of the weapons platform.
+<p>
+<hr>
+<a name = "x, y = get_platform_pos()"></a>
+<b><pre>
+x, y = get_platform_pos()
+</b></pre>
+<p>
+Returns position of the weapons platform.
+<p>
+<hr>
+<a name = "x, y = get_platform_vel()"></a>
+<b><pre>
+x, y = get_platform_vel()
+</b></pre>
+<p>
+Returns velocity of the weapons platform.
+<p>
+<hr>
+<a name = "set_platform_pos(x, y)"></a>
+<b><pre>
+set_platform_pos(x, y)
+</b></pre>
+<p>
+Sets position of the weapons platform.
+<p>
+<hr>
+<a name = "set_platform_vel(x, y)"></a>
+<b><pre>
+set_platform_vel(x, y)
+</b></pre>
+<p>
+Sets velocity of the weapons platform.
+<p>
+<hr>
+<a name = "add_platform_impulse(x, y)"></a>
+<b><pre>
+add_platform_impulse(x, y)
+</b></pre>
+<p>
+Gives a physical impulse to the weapons platform.
+<p>
+<hr>
+<a name = "add_platform_force(x, y)"></a>
+<b><pre>
+add_platform_force(x, y)
+</b></pre>
+<p>
+Adds a force to the weapons platform.
+<p>
+<hr>
+<a name = "id = get_platform_load_speed()"></a>
+<b><pre>
+id = get_platform_load_speed()
+</b></pre>
+<p>
+Returns loading speed of the weapons platform.
+<p>
+<hr>
+<a name = "power = get_current_power()"></a>
+<b><pre>
+power = get_current_power()
+</b></pre>
+<p>
+Returns current launch power (0-1) of the weapon.
+<p>
+<hr>
+<a name = "is_first_shot()"></a>
+<b><pre>
+is_first_shot()
+</b></pre>
+<p>
+Returns true if this is the first shot after user
+pulls the trigger.
+<p>
+<hr>
+<a name = "phase = get_phase()"></a>
+<b><pre>
+phase = get_phase()
+</b></pre>
+<p>
+Returns the weapon's launch phase.
+<p>
+<hr>
+<a name = "set_phase(phase)"></a>
+<b><pre>
+set_phase(phase)
+</b></pre>
+<p>
+Sets the weapons's launch phase.
+<p>
+<hr>
+<a name = "reset()"></a>
+<b><pre>
+reset()
+</b></pre>
+<p>
+Resets weapon state, loading starts from the beginning.
+<p>
+<hr>
+<a name = "reset_phase()"></a>
+<b><pre>
+reset_phase()
+</b></pre>
+<p>
+Finishes the launch (using energy), and sets phase back to 1.
+<p>
+<hr>
+<a name = "set_wait_object(id)"></a>
+<b><pre>
+set_wait_object(id)
+</b></pre>
+<p>
+If id != 0, the weapon will not start reloading until
+object 'id' has been destroyed.
+<p>
+<hr>
+
+
+
+
+<p>
+<hr>
+<a name = "set_pos(x, y)"></a>
+<b><pre>
+set_pos(x, y)
+</b></pre>
+<p>
+Sets position of the object.
+<p>
+<hr>
+<a name = "set_vel(x, y)"></a>
+<b><pre>
+set_vel(x, y)
+</b></pre>
+<p>
+Sets velocity of the object.
+<p>
+<hr>
+<a name = "set_dir(dir)"></a>
+<b><pre>
+set_dir(dir)
+</b></pre>
+<p>
+Sets direction of the object in degrees.
+<p>
+<hr>
+<a name = "set_angular_vel(a)"></a>
+<b><pre>
+set_angular_vel(a)
+</b></pre>
+<p>
+Sets rotation speed.
+<p>
+<hr>
+<a name = "set_thrust(t)"></a>
+<b><pre>
+set_thrust(t)
+</b></pre>
+<p>
+Sets value of forward thrusting force.
+This has no effect if direction is not defined.
+<p>
+<hr>
+<a name = "set_mass(m)"></a>
+<b><pre>
+set_mass(m)
+</b></pre>
+<p>
+Sets mass of the object.
+<p>
+<hr>
+<a name = "set_owner(id)"></a>
+<b><pre>
+set_owner(id)
+</b></pre>
+<p>
+Sets id of the object.
+<p>
+<hr>
+<a name = "set_team(id)"></a>
+<b><pre>
+set_team(id)
+</b></pre>
+<p>
+Sets team of the object.
+<p>
+<hr>
+<a name = "set_text(name)"></a>
+<b><pre>
+set_text(name)
+</b></pre>
+<p>
+Changes text of this object.
+<p>
+<hr>
+<a name = "show_timer(time)"></a>
+<b><pre>
+show_timer(time)
+</b></pre>
+<p>
+Shows timer value above the object.
+<p>
+<hr>
+<a name = "set_effect(name, status)"></a>
+<b><pre>
+set_effect(name, status)
+</b></pre>
+<p>
+Sets an effect on/off.
+<p>
+<hr>
+<a name = "set_image(name)"></a>
+<b><pre>
+set_image(name)
+</b></pre>
+<p>
+Changes image of this object.
+<p>
+<hr>
+<a name = "set_animation(name)"></a>
+<b><pre>
+set_animation(name)
+</b></pre>
+<p>
+Changes animation of this object.
+<p>
+<hr>
+<a name = "set_anim_pos(time)"></a>
+<b><pre>
+set_anim_pos(time)
+</b></pre>
+<p>
+Jumps to the given time if there is an
+animation defined for the object.
+<p>
+<hr>
+<a name = "set_pixel_size(size)"></a>
+<b><pre>
+set_pixel_size(size)
+</b></pre>
+<p>
+Sets size of pixel which is drawn if image
+or animation is not set.
+<p>
+<hr>
+<a name = "set_pixel_color(r, g, b, a)"></a>
+<b><pre>
+set_pixel_color(r, g, b, a)
+</b></pre>
+<p>
+Sets color of pixel which is drawn if image
+or animation is not set.
+<p>
+<hr>
+<a name = "set_active(a)"></a>
+<b><pre>
+set_active(a)
+</b></pre>
+<p>
+Sets activity status flag.
+<p>
+<hr>
+<a name = "id = get_owner()"></a>
+<b><pre>
+id = get_owner()
+</b></pre>
+<p>
+Returns owner of the object.
+<p>
+<hr>
+<a name = "id = get_team()"></a>
+<b><pre>
+id = get_team()
+</b></pre>
+<p>
+Returns team of the object.
+<p>
+<hr>
+<a name = "x, y = get_pos()"></a>
+<b><pre>
+x, y = get_pos()
+</b></pre>
+<p>
+Returns position of the object.
+<p>
+<hr>
+<a name = "x, y = get_vel()"></a>
+<b><pre>
+x, y = get_vel()
+</b></pre>
+<p>
+Returns velocity of the object.
+<p>
+<hr>
+<a name = "dir = get_dir()"></a>
+<b><pre>
+dir = get_dir()
+</b></pre>
+<p>
+Returns current direction of the object in degrees.
+<p>
+<hr>
+<a name = "id = get_id()"></a>
+<b><pre>
+id = get_id()
+</b></pre>
+<p>
+Returns id number of the object.
+Cannot be used in init() method
+<p>
+<hr>
+<a name = "type = get_type()"></a>
+<b><pre>
+type = get_type()
+</b></pre>
+<p>
+Returns object type of the object.
+<p>
+<hr>
+<a name = "c = get_condition()"></a>
+<b><pre>
+c = get_condition()
+</b></pre>
+<p>
+Returns current condition of the object.
+<p>
+<hr>
+<a name = "a = get_age()"></a>
+<b><pre>
+a = get_age()
+</b></pre>
+<p>
+Returns age of the object in seconds.
+<p>
+<hr>
+<a name = "kill()"></a>
+<b><pre>
+kill()
+</b></pre>
+<p>
+Destroys the object.
+<p>
+<hr>
+<a name = "kill_local()"></a>
+<b><pre>
+kill_local()
+</b></pre>
+<p>
+Destroys local copy of the object in network game.
+<p>
+<hr>
+<a name = "set_timer(t)"></a>
+<b><pre>
+set_timer(t)
+</b></pre>
+<p>
+Starts a t second timer, which calls on_timer() function when it
+expires. Only one timer is supported, calling this function again
+overrides the old value.
+<p>
+<hr>
+<a name = "set_lifetime(t)"></a>
+<b><pre>
+set_lifetime(t)
+</b></pre>
+<p>
+Sets life time of the object
+<p>
+<hr>
+<a name = "stop_timer()"></a>
+<b><pre>
+stop_timer()
+</b></pre>
+<p>
+Stops the timer.
+<p>
+<hr>
+<a name = "f = timer_is_set()"></a>
+<b><pre>
+f = timer_is_set()
+</b></pre>
+<p>
+Returns true if timer is running
+<p>
+<hr>
+<a name = "attach_to(id)"></a>
+<b><pre>
+attach_to(id)
+</b></pre>
+<p>
+Attaches the calling object to an another object.
+attach_to(0) removes the attachment.
+<p>
+<hr>
+<a name = "id = get_attached_object()"></a>
+<b><pre>
+id = get_attached_object()
+</b></pre>
+<p>
+Returns the object to which the calling object is attached, or 0.
+<p>
+<hr>
+<a name = "attach_to_ground(b)"></a>
+<b><pre>
+attach_to_ground(b)
+</b></pre>
+<p>
+Attaches the object to ground if b = true, removes the
+attachment if b = false. Attached object will stay in place
+despite any physical forces.
+<p>
+<hr>
+<a name = "attached_to_ground()"></a>
+<b><pre>
+attached_to_ground()
+</b></pre>
+<p>
+Return whether the object is attached to ground.
+<p>
+<hr>
+<a name = "set_attach_pos(dir, dist, dir2, fixed)"></a>
+<b><pre>
+set_attach_pos(dir, dist, dir2, fixed)
+</b></pre>
+<p>
+If the object is attached to an another object,
+sets the relative position and orientation.
+The object is moved to dir by dist units, and
+then rotated by dir2 degrees. If fixed is true,
+the object is not moved when the attached object
+rotates.
+<p>
+<hr>
+<a name = "x, y = get_force()"></a>
+<b><pre>
+x, y = get_force()
+</b></pre>
+<p>
+Returns force affecting the object for this frame.
+<p>
+<hr>
+<a name = "add_force(x, y)"></a>
+<b><pre>
+add_force(x, y)
+</b></pre>
+<p>
+Adds a component to the force affecting the object for this frame.
+<p>
+<hr>
+<a name = "add_impulse(x, y)"></a>
+<b><pre>
+add_impulse(x, y)
+</b></pre>
+<p>
+Gives a physical impulse to the object.
+<p>
+<hr>
+<a name = "set_force(x, y)"></a>
+<b><pre>
+set_force(x, y)
+</b></pre>
+<p>
+Sets a constant force affecting the object
+<p>
+<hr>
+<a name = "write_int8(value)"></a>
+<b><pre>
+write_int8(value)
+</b></pre>
+<p>
+Writes a 8 bit integer to the output stream.
+(Value must be between 0-255, and it will be rounded down.)
+This function can only be used in write_data() callback.
+<p>
+<hr>
+<a name = "write_int16(value)"></a>
+<b><pre>
+write_int16(value)
+</b></pre>
+<p>
+Writes a 16 bit integer to the output stream.
+(Value must be between 0-65535, and it will be rounded down.)
+This function can only be used in write_data() callback.
+<p>
+<hr>
+<a name = "write_int32(value)"></a>
+<b><pre>
+write_int32(value)
+</b></pre>
+<p>
+Writes a 32 bit integer to the output stream.
+(Value must be between 0-(2^32-1), and it will be rounded down.)
+This function can only be used in write_data() callback.
+<p>
+<hr>
+<a name = "value = read_int8()"></a>
+<b><pre>
+value = read_int8()
+</b></pre>
+<p>
+Reads a 8 bit integer from the output stream.
+This function can only be used in read_data() callback.
+<p>
+<hr>
+<a name = "value = read_int16()"></a>
+<b><pre>
+value = read_int16()
+</b></pre>
+<p>
+Reads a 16 bit integer from the output stream.
+This function can only be used in read_data() callback.
+<p>
+<hr>
+<a name = "value = read_int32()"></a>
+<b><pre>
+value = read_int32()
+</b></pre>
+<p>
+Reads a 32 bit integer from the output stream.
+This function can only be used in read_data() callback.
+<p>
+<hr>
+<a name = "network_uodate(t)"></a>
+<b><pre>
+network_uodate(t)
+</b></pre>
+<p>
+Updates the object's state in client machines.
+t = 1: quick, unreliable update
+t = 2: slow, reliable update
+<p>
+<hr>
+
+
+
+
+
+</body>
+</html>
+

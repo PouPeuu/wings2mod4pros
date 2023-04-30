@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="sound">
+
+  <label 
+    text="Sound"
+    class="heading"
+    x="10"
+    y="4"
+  ></label>
+
+
+  <list
+    x="50"
+    y="50"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="36"
+  >
+
+    <panel>
+    <label 
+      text="Sound"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <checkbox
+      name="sound"
+      check_command="sound on"
+      clear_command="sound off"
+      info_command="sound"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="130"
+    ></checkbox>
+    </panel>
+
+    <panel>
+    <label 
+      text="Master volume"
+      class="text_1"
+      y="3"
+    ></label>
+    <slider
+      min_value="0"
+      max_value="128"
+      command="volume $value"
+      info_command="volume"
+      x="130"
+      width="160"
+      image_left="slider_left"
+      image_right="slider_right"
+      image_center="slider_center"
+      image_button="slider_button"
+    ></slider>
+    </panel>
+
+    <panel>
+    <label 
+      text="Music volume"
+      class="text_1"
+      y="3"
+    ></label>
+    <slider
+      min_value="0"
+      max_value="128"
+      command="music_volume $value"
+      info_command="music_volume"
+      x="130"
+      width="160"
+      image_left="slider_left"
+      image_right="slider_right"
+      image_center="slider_center"
+      image_button="slider_button"
+    ></slider>
+    </panel>
+
+    <panel>
+    <label 
+      text="SFX volume"
+      class="text_1"
+      y="3"
+    ></label>
+    <slider
+      min_value="0"
+      max_value="128"
+      command="sfx_volume $value"
+      info_command="sfx_volume"
+      x="130"
+      width="160"
+      image_left="slider_left"
+      image_right="slider_right"
+      image_center="slider_center"
+      image_button="slider_button"
+    ></slider>
+    </panel>
+
+    <panel>
+    <label 
+      text="Play music"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <list_box
+      name="music"
+      class="list_box_1"
+	  font="chat_font"
+      command="music $value"
+      info_command="music"
+      list_command="music_list"
+      empty_name=" "
+      empty_command="stop_music"
+      x="130"
+      size="12"
+    >
+      <item name="(none)" value=""></item>
+    </list_box>
+    </panel>
+
+    <panel>
+    <label 
+      text="Test SFX"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <list_box
+      name="sfx"
+      class="list_box_1"
+	  font="chat_font"
+      command="sfx $value"
+      info_command="sfx"
+      list_command="sfx_list"
+      x="130"
+      size="12"
+    ></list_box>
+    </panel>
+
+  </list>
+
+</panel>

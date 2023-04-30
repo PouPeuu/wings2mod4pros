@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="shuriken"
+  file="shuriken.png"
+  width="7" 
+  height="7" 
+  frames="2"
+  time="0.02"
+></animation >
+
+</graphics>

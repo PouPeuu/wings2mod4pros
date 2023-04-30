@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="network_game_settings1">
+
+
+  <include 
+    file="Game_Page1.xml"
+  ></include>
+
+	
+</panel>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="wormhole_start"
+  file="wormhole_start64x64_12.png"
+  width="64" 
+  height="64" 
+  frames="12"
+  time="0.6"
+  alpha="0.9"
+  blend_style="add"
+></animation>
+
+<animation 
+  name="wormhole_end"
+  file="wormhole_end64x64_12.png"
+  width="64" 
+  height="64" 
+  frames="12"
+  time="1"
+  alpha="0.9"
+  blend_style="add"
+></animation>
+
+</graphics>

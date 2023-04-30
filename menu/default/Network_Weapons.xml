@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="network_weapons">
+
+  <label 
+    text="Weapons"
+    class="heading"
+    x="10"
+    y="4"
+  ></label>
+
+  <panel 
+    name="panel1"
+    x="40"
+    y="40"
+  >
+
+  <include 
+    file="Weapons.xml"
+  ></include>
+  
+  </panel>
+	
+</panel>

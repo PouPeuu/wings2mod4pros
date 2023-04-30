@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="players">
+
+  <tab_list
+    name="players_list"
+    x="30"
+    y="30"
+    width="350"
+    height="10"
+    x_space="95"
+    y_space="100"
+  >
+
+  <button
+    text="Player 1"
+    class="text_button_1"
+    command="@players @players_panel @player select player_1"
+  ></button>
+
+  <button
+    text="Player 2"
+    class="text_button_1"
+    command="@players @players_panel @player select player_2"
+  ></button>
+
+  <button
+    text="Player 3"
+    class="text_button_1"
+    command="@players @players_panel @player select player_3"
+  ></button>
+
+  <button
+    text="Player 4"
+    class="text_button_1"
+    command="@players @players_panel @player select player_4"
+  ></button>
+  
+  </tab_list>
+
+
+  <panel name="players_panel">
+
+  <view name="player" type="2">
+
+    <include 
+      file="PlayerMenu.xml"
+      defs="PLAYER_NUM = 1"
+    ></include> <!-- avaa PlayerMenu.xml:n ja laittaa PLAYER_NUM:in tilalle luvun 1 -->
+
+    <include 
+      file="PlayerMenu.xml"
+      defs="PLAYER_NUM = 2"
+    ></include>
+
+    <include 
+      file="PlayerMenu.xml"
+      defs="PLAYER_NUM = 3"
+    ></include>
+
+    <include 
+      file="PlayerMenu.xml"
+      defs="PLAYER_NUM = 4"
+    ></include>
+  </view>
+
+  </panel>
+
+</panel>

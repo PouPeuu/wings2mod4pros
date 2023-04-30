@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="options">
+
+<label 
+  text="Options"
+  class="heading"
+  x="10"
+  y="4"
+></label>
+
+<list
+  x="50"
+  y="45"
+  width="350"
+  height="300"
+  x_space="175"
+  y_space="35"
+>
+
+
+  <panel>
+    <label 
+      text="Game version:"
+      class="text_1"
+    ></label>
+    <label 
+      text_command="version"
+      class="text_1"
+      x="106"
+    ></label>
+
+    <button 
+      name="credits"
+      text="Credits"
+      class="text_button_2"
+      command="@main @panel1 @panel2 @group1 @options activate"
+      command2="@main @menuview select credits"
+      x="280"
+    ></button>
+  </panel>
+
+
+  <button 
+    name="save"
+    text="Save settings"
+    class="text_button_1"
+    command="save"
+  ></button>
+
+  <button 
+    name="load"
+    text="Load settings"
+    class="text_button_1"
+    command="load"
+    _y="30"
+  ></button>
+
+  <button 
+    name="default"
+    text="Default settings"
+    class="text_button_1"
+    command="default_config"
+    _x="180"
+  ></button>
+
+  <panel>
+    <label 
+      text="Autosave"
+      class="text_1"
+      y="8"
+      x="3"
+    ></label>
+
+    <checkbox
+      name="autosave"
+      check_command="autosave on"
+      clear_command="autosave off"
+      info_command="autosave"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="85"
+      y="5"
+    ></checkbox>
+  </panel>
+
+  <panel>
+    <if info_command="windows_version" req_value="true">
+    <button 
+      name="homepage"
+      text="Wings 2 homepage"
+      class="text_button_1"
+      command="open_homepage"
+      y="12"
+    ></button>
+    </if>
+  </panel>
+
+
+</list>
+
+<panel x="50" y="150">
+
+<!--
+<include 
+  file="Weapons.xml"
+></include>
+-->
+
+</panel>
+
+</panel>
+

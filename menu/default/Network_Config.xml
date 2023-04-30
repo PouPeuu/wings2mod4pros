@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="network_config">
+
+
+  <label 
+    text="Network config"
+    class="heading"
+    x="10"
+    y="4"
+  ></label>
+
+
+  <list name="l1"
+    x="50"
+    y="40"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="30"
+  >
+
+    <panel name="name_panel">
+      <label text="Player name" y="3" font="menufont"></label>
+      <text_field
+        name="player_name"
+        command="name $value"
+        info_command="name"
+        enable_command="can_change_name"
+        class="text_field_1"
+        width="164"
+        x="120"
+      ></text_field>
+    </panel>
+<!--
+    <panel name="name_panel">
+      <label text="Player name" y="3" font="menufont"></label>
+      <text_field
+        name="player_name"
+        command="name $value"
+        info_command="name"
+        enable_command="can_change_name"
+        tab_command="@l1 @password_panel @password select"
+        class="text_field_1"
+        width="164"
+        x="120"
+      ></text_field>
+    </panel>
+
+    <panel name="password_panel">
+      <label text="Password" y="3" font="menufont"></label>
+      <text_field
+        name="password"
+        command="&#38;password $value"
+        hide_input="true"
+        info_command="password"
+        enable_command="can_change_name"
+        tab_command="@l1 @name_panel @player_name select"
+        class="text_field_1"
+        width="164"
+        x="120"
+      ></text_field>
+    </panel>
+-->
+
+<!--
+    <panel>
+      <button 
+        name="test"
+        text="Login"
+        class="text_button_1"
+        command="test_login"
+        info_command="logged_in"
+        enable_if="false"
+        x="120"
+      ></button>
+      <button 
+        name="test"
+        text="Logout"
+        class="text_button_1"
+        command="test_logout"
+        info_command="logged_in"
+        enable_if="true"
+        x="200"
+      ></button>
+    </panel>
+-->
+
+  </list>
+
+<!--  
+  <list
+    x="50"
+    y="135"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="30"
+  >
+-->
+
+  <list
+    x="50"
+    y="80"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="30"
+  >
+
+<!--  
+    <panel>
+    <label 
+      text="Remember password"
+      class="text_1"
+      y="4"
+    ></label>
+    <checkbox
+      name="ready"
+      check_command="remember_password true"
+      clear_command="remember_password false"
+      info_command="remember_password"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="160"
+      y="0"
+    ></checkbox>
+    </panel>
+-->
+
+<!--
+    <panel>
+    <label 
+      text="Max players"
+      class="text_1"
+      y="4"
+    ></label>
+    <list_box
+      name="max_players"
+      class="list_box_1"
+      command="max_players $value"
+      info_command="max_players"
+      x="145"
+      size="7"
+    >
+      <item name="Unlimited" value="1000"></item>
+      <item name="2" value="2"></item>
+      <item name="3" value="3"></item>
+      <item name="4" value="4"></item>
+      <item name="5" value="5"></item>
+      <item name="6" value="6"></item>
+      <item name="7" value="7"></item>
+      <item name="8" value="8"></item>
+      <item name="9" value="9"></item>
+      <item name="10" value="10"></item>
+      <item name="11" value="11"></item>
+      <item name="12" value="12"></item>
+      <item name="13" value="13"></item>
+      <item name="14" value="14"></item>
+      <item name="15" value="15"></item>
+      <item name="16" value="16"></item>
+    </list_box>
+    </panel>
+-->
+
+    <panel>
+    <label 
+      text="Max download rate"
+      class="text_1"
+      y="4"
+    ></label>
+    <list_box
+      name="download_rate"
+      class="list_box_1"
+      command="down_rate $value"
+      info_command="down_rate"
+      x="160"
+      size="7"
+    >
+      <item name="Unlimited" value="1000000"></item>
+      <item name="14 kbit/s" value="14"></item>
+      <item name="28 kbit/s" value="28"></item>
+      <item name="56 kbit/s" value="56"></item>
+      <item name="64 kbit/s" value="64"></item>
+      <item name="128 kbit/s" value="128"></item>
+      <item name="256 kbit/s" value="256"></item>
+      <item name="384 kbit/s" value="384"></item>
+      <item name="512 kbit/s" value="512"></item>
+      <item name="768 kbit/s" value="768"></item>
+      <item name="1 Mbit/s" value="1024"></item>
+      <item name="2 Mbit/s" value="2048"></item>
+      <item name="3 Mbit/s" value="3072"></item>
+      <item name="4 Mbit/s" value="4096"></item>
+      <item name="6 Mbit/s" value="6144"></item>
+      <item name="8 Mbit/s" value="8192"></item>
+      <item name="10 Mbit/s" value="10240"></item>
+    </list_box>
+    <!--
+    <text_field
+      name="dr"
+      command="down_rate $value"
+      info_command="down_rate"
+      class="text_field_1"
+      width="50"
+      x="270"
+    ></text_field>
+    -->
+    </panel>
+
+    <panel>
+    <label 
+      text="Max upload rate"
+      class="text_1"
+      y="4"
+    ></label>
+    <list_box
+      name="upload_rate"
+      class="list_box_1"
+      command="up_rate $value"
+      info_command="up_rate"
+      x="160"
+      size="7"
+    >
+      <item name="Unlimited" value="1000000"></item>
+      <item name="14 kbit/s" value="14"></item>
+      <item name="28 kbit/s" value="28"></item>
+      <item name="56 kbit/s" value="56"></item>
+      <item name="64 kbit/s" value="64"></item>
+      <item name="128 kbit/s" value="128"></item>
+      <item name="256 kbit/s" value="256"></item>
+      <item name="384 kbit/s" value="384"></item>
+      <item name="512 kbit/s" value="512"></item>
+      <item name="768 kbit/s" value="768"></item>
+      <item name="1 Mbit/s" value="1024"></item>
+      <item name="2 Mbit/s" value="2048"></item>
+      <item name="3 Mbit/s" value="3072"></item>
+      <item name="4 Mbit/s" value="4096"></item>
+      <item name="6 Mbit/s" value="6144"></item>
+      <item name="8 Mbit/s" value="8192"></item>
+      <item name="10 Mbit/s" value="10240"></item>
+    </list_box>
+    </panel>
+
+
+    <panel>
+    <label 
+      text="Packet rate"
+      class="text_1"
+      y="4"
+    ></label>
+	<!--
+    <list_box
+      name="packet_rate"
+      class="list_box_1"
+      command="packet_rate $value"
+      info_command="packet_rate"
+      x="160"
+      size="7"
+    >
+      <item name="10 pkt/s" value="10"></item>
+      <item name="11 pkt/s" value="11"></item>
+      <item name="12 pkt/s" value="12"></item>
+      <item name="13 pkt/s" value="13"></item>
+      <item name="14 pkt/s" value="14"></item>
+      <item name="15 pkt/s" value="15"></item>
+      <item name="16 pkt/s" value="16"></item>
+      <item name="17 pkt/s" value="17"></item>
+      <item name="18 pkt/s" value="18"></item>
+      <item name="19 pkt/s" value="19"></item>
+      <item name="20 pkt/s" value="20"></item>
+      <item name="21 pkt/s" value="21"></item>
+      <item name="22 pkt/s" value="22"></item>
+      <item name="23 pkt/s" value="23"></item>
+      <item name="24 pkt/s" value="24"></item>
+      <item name="25 pkt/s" value="25"></item>
+    </list_box>
+	-->
+    <list_box
+      name="packet_rate"
+      class="list_box_1"
+      command="packet_rate $value"
+      info_command="packet_rate"
+      x="160"
+      size="7"
+    >
+      <item name="10 pkt/s" value="10"></item>
+      <item name="15 pkt/s" value="15"></item>
+      <item name="20 pkt/s" value="20"></item>
+      <item name="25 pkt/s" value="25"></item>
+      <item name="30 pkt/s" value="30"></item>
+      <item name="35 pkt/s" value="35"></item>
+      <item name="40 pkt/s" value="40"></item>
+      <item name="45 pkt/s" value="45"></item>
+      <item name="50 pkt/s" value="50"></item>
+      <item name="55 pkt/s" value="55"></item>
+      <item name="60 pkt/s" value="60"></item>
+    </list_box>
+    </panel>
+
+
+
+    <panel name="panel1">
+      <label text="TCP port" font="menufont" y="3"></label>
+      <text_field
+        name=""
+        command="tcp_port $value"
+        info_command="tcp_port"
+        class="text_field_1"
+        width="64"
+        x="80"
+      ></text_field>
+
+    <button 
+      name="banned_addresses"
+      text="Banned addresses"
+      class="text_button_1"
+      command="@panel1 @ban_view select ban_view"
+      x="190"
+    ></button>
+
+    <view name="ban_view">
+      <dialog name="ban_view" x="159" y="-160" width="186" height="160">
+        <selection_list
+          name="ban_list"
+          class="selection_list_1"
+          list_command="ban_list"
+          select_command="remove_ban $value"
+          x="10"
+          y="10"
+          font="menufont"
+          lines="7"
+          line_height="16"
+          width="165"
+          color="0, 0, 60, 255"
+          border_color="100, 100, 100, 255"
+          text_color="255, 255, 255, 255"
+          shaded_text_color="180, 180, 180, 255"
+          selection_color="0, 0, 60, 255"
+          x_margin="5"
+          y_margin="3"
+        ></selection_list>
+        
+        <text_field
+          command="ban $value"
+          class="text_field_2"
+          single_input="true"
+          width="160"
+          x="11"
+          y="130"
+        ></text_field>
+      </dialog>
+    </view>
+
+    <panel name="panel2" y="20">
+    <button 
+      name="banned_accounts"
+      text="Banned accounts"
+      class="text_button_1"
+      command="@panel2 @account_ban_view select account_ban_view"
+      x="190"
+    ></button>
+
+    <view name="account_ban_view">
+      <dialog name="account_ban_view" x="159" y="-160" width="186" height="160">
+        <selection_list
+          name="account_ban_list"
+          class="selection_list_1"
+          list_command="account_ban_list"
+          select_command="remove_account_ban $value"
+          x="10"
+          y="10"
+          font="menufont"
+          lines="7"
+          line_height="16"
+          width="165"
+          color="0, 0, 60, 255"
+          border_color="100, 100, 100, 255"
+          text_color="255, 255, 255, 255"
+          shaded_text_color="180, 180, 180, 255"
+          selection_color="0, 0, 60, 255"
+          x_margin="5"
+          y_margin="3"
+        ></selection_list>
+        
+        <text_field
+          command="ban_account $value"
+          class="text_field_2"
+          single_input="true"
+          width="160"
+          x="11"
+          y="130"
+        ></text_field>
+      </dialog>
+    </view>
+    </panel>
+
+      
+    </panel>
+    
+    <panel>
+      <label text="UDP port" font="menufont"></label>
+      <text_field
+        name=""
+        command="udp_port $value"
+        info_command="udp_port"
+        class="text_field_1"
+        width="64"
+        x="80"
+      ></text_field>
+    </panel>
+
+  </list>
+
+	
+</panel>

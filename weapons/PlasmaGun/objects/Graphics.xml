@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="plasma"
+  file="plasma42x42_12.png"
+  width="42" 
+  height="42" 
+  frames="12"
+  time="0.4"
+  blend_style="add"
+></animation>
+
+</graphics>

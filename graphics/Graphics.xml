@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<font 
+  name="chat_font"
+  file="vera48ptbold.fnt"
+  bilinear_interpolation="true"
+  scale="0.16"
+></font>
+
+<font 
+  name="name_font"
+  file="vera36pt.fnt"
+  bilinear_interpolation="true"
+  scale="0.17"
+></font>
+
+<font 
+  name="font1"
+  file="font1.fnt"
+></font>
+
+
+<animation 
+  name="glider_wing" 
+  file="glider_wing.png"
+  width="29" 
+  height="29"
+  frames="1"
+  time="0"
+  army_color="1"
+></animation>
+
+<animation 
+  name="glider_pilot" 
+  file="glider_pilot.png"
+  width="29" 
+  height="29"
+  frames="1"
+  time="0"
+  army_color="1"
+></animation>
+
+<animation 
+  name="glider_wing_n" 
+  file="glider_wing_n.png"
+  width="29" 
+  height="29"
+  frames="1"
+  time="0"
+  army_color="1"
+></animation>
+
+<animation 
+  name="glider_pilot_n" 
+  file="glider_pilot_n.png"
+  width="29" 
+  height="29"
+  frames="1"
+  time="0"
+  army_color="1"
+></animation>
+
+<animation 
+  name="glider_wing_hit" 
+  file="glider_wing.png"
+  width="29" 
+  height="29"
+  frames="1"
+  time="0"
+  hit_image="1"
+></animation>
+
+<animation 
+  name="glider_pilot_hit" 
+  file="glider_pilot.png"
+  width="29" 
+  height="29"
+  frames="1"
+  time="0"
+  army_color="1"
+></animation>
+
+
+
+<image 
+  name="timeslicer_effect" 
+  file="timeslicer_effect.png"
+></image>
+
+<image 
+  name="neutral_flag" 
+  file="neutral_flag.png"
+></image>
+
+<animation 
+  name="flag" 
+  file="flag.png"
+  width="32" 
+  height="32"
+  frames="1"
+  time="0"
+  army_color="1"
+></animation>
+
+<animation 
+  name="factory" 
+  file="factory.png"
+  width="42" 
+  height="28"
+  frames="1"
+  time="0"
+  army_color="1"
+></animation>
+
+<animation
+  name="factory_hit" 
+  file="factory.png"
+  width="42" 
+  height="28"
+  frames="1"
+  time="0"
+  hit_image="1"
+></animation>
+
+
+<animation 
+  name="explosion1" 
+  file="expl_51x51_12.png"
+  width="51" 
+  height="51" 
+  frames="12"
+  time="0.25"
+  alpha="0.8"
+  blend_style="add"
+></animation>
+
+<animation 
+  name="explosion2" 
+  file="expl_64x64_12.png"
+  width="64" 
+  height="64" 
+  frames="12"
+  time="0.3"
+></animation>
+
+<animation 
+  name="explosion3" 
+  file="expl_80x80_12.png"
+  width="80" 
+  height="80" 
+  frames="12"
+  time="0.3"
+></animation>
+
+<animation 
+  name="small_explosion" 
+  file="expl_32x32_12.png"
+  width="32" 
+  height="32" 
+  frames="12"
+  time="0.2"
+></animation>
+
+<animation 
+  name="big_explosion" 
+  file="explosion_100x100_25.png"
+  width="100" 
+  height="100" 
+  frames="25"
+  time="0.4"
+></animation>
+
+<animation 
+  name="explosion_plastic" 
+  file="explosion_plastic.png"
+  width="51" 
+  height="51" 
+  frames="11"
+  time="0.25"
+  blend_style="add"
+></animation>
+
+
+
+
+<animation 
+  name="emp_hit" 
+  file="empeffect35x35_9.png"
+  width="35" 
+  height="35" 
+  frames="9"
+  time="0.4"
+  blend_style="add"
+></animation>
+
+
+<animation 
+  name="fire"
+  file="dicola_fire_14x32_12.png"
+  width="14" 
+  height="32" 
+  frames="7"
+  time="0.4"
+  blend_style="add"
+  x="0"
+  y="-11"
+></animation>
+
+
+
+<image
+  name="bomb"
+  file="bomb.png"
+  alpha="1.0"
+></image>
+
+<image
+  name="bomb2"
+  file="bomb2.png"
+  alpha="1.0"
+></image>
+
+
+<image
+  name="icecube"
+  file="icecube.png"
+  alpha="0.8"
+></image>
+
+
+<image
+  name="harpoon"
+  file="harpoon.png"
+></image>
+
+<animation 
+  name="harpoon" 
+  file="harpoon.png"
+  type="rotate"
+  frames="72"
+></animation>
+
+<animation 
+  name="harpoon_small" 
+  file="harpoon_small.png"
+  type="rotate"
+  frames="72"
+></animation>
+
+<animation 
+  name="trooper" 
+  file="trooper.png"
+  width="6" 
+  height="8" 
+  frames="2"
+  time="0.25"
+  army_color="1"
+></animation>
+
+<animation 
+  name="neutral_player" 
+  file="neutral_player.png"
+  width="6" 
+  height="8" 
+  frames="2"
+  time="0.25"
+  army_color="1"
+></animation>
+
+<animation 
+  name="cannon_build" 
+  file="cannon_build.png"
+  width="30"
+  height="18"
+  frames="9"
+  time="1.0"
+  army_color="1"
+></animation>
+
+<animation
+  name="cannon" 
+  file="cannon.png"
+  width="30"
+  height="18"
+  frames="1"
+  army_color="1"
+></animation>
+
+<animation 
+  name="cannon_barrel" 
+  file="cannon_barrel.png"
+  width="30"
+  height="30"
+  frames="1"
+  army_color="1"
+  x="0"
+  y="4"
+></animation>
+
+<animation
+  name="cannon_hit" 
+  file="cannon_hit.png"
+  width="30"
+  height="18"
+  frames="1"
+  army_color="1"
+></animation>
+
+<animation 
+  name="cannon_barrel_hit" 
+  file="cannon_barrel_hit.png"
+  width="30"
+  height="30"
+  frames="1"
+  army_color="1"
+  x="0"
+  y="4"
+></animation>
+
+
+<image
+  name="sight"
+  file="sight.png"
+></image>
+
+<image
+  name="grenade"
+  file="grenade.png"
+></image>
+
+<animation 
+  name="mine" 
+  file="mine.png"
+  width="8" 
+  height="8" 
+  frames="1"
+  army_color="1"
+></animation>
+<!--
+<image
+  name="mine"
+  file="mine.png"
+></image>
+-->
+
+<image
+  name="parachute"
+  file="parachute.png"
+></image>
+
+
+<image
+  name="chatbox_left"
+  file="chatbox_left.png"
+></image>
+
+<image
+  name="chatbox_right"
+  file="chatbox_right.png"
+></image>
+
+<image
+  name="chatbox_center"
+  file="chatbox_center.png"
+></image>
+
+
+
+</graphics>

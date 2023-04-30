@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="playerkeys_PLAYER_NUM">
+
+  <label 
+    text="Player PLAYER_NUM keys"
+    class="heading"
+    x="10"
+    y="4"
+  ></label>
+
+  <list
+    name="toplist"
+    x="30"
+    y="65"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="24"
+  >
+
+
+    <panel>
+    <label 
+      text="Controls for"
+      class="text_1"
+      x="50"
+      y="3"
+    ></label>
+
+    <list_box
+      name="controls"
+      class="list_box_1"
+      command="@toplist @viewpanel @keyset_view select $value"
+      x="230"
+      size="6"
+    >
+      <item name="Ship" value="ship"></item>
+      <item name="Pilot" value="pilot"></item>
+      <item name="Weapons" value="weapons"></item>
+      <item name="Menu" value="menu"></item>
+    </list_box>
+    </panel>
+
+    <panel>
+    </panel>
+
+
+     <panel name="viewpanel">
+     <view name="keyset_view" type="2">
+
+      <panel name="ship">
+      <list
+        width="350"
+        height="300"
+        x_space="175"
+        y_space="24"
+      >
+        <panel name="thrust">
+        <key_selector
+          control_name="Thrust"
+          column_width="180"
+          command="control PLAYER_NUM thrust $value"
+          info_command="control PLAYER_NUM thrust"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM thrust $value"
+          info_command="alt_control PLAYER_NUM thrust"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="left">
+        <key_selector
+          control_name="Left"
+          column_width="180"
+          command="control PLAYER_NUM left $value"
+          info_command="control PLAYER_NUM left"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM left $value"
+          info_command="alt_control PLAYER_NUM left"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="right">
+        <key_selector
+          control_name="Right"
+          column_width="180"
+          command="control PLAYER_NUM right $value"
+          info_command="control PLAYER_NUM right"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+		
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM right $value"
+          info_command="alt_control PLAYER_NUM right"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="shoot">
+        <key_selector
+          control_name="Shoot"
+          column_width="180"
+          command="control PLAYER_NUM shoot $value"
+          info_command="control PLAYER_NUM shoot"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM shoot $value"
+          info_command="alt_control PLAYER_NUM shoot"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="next_weapon">
+        <key_selector
+          control_name="Next weapon"
+          column_width="180"
+          command="control PLAYER_NUM next $value"
+          info_command="control PLAYER_NUM next"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM next $value"
+          info_command="alt_control PLAYER_NUM next"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="previous_weapon">
+        <key_selector
+          control_name="Previous weapon"
+          column_width="180"
+          command="control PLAYER_NUM prev $value"
+          info_command="control PLAYER_NUM prev"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM prev $value"
+          info_command="alt_control PLAYER_NUM prev"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="jump_out">
+        <key_selector
+          name="jump_key"
+          control_name="Jump out"
+          column_width="180"
+          command="control PLAYER_NUM jump $value"
+          info_command="control PLAYER_NUM jump"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          name="alt_jump_key"
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM jump $value"
+          info_command="alt_control PLAYER_NUM jump"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+      </list>
+      </panel>
+
+      <panel name="weapons">
+      <list
+        width="350"
+        height="300"
+        x_space="175"
+        y_space="24"
+      >
+        <panel name="select_weapon_1">
+        <key_selector
+          control_name="Select weapon 1"
+          column_width="180"
+          command="control PLAYER_NUM weapon1 $value"
+          info_command="control PLAYER_NUM weapon1"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM weapon1 $value"
+          info_command="alt_control PLAYER_NUM weapon1"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="select_weapon_2">
+        <key_selector
+          control_name="Select weapon 2"
+          column_width="180"
+          command="control PLAYER_NUM weapon2 $value"
+          info_command="control PLAYER_NUM weapon2"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM weapon2 $value"
+          info_command="alt_control PLAYER_NUM weapon2"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="select_weapon_3">
+        <key_selector
+          control_name="Select weapon 3"
+          column_width="180"
+          command="control PLAYER_NUM weapon3 $value"
+          info_command="control PLAYER_NUM weapon3"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM weapon3 $value"
+          info_command="alt_control PLAYER_NUM weapon3"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="select_weapon_4">
+        <key_selector
+          control_name="Select weapon 4"
+          column_width="180"
+          command="control PLAYER_NUM weapon4 $value"
+          info_command="control PLAYER_NUM weapon4"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM weapon4 $value"
+          info_command="alt_control PLAYER_NUM weapon4"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="reload_weapon">
+        <key_selector
+          control_name="Reload weapon"
+          column_width="180"
+          command="control PLAYER_NUM weapon_reload $value"
+          info_command="control PLAYER_NUM weapon_reload"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM weapon_reload $value"
+          info_command="alt_control PLAYER_NUM weapon_reload"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="weapon_set_menu">
+        <key_selector
+          control_name="Weapon set menu"
+          column_width="180"
+          command="control PLAYER_NUM weapon_menu $value"
+          info_command="control PLAYER_NUM weapon_menu"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM weapon_menu $value"
+          info_command="alt_control PLAYER_NUM weapon_menu"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+      </list>
+      </panel>
+
+      <panel name="pilot" y="-20">
+      <list
+        width="350"
+        height="300"
+        x_space="175"
+        y_space="17"
+      >
+        <panel name="run">
+        <key_selector
+          control_name="Run/Swim/Swing fwd"
+          column_width="180"
+          command="control PLAYER_NUM pilot_forward $value"
+          info_command="control PLAYER_NUM pilot_forward"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_forward $value"
+          info_command="alt_control PLAYER_NUM pilot_forward"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="jump">
+        <key_selector
+          name="jump_key"
+          control_name="Jump/Swim/Swing bwd"
+          column_width="180"
+          command="control PLAYER_NUM pilot_jump $value"
+          info_command="control PLAYER_NUM pilot_jump"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          name="alt_jump_key"
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_jump $value"
+          info_command="alt_control PLAYER_NUM pilot_jump"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="run_left">
+        <key_selector
+          control_name="Run left"
+          column_width="180"
+          command="control PLAYER_NUM pilot_left $value"
+          info_command="control PLAYER_NUM pilot_left"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_left $value"
+          info_command="alt_control PLAYER_NUM pilot_left"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="run_right">
+        <key_selector
+          control_name="Run right"
+          column_width="180"
+          command="control PLAYER_NUM pilot_right $value"
+          info_command="control PLAYER_NUM pilot_right"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_right $value"
+          info_command="alt_control PLAYER_NUM pilot_right"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="aim_up">
+        <key_selector
+          control_name="Aim up"
+          column_width="180"
+          command="control PLAYER_NUM pilot_aim_up $value"
+          info_command="control PLAYER_NUM pilot_aim_up"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_aim_up $value"
+          info_command="alt_control PLAYER_NUM pilot_aim_up"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="aim_down">
+        <key_selector
+          control_name="Aim down"
+          column_width="180"
+          command="control PLAYER_NUM pilot_aim_down $value"
+          info_command="control PLAYER_NUM pilot_aim_down"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_aim_down $value"
+          info_command="alt_control PLAYER_NUM pilot_aim_down"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="aim_left">
+        <key_selector
+          control_name="Aim left"
+          column_width="180"
+          command="control PLAYER_NUM pilot_aim_left $value"
+          info_command="control PLAYER_NUM pilot_aim_left"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_aim_left $value"
+          info_command="alt_control PLAYER_NUM pilot_aim_left"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="aim_right">
+        <key_selector
+          control_name="Aim right"
+          column_width="180"
+          command="control PLAYER_NUM pilot_aim_right $value"
+          info_command="control PLAYER_NUM pilot_aim_right"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_aim_right $value"
+          info_command="alt_control PLAYER_NUM pilot_aim_right"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="shoot">
+        <key_selector
+          control_name="Shoot"
+          column_width="180"
+          command="control PLAYER_NUM pilot_shoot $value"
+          info_command="control PLAYER_NUM pilot_shoot"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_shoot $value"
+          info_command="alt_control PLAYER_NUM pilot_shoot"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="rope">
+        <key_selector
+          control_name="Rope"
+          column_width="180"
+          command="control PLAYER_NUM pilot_rope $value"
+          info_command="control PLAYER_NUM pilot_rope"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_rope $value"
+          info_command="alt_control PLAYER_NUM pilot_rope"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="next_weapon">
+        <key_selector
+          control_name="Next weapon"
+          column_width="180"
+          command="control PLAYER_NUM pilot_next $value"
+          info_command="control PLAYER_NUM pilot_next"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_next $value"
+          info_command="alt_control PLAYER_NUM pilot_next"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="previous_weapon">
+        <key_selector
+          control_name="Previous weapon"
+          column_width="180"
+          command="control PLAYER_NUM pilot_prev $value"
+          info_command="control PLAYER_NUM pilot_prev"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_prev $value"
+          info_command="alt_control PLAYER_NUM pilot_prev"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+        <panel name="enter_ship">
+        <key_selector
+          control_name="Enter ship"
+          column_width="180"
+          command="control PLAYER_NUM pilot_enter $value"
+          info_command="control PLAYER_NUM pilot_enter"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM pilot_enter $value"
+          info_command="alt_control PLAYER_NUM pilot_enter"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+        </panel>
+
+      </list>
+      </panel>
+
+      <panel name="menu">
+      <list
+        width="350"
+        height="300"
+        x_space="175"
+        y_space="24"
+      >
+        <panel name="up">
+        <key_selector
+          control_name="Up"
+          column_width="180"
+          command="control PLAYER_NUM menu_up $value"
+          info_command="control PLAYER_NUM menu_up"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM menu_up $value"
+          info_command="alt_control PLAYER_NUM menu_up"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+		</panel>
+
+        <panel name="down">
+        <key_selector
+          control_name="Down"
+          column_width="180"
+          command="control PLAYER_NUM menu_down $value"
+          info_command="control PLAYER_NUM menu_down"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM menu_down $value"
+          info_command="alt_control PLAYER_NUM menu_down"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+		</panel>
+
+        <panel name="left">
+        <key_selector
+          control_name="Left"
+          column_width="180"
+          command="control PLAYER_NUM menu_left $value"
+          info_command="control PLAYER_NUM menu_left"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM menu_left $value"
+          info_command="alt_control PLAYER_NUM menu_left"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+		</panel>
+
+        <panel name="right">
+        <key_selector
+          control_name="Right"
+          column_width="180"
+          command="control PLAYER_NUM menu_right $value"
+          info_command="control PLAYER_NUM menu_right"
+          font="menufont"
+          x="50"
+          width="250"
+          height="16"
+        ></key_selector>
+
+        <key_selector
+          control_name=""
+          column_width="0"
+          command="alt_control PLAYER_NUM menu_right $value"
+          info_command="alt_control PLAYER_NUM menu_right"
+          font="menufont"
+          x="280"
+          width="250"
+          height="16"
+        ></key_selector>
+		</panel>
+        
+      </list>
+      </panel>
+      
+    </view>
+    </panel>
+
+  </list>
+
+
+</panel>

@@ -1,0 +1,1 @@
+Levels sent from the server in network game will be placed in this folder.

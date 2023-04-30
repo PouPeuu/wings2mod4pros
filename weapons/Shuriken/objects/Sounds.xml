@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<sounds>
+
+<sound
+  name="shuriken_shoot"
+  file="12657_mich3d_Whoosh_Swish_02.wav"
+  volume="64"
+></sound>
+
+<sound
+  name="shuriken_hit"
+  file="shuriken_hit.wav"
+  volume="64"
+></sound>
+
+</sounds>
+

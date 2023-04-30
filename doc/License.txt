@@ -1,0 +1,42 @@
+Wings 2 End-User License Agreement (EULA)
+
+This license grants you a personal, non-transferable, non-exclusive license to use the Software
+(Wings 2) on your devices in accordance with the terms of this EULA agreement.
+
+You are allowed to redistribute the Software in its original unmodified form in non-commercial way.
+
+You are not permitted to:
+    1. Edit, alter, modify, adapt, translate or otherwise change the whole or any part of the Software 
+       nor permit the whole or any part of the Software to be combined with or become incorporated in 
+       any other software, nor decompile, disassemble or reverse engineer the Software or attempt to 
+       do any such things
+	
+    2. Reproduce, copy, distribute, resell or otherwise use the Software for any commercial purpose
+
+    3. Assert or imply that your distribution is connected with, or sponsored, endorsed, or granted 
+       official status by the licensor
+
+    4. Impose any additional or different terms or conditions on the Software
+
+As an exception to the above, you are allowed to view and modify script and image files which are 
+located in Wings 2/weapons folder. You are allowed to distribute such modifications separately from 
+the Software under Creative Commons Attribution-NonCommercial-ShareAlike license (CC BY-NC-SA).
+
+DISCLAIMER OF WARRANTIES AND LIMITATION OF LIABILITY
+
+THE SOFTWARE IS PROVIDED AS-IS, WITHOUT WARRANTIES OF ANY KIND, EXPRESS, IMPLIED,
+STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION, WARRANTIES OF TITLE, 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ABSENCE OF 
+LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER 
+OR NOT KNOWN OR DISCOVERABLE. TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR 
+BE LIABLE TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION, NEGLIGENCE)
+OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, CONSEQUENTIAL, PUNITIVE,
+EXEMPLARY, OR OTHER LOSSES, COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS LICENSE 
+OR USE OF THE SOFTWARE, EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF 
+SUCH LOSSES, COSTS, EXPENSES, OR DAMAGES.
+
+THE DISCLAIMER OF WARRANTIES AND LIMITATION OF LIABILITY PROVIDED ABOVE SHALL BE 
+INTERPRETED IN A MANNER THAT, TO THE EXTENT POSSIBLE, MOST CLOSELY APPROXIMATES 
+AN ABSOLUTE DISCLAIMER AND WAIVER OF ALL LIABILITY.
+
+Copyright © 2021 Miika Virpioja

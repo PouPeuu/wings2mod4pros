@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel
+  name="mainmenu"
+  image="menuframe"
+  x="150"
+  y="50"
+  width="472"
+  height="387"
+>
+
+
+<panel name="credits">
+
+<label 
+  text="Credits"
+  class="text_1"
+  x="10"
+  y="3"
+></label>
+
+<panel name="credits_panel" x="50" y="25">
+
+  <text
+    name="credits"
+    column_width="400"
+    text_command="credits"
+    font="menufont"
+    scroll_speed="30"
+    repeat_time="80"
+    center="false"
+    color="255, 255, 255"
+    width="240"
+    height="330"
+  ></text>
+
+  <button 
+    name="close"
+    text="Close"
+    class="text_button_2"
+    command="@main @panel1 @panel2 @group1 @options activate"
+    command2="@credits_panel @credits reset"
+    x="280"
+    y="20"
+  ></button>
+
+</panel>
+
+</panel>
+
+</panel>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<image 
+  name="wind"
+  file="wind.png"
+></image>
+
+<animation 
+  name="wave_particle_3"
+  file="wave_particle_3.png"
+  width="4" 
+  height="4" 
+  frames="32"
+  time="0.8"
+  blend_style="add"
+  x="0"
+  y="0"
+></animation>
+
+</graphics>

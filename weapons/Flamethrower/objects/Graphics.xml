@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="smallflame"
+  file="flame10x10_10.png"
+  width="10" 
+  height="10" 
+  frames="10"
+  time="0.6"
+  blend_style="add"
+  x="0"
+  y="0"
+></animation>
+
+</graphics>

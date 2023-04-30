@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="controls">
+
+  <tab_list
+    info_command="@controls @key_panel @player selected_name"
+    name="player_list"
+    x="30"
+    y="30"
+    width="350"
+    height="10"
+    x_space="75"
+    y_space="100"
+  >
+
+  <button
+    name="playerkeys_1"
+    text="Player 1"
+    class="text_button_1"
+    command="@controls @key_panel @player select playerkeys_1"
+  ></button>
+
+  <button
+    name="playerkeys_2"
+    text="Player 2"
+    class="text_button_1"
+    command="@controls @key_panel @player select playerkeys_2"
+  ></button>
+
+  <button
+    name="playerkeys_3"
+    text="Player 3"
+    class="text_button_1"
+    command="@controls @key_panel @player select playerkeys_3"
+  ></button>
+
+  <button
+    name="playerkeys_4"
+    text="Player 4"
+    class="text_button_1"
+    command="@controls @key_panel @player select playerkeys_4"
+  ></button>
+
+  <button
+    name="common_keys"
+    text="Common"
+    class="text_button_1"
+    command="@controls @key_panel @player select common_keys"
+  ></button>
+
+  </tab_list>
+
+    
+  <panel name="key_panel">
+  
+  <view name="player" type="2">
+
+    <include 
+      file="Keys.xml"
+      defs="PLAYER_NUM = 1"
+    ></include>
+
+    <include 
+      file="Keys.xml"
+      defs="PLAYER_NUM = 2"
+    ></include>
+
+    <include 
+      file="Keys.xml"
+      defs="PLAYER_NUM = 3"
+    ></include>
+
+    <include 
+      file="Keys.xml"
+      defs="PLAYER_NUM = 4"
+    ></include>
+
+    <include 
+      defs="PLAYER_NUM = 0"
+      file="CommonKeys.xml"
+    ></include>
+
+  </view>
+  
+  </panel>
+
+
+</panel>

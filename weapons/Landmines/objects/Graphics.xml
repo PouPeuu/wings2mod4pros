@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<image
+  name="infmine" 
+  file="infmine.png"
+></image>
+
+<animation
+  name="infmine"
+  file="infmine_anim_4x4.png"
+  frames="14"
+  time="2"
+  width="4"
+  height="4"
+></animation>
+
+</graphics>

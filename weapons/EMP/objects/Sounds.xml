@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<sounds>
+
+<sound
+  name="EMP"
+  file="EMP.wav"
+  volume="44"
+></sound>
+
+</sounds>
+

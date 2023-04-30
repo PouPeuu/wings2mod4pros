@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="laser_wall_object"
+  file="laser_wall_object.png"
+  width="5"
+  height="5"
+  frames="1"
+  army_color="1"
+></animation>
+
+</graphics>

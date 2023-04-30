@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<GUI>
+
+  <class name="heading">
+    <label
+      font="heading_font"
+      color="255, 255, 255, 255"
+      select_color="200, 200, 200, 255"
+      disabled_color="160, 160, 160. 255"
+      border_width="4"
+    ></label>
+  </class>
+
+  <class name="text_1">
+    <label
+      font="menufont"
+      color="255, 255, 255, 255"
+      select_color="200, 200, 200, 255"
+      disabled_color="160, 160, 160. 255"
+      border_width="4"
+    ></label>
+  </class>
+
+  <class name="text_2">
+    <label
+      font="chat_font"
+      color="255, 255, 255, 255"
+      select_color="200, 200, 200, 255"
+      disabled_color="160, 160, 160. 255"
+      border_width="4"
+    ></label>
+  </class>
+
+  <class name="text_button_1">
+    <button
+      font="menufont"
+      color="155, 155, 255, 255"
+      select_color="200, 200, 255, 255"
+      disabled_color="160, 160, 160. 255"
+      border_width="4"
+    ></button>
+  </class>
+
+  <class name="text_button_2">
+    <button
+      font="menufont"
+      color="155, 155, 255, 255"
+      select_color="200, 200, 255, 255"
+      disabled_color="100, 100, 160. 255"
+      border_width="4"
+    ></button>
+  </class>
+
+  <class name="list_box_1">
+    <list_box
+      image_left="listbox_left"
+      image_right="listbox_right"
+      image_center="listbox_center"
+      image_button="button_down"
+      image_scroll_up="button_up"
+      image_scroll_down="button_down"
+      image_scrollblock_top="scrollblock_top"
+      image_scrollblock_middle="scrollblock_middle"
+      image_scrollblock_bottom="scrollblock_bottom"
+      font="menufont"
+      list_color="0, 0, 60, 255"
+      list_border_color="100, 100, 100, 255"
+      scrollbar_color="100, 100, 100, 255"
+      size="10"
+      text_x="5"
+      text_y="8"
+    ></list_box>
+  </class>
+
+  <class name="selection_list_1">
+    <selection_list
+      font="menufont"
+      color="0, 0, 60, 255"
+      border_color="100, 100, 100, 255"
+      text_color="255, 255, 255, 255"
+      selection_color="112, 112, 112"
+      image_scroll_up="button_up"
+      image_scroll_down="button_down"
+      image_scrollblock_top="scrollblock_top"
+      image_scrollblock_middle="scrollblock_middle"
+      image_scrollblock_bottom="scrollblock_bottom"
+      x_margin="5"
+      y_margin="3"
+    ></selection_list>
+  </class>
+
+  <class name="text_area_1">
+    <text_area
+      image_scroll_up="button_up"
+      image_scroll_down="button_down"
+      image_scrollblock_top="scrollblock_top"
+      image_scrollblock_middle="scrollblock_middle"
+      image_scrollblock_bottom="scrollblock_bottom"
+    ></text_area>
+  </class>
+
+  <class name="text_field_1">
+    <text_field
+      image_scroll_up="button_up"
+      image_scroll_down="button_down"
+      image_scrollblock_top="scrollblock_top"
+      image_scrollblock_middle="scrollblock_middle"
+      image_scrollblock_bottom="scrollblock_bottom"
+      image_left="textfield_left"
+      image_right="textfield_right"
+      image_center="textfield_center"
+      image_left_disabled="textfield_left_disabled"
+      image_right_disabled="textfield_right_disabled"
+      image_center_disabled="textfield_center_disabled"
+      font="menufont"
+      text_color="255, 255, 255, 255"
+      text_x="5"
+      text_y="8"
+    ></text_field>
+  </class>
+
+  <class name="text_field_2">
+    <text_field
+      image_scroll_up="button_up"
+      image_scroll_down="button_down"
+      image_scrollblock_top="scrollblock_top"
+      image_scrollblock_middle="scrollblock_middle"
+      image_scrollblock_bottom="scrollblock_bottom"
+      image_left="textfield_left"
+      image_right="textfield_right"
+      image_center="textfield_center"
+      font="chat_font"
+      text_color="255, 255, 255, 255"
+      text_x="5"
+      text_y="9"
+    ></text_field>
+  </class>
+
+
+  <class name="status_line_1">
+    <status_line
+      font="menufont"
+      x_margin="5"
+      color="0, 0, 0, 0"
+      border_color="0, 0, 0, 0"
+      text_color="255, 255, 255, 255"
+    ></status_line>
+  </class>
+
+  <panel 
+    name="main" 
+    image="menu1"
+    x="0"
+    y="0"
+    scale_to_screen="true"
+    width="640"
+    height="480"
+  ></panel>
+
+  <panel 
+    name="main" 
+    x="0"
+    y="0"
+    offset_screen="true"
+    relative_offset="0.125"
+  >
+
+    <panel 
+      name="panel1" 
+      image="panel1"
+      x="10"
+      y="30"
+	  width="108"
+	  height="194"
+    >
+
+      <panel
+        name="panel2"
+        x="12"
+        y="17"
+      >
+        <event_handler
+          event="begin_connect"
+          command="@panel2 @group1 @netgame activate"
+        ></event_handler>
+
+        <button
+          name="play"
+          command="start game"
+          image="play"
+          select_image="play_s"
+          pressed_image="play_p"
+          width="89"
+          height="32"
+        ></button>
+
+        <radio_group
+          name="group1"
+          x="0"
+          y="38"
+          width="350"
+          height="300"
+          x_space="175"
+          y_space="32"
+          next_key="page down"
+          prev_key="page up"
+        >
+        
+          <button
+            name="game_options"
+            command="@main @menuview select game_options"
+            image="game"
+            select_image="game_s"
+            pressed_image="game_p"
+            radio_group="true"
+            width="89"
+            height="32"
+          ></button>
+
+          <button
+            name="options"
+            command="@main @menuview select options_1"
+            image="options_b"
+            select_image="options_b_s"
+            pressed_image="options_b_p"
+            radio_group="true"
+            width="89"
+            height="32"
+          ></button>
+
+          <button
+            name="netgame"
+            command="@main @menuview select net"
+            image="net"
+            select_image="net_s"
+            pressed_image="net_p"
+            radio_group="true"
+            width="89"
+            height="32"
+          ></button>
+<!--
+          <button
+            name="credits"
+            command="@main @menuview select credits"
+            stay_pressed="true"
+            text="foo"
+            font="menufont"
+            y="-100"
+            radio_group="true"
+          ></button>
+-->
+        </radio_group>
+      
+        <button
+            name="quit"
+            command="quit"
+            image="quit"
+            select_image="quit_s"
+            pressed_image="quit_p"
+            stay_pressed="true"
+            y="140"
+            width="89"
+            height="32"
+        ></button>
+
+      </panel>
+
+    </panel>
+
+
+    <view 
+      name="menuview"
+    >
+
+      <view name="game_options" type="2">
+        <include file="GameMenu.xml"></include>
+      </view>
+
+      <view name="options_1" type="2">
+        <include file="MainMenu.xml"></include>
+      </view>
+
+      <view name="net" type="2">
+        <include file="NetworkMenu.xml"></include>
+      </view>
+
+      <view name="credits" type="2">
+        <include file="Credits.xml"></include>
+      </view>
+
+    </view>
+
+  </panel>
+  
+  
+  <if info_command="login_password_required" req_value="true">
+    <panel
+      name="password_dialog"
+      color="0, 0, 40"
+      border_color="128, 128, 128"
+      x="190"
+      y="190"
+      width="197"
+      height="70"
+			scale="true">
+
+        <panel x="15" y="10">
+          <label text="Server password:" y="3" font="menufont"></label>
+          <text_field
+            name="server_password"
+            command="server_login_password $value"
+						hide_input="true"
+            class="text_field_1"
+            start_focus="true"
+            always_keep_focus="true"
+            width="164"
+            y="25"
+          ></text_field>
+        </panel>
+    </panel>
+  </if>
+  
+
+  <if info_command="loading_level" req_value="true">
+    <label 
+      text="Loading level..."
+      class="text_1"
+      x="20"
+      y="445"
+    ></label>
+  </if>
+
+  <if
+    info_command="level_transfer_state"
+    req_value="receiving"
+  >
+    <label
+      text="Receiving"
+      class="text_1"
+      x="175"
+      y="450"
+    ></label>
+    <label
+      text_command="level_transfer_name"
+      class="text_1"
+      x="245"
+      y="450"
+    ></label>
+    
+    <progress_bar
+      status_command="level_transfer_status"
+      x="380"
+      y="450"
+      width="200"
+      height="12"
+      color="20, 20, 255"
+      border_color="108, 108, 108"
+    ></progress_bar>
+  </if>
+
+
+  <if
+    info_command="level_transfer_state"
+    req_value="sending"
+  >
+    <label
+      text="Sending"
+      class="text_1"
+      x="175"
+      y="450"
+    ></label>
+    <label
+      text_command="level_transfer_name"
+      class="text_1"
+      x="245"
+      y="450"
+    ></label>
+    
+    <progress_bar
+      status_command="level_transfer_status"
+      x="380"
+      y="450"
+      width="200"
+      height="12"
+      color="20, 20, 255"
+      border_color="108, 108, 108"
+    ></progress_bar>
+  </if>
+
+
+  <if
+    info_command="level_transfer_state"
+    req_value="observing"
+  >
+    <progress_bar
+      status_command="level_transfer_status"
+      x="220"
+      y="450"
+      width="200"
+      height="12"
+      color="20, 20, 255"
+      border_color="108, 108, 108"
+    ></progress_bar>
+  </if>
+
+
+  <status_line
+    name="save_status"
+    clear_time="0.4"
+    class="status_line_1"
+    width="100"
+    height="22"
+    x="15"
+    y="441"
+  >
+    <item name="settings_saved" value="Saving..."></item>
+    <item name="settings_loaded" value="Loading..."></item>
+  </status_line>
+
+<!--
+  <label
+    text_command="version"
+    font="small_font"
+    color="255, 255, 255, 180"
+    border_width="4"
+    align_right="true"
+    x="635"
+    y="467"
+  ></label>
+-->
+
+</GUI>

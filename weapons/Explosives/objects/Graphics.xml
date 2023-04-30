@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<image
+  name="explosive"
+  file="explosive8x4.png"
+  alpha="0.8"
+></image>
+
+</graphics>

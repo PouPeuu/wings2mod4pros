@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel
+  name="mainmenu"
+  image="menuframe"
+  x="150"
+  y="50"
+  width="472"
+  height="387"
+>
+
+
+  <tab_list name="options_list"
+    info_command="@mainmenu @options_frames @options1 selected_name"
+    next_key="right"
+    prev_key="left"
+  >
+
+    <button 
+      name="options"
+      text="Main"
+      class="text_button_2"
+      command="@mainmenu @options_frames @options1 select options"
+      x="25"
+      y="320"
+    ></button>
+
+    <button 
+      name="network_weapons"
+      text="Weapons"
+      class="text_button_2"
+      command="@mainmenu @options_frames @options1 select network_weapons"
+      x="68"
+      y="320"
+    ></button>
+
+    <button 
+      name="controls"
+      text="Controls"
+      class="text_button_2"
+      command="@mainmenu @options_frames @options1 select controls"
+      x="142"
+      y="320"
+    ></button>
+
+    <button 
+      name="graphics"
+      text="Graphics"
+      class="text_button_2"
+      command="@mainmenu @options_frames @options1 select graphics"
+      x="210"
+      y="320"
+    ></button>
+
+    <button 
+      name="sound"
+      text="Sound"
+      class="text_button_2"
+      command="@mainmenu @options_frames @options1 select sound"
+      x="280"
+      y="320"
+    ></button>
+
+    <button 
+      name="network_config"
+      text="Network"
+      class="text_button_2"
+      command="@mainmenu @options_frames @options1 select network_config"
+      x="335"
+      y="320"
+    ></button>
+
+  </tab_list>
+
+
+  <panel name="options_frames">
+  
+  <view name="options1" type="2">
+
+    <include
+      file="OptionsMenu.xml" 
+    ></include>
+
+    <include
+      file="Network_Weapons.xml" 
+    ></include>
+
+    <include 
+      file="ControlsMenu.xml"
+    ></include>
+
+    <include 
+      file="GraphicsMenu.xml"
+    ></include>
+
+    <include 
+      file="SoundMenu.xml"
+    ></include>
+
+    <include 
+      file="Network_Config.xml"
+    ></include>
+
+    <include 
+      file="Credits.xml"
+    ></include>
+
+
+  </view>
+  
+  </panel>
+
+</panel>

@@ -1,0 +1,14 @@
+# The songs in this list are played in the start menu, if the files exist.
+# If the list is empty, all songs are allowed.
+# You can also add directory names.
+
+Arto Järvinen - Glider Rock.ogg
+JH - Pelimusa.s3m
+Jansku - Life on Earth.ogg
+Jansku - Summer.ogg
+Touko - Fourth Dimension.ogg
+Touko - Fearless Fighter.ogg
+Touko - Firepowered Flying Beasts.ogg
+Xns - Eagle of Desert (Wings II Remake).ogg
+Xns - Wings of Journey (Wings II Remake).ogg
+Yle24 - Killers.mod

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="network_server">
+
+
+  <label 
+    text="Server"
+    class="heading"
+    x="10"
+    y="4"
+  ></label>
+
+
+  <if info_command="can_command_server" req_value="true">
+    <list
+      x="50"
+      y="45"
+      width="350"
+      height="300"
+      x_space="175"
+      y_space="32"
+    >
+
+      <button 
+        name="server_quit"
+        text="End dedicated server"
+        class="text_button_1"
+        command="server_quit"
+        enable_if="yes"
+        y="3"
+      ></button>
+    </list>
+  </if>
+  <if info_command="can_command_server" req_value="false">
+
+
+
+  <list
+    x="50"
+    y="45"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="29"
+  >
+
+
+<!--
+    <panel>
+      <label text="Player name" y="3" font="menufont"></label>
+      <text_field
+        name="player_name"
+        command="name $value"
+        info_command="name"
+        class="text_field_1"
+        width="164"
+        x="140"
+      ></text_field>
+    </panel>
+-->
+
+    <panel>
+      <label text="Server notes" y="3" font="menufont"></label>
+      <text_field
+        name="server_notes"
+        command="server_notes $value"
+        info_command="server_notes"
+        class="text_field_1"
+        width="164"
+        x="140"
+      ></text_field>
+    </panel>
+
+    <panel>
+      <label text="Server password" y="3" font="menufont"></label>
+      <text_field
+        name="server_password"
+        command="server_password $value"
+        info_command="server_password"
+        hide_input="true"
+        class="text_field_1"
+        width="164"
+        x="140"
+      ></text_field>
+    </panel>
+
+    <panel>
+      <label text="Server IP address" y="3" font="menufont"></label>
+      <text_field
+        name="server_address"
+        command="server_ip $value"
+        info_command="server_ip"
+        class="text_field_1"
+        width="164"
+        x="140"
+      ></text_field>
+    </panel>
+
+
+
+
+    <panel>
+    <button 
+      name="start_server"
+      text="Start server"
+      class="text_button_1"
+      command="server on"
+      info_command="can_start_server"
+      enable_if="yes"
+      y="3"
+    ></button>
+
+    <button 
+      name="stop_server"
+      text="Stop server"
+      class="text_button_1"
+      command="server off"
+      info_command="server"
+      enable_if="on"
+      x="200"
+      y="3"
+    ></button>
+    </panel>
+
+
+    <panel>
+    <button 
+      name="announce"
+      text="Announce server"
+      class="text_button_1"
+      command="announce on"
+      info_command="announce"
+      enable_if="off"
+      y="3"
+    ></button>
+
+    <button 
+      name="stop announce"
+      text="Stop announce"
+      class="text_button_1"
+      command="announce off"
+      info_command="announce"
+      enable_if="on"
+      x="200"
+      y="3"
+    ></button>
+    </panel>
+
+
+
+  </list>
+
+
+  <list
+    x="50"
+    y="200"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="29"
+  >
+<!--
+    <panel>
+    <label 
+      text="Authenticate players"
+      class="text_1"
+      y="4"
+    ></label>
+    <checkbox
+      name="ready"
+      check_command="authenticate_players true"
+      clear_command="authenticate_players false"
+      info_command="authenticate_players"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="160"
+      y="0"
+    ></checkbox>
+    </panel>
+-->
+    <panel>
+    <label 
+      text="Observe games only"
+      class="text_1"
+      y="4"
+    ></label>
+    <checkbox
+      name="ready"
+      check_command="server_observe_only true"
+      clear_command="server_observe_only false"
+      info_command="server_observe_only"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="160"
+      y="0"
+    ></checkbox>
+    </panel>
+
+
+
+    <panel>
+    <label 
+      text="Max players"
+      class="text_1"
+      y="4"
+    ></label>
+    <list_box
+      name="max_players"
+      class="list_box_1"
+      command="max_players $value"
+      info_command="max_players"
+      x="160"
+      size="6"
+    >
+      <item name="Unlimited" value="1000"></item>
+      <item name="2" value="2"></item>
+      <item name="3" value="3"></item>
+      <item name="4" value="4"></item>
+      <item name="5" value="5"></item>
+      <item name="6" value="6"></item>
+      <item name="7" value="7"></item>
+      <item name="8" value="8"></item>
+      <item name="9" value="9"></item>
+      <item name="10" value="10"></item>
+      <item name="11" value="11"></item>
+      <item name="12" value="12"></item>
+      <item name="13" value="13"></item>
+      <item name="14" value="14"></item>
+      <item name="15" value="15"></item>
+      <item name="16" value="16"></item>
+      <item name="17" value="17"></item>
+      <item name="18" value="18"></item>
+      <item name="19" value="19"></item>
+      <item name="20" value="20"></item>
+    </list_box>
+    </panel>
+
+    
+    <panel>
+    <if info_command="ranked_server_allowed" req_value="true">
+    <label 
+      text="Server type"
+      class="text_1"
+      y="4"
+    ></label>
+    <list_box
+      name="ranking"
+      class="list_box_1"
+      command="ranked_server $value"
+      info_command="ranked_server"
+      x="160"
+      size="6"
+    >
+      <item name="Ranked" value="true"></item>
+      <item name="Unranked" value="false"></item>
+    </list_box>
+    </if>
+    </panel>
+
+  </list>
+  </if>
+
+
+</panel>

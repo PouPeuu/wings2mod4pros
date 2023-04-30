@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel x="14" y="20">
+  <label class="text_1" text_command="player_name PLAYER_NUM" y="3"></label>
+  
+  <if info_command="game_mode" req_value="BaseDefence">
+    <list_box
+      name="player_army"
+      class="list_box_1"
+      command="player_army PLAYER_NUM $value"
+      info_command="player_army PLAYER_NUM"
+      list_command="available_teams"
+      x="70"
+      size="5"
+    >
+<!--
+      <item name="Team 1" value="1" color="240, 0, 0"></item>
+      <item name="Team 2" value="2" color="0, 208, 0"></item>
+-->
+    </list_box>
+  </if>
+  <if info_command="game_mode" fail_value="BaseDefence">
+    <list_box
+      name="player_army"
+      class="list_box_1"
+      command="player_army PLAYER_NUM $value"
+      info_command="player_army PLAYER_NUM"
+      list_command="available_teams"
+      x="70"
+      size="5"
+    >
+<!--
+      <item name="Team 1" value="1" color="240, 0, 0"></item>
+      <item name="Team 2" value="2" color="0, 208, 0"></item>
+      <item name="Team 3" value="3" color="252, 252, 0"></item>
+      <item name="Team 4" value="4" color="252, 144, 32"></item>
+      <item name="Team 5" value="5" color="0, 0, 250"></item>
+      <item name="Team 6" value="6" color="86, 158, 188"></item>
+      <item name="Team 7" value="7" color="224, 185, 50"></item>
+      <item name="Team 8" value="8" color="34, 206, 143"></item>
+-->
+    </list_box>
+  </if>
+</panel>
+

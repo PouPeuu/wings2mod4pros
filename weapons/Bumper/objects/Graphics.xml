@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation 
+  name="bumper"
+  file="bumber_24x24_4.png"
+  width="24" 
+  height="24" 
+  frames="4"
+  time="0.6"
+  x="0"
+  y="0"
+></animation>
+
+<image
+  name="bumper_hit"
+  file="bumber_hit.png"
+></image>
+
+</graphics>

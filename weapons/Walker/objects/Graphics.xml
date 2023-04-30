@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<animation
+  name="walker_build" 
+  file="walker_build.png"
+  width="31" 
+  height="19"
+  frames="6"
+  time="0.5"
+  army_color="1"
+></animation>
+
+
+<animation
+  name="walker" 
+  file="walker.png"
+  width="22"
+  height="19"
+  frames="8"
+  time="1"
+  army_color="1"
+></animation>
+
+<animation
+  name="walker_hit" 
+  file="walker.png"
+  width="22" 
+  height="19"
+  frames="8"
+  time="1"
+  hit_image="1"
+></animation>
+
+<animation
+  name="walker_gun" 
+  file="walker_gun.png"
+  width="6" 
+  height="24"
+  frames="1"
+  time="0"
+  army_color="1"
+></animation>
+
+<animation
+  name="walker_gun_hit" 
+  file="walker_gun.png"
+  width="6" 
+  height="24"
+  frames="1"
+  time="0"
+  hit_image="1"
+></animation>
+
+</graphics>

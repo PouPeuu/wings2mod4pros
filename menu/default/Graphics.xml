@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<colorkey value="-1"></colorkey>
+
+<font 
+  name="heading_font"
+  file="fonts/vera48ptbold.fnt"
+  bilinear_interpolation="true"
+  scale="0.21"
+></font>
+
+<font 
+  name="menufont"
+  file="fonts/vera48ptbold.fnt"
+  bilinear_interpolation="true"
+  scale="0.192"
+></font>
+
+<font 
+  name="chat_font"
+  file="fonts/vera48ptbold.fnt"
+  bilinear_interpolation="true"
+  scale="0.16"
+></font>
+
+<!--
+<font 
+  name="small_font"
+  file="fonts/wings2_9px.fnt"
+></font>
+-->
+
+<font 
+  name="font1"
+  file="fonts/font1.fnt"
+></font>
+
+
+
+
+<image
+  name="menu1"
+  file="backgrounds/menu1.png"
+></image>
+
+<image
+  name="menu2"
+  file="backgrounds/menu2.png"
+></image>
+
+<image
+  name="panel1"
+  file="frames/panel1.png"
+></image>
+
+<image
+  name="menuframe"
+  file="frames/menuframe.png"
+></image>
+
+<image
+  name="menuframe2"
+  file="frames/menuframe2.png"
+></image>
+
+<image
+  name="player_settings"
+  file="frames/playerframe.png"
+></image>
+
+<image
+  name="gamemode_settings"
+  file="frames/gamemodeframe.png"
+></image>
+
+
+<image
+  name="play"
+  file="buttons/play.png"
+></image>
+
+<image
+  name="play_s"
+  file="buttons/play_s.png"
+></image>
+
+<image
+  name="play_p"
+  file="buttons/play_p.png"
+></image>
+
+<image
+  name="game"
+  file="buttons/game.png"
+></image>
+
+<image
+  name="game_s"
+  file="buttons/game_s.png"
+></image>
+
+<image
+  name="game_p"
+  file="buttons/game_p.png"
+></image>
+
+<image
+  name="options_b"
+  file="buttons/options_b.png"
+></image>
+
+<image
+  name="options_b_s"
+  file="buttons/options_b_s.png"
+></image>
+
+<image
+  name="options_b_p"
+  file="buttons/options_b_p.png"
+></image>
+
+<image
+  name="quit"
+  file="buttons/quit.png"
+></image>
+
+<image
+  name="quit_s"
+  file="buttons/quit_s.png"
+></image>
+
+<image
+  name="quit_p"
+  file="buttons/quit_p.png"
+></image>
+
+<image
+  name="net"
+  file="buttons/net.png"
+></image>
+
+<image
+  name="net_s"
+  file="buttons/net_s.png"
+></image>
+
+<image
+  name="net_p"
+  file="buttons/net_p.png"
+></image>
+
+
+<image
+  name="checkbox"
+  file="buttons/checkbox.png"
+  ppu="4"
+></image>
+
+<image
+  name="checkbox_ok"
+  file="buttons/checkbox_ok.png"
+  ppu="4"
+></image>
+
+<image
+  name="listbox_left"
+  file="buttons/listbox_left.png"
+  ppu="4"
+></image>
+
+<image
+  name="listbox_right"
+  file="buttons/listbox_right.png"
+  ppu="4"
+></image>
+
+<image
+  name="listbox_center"
+  file="buttons/listbox_center.png"
+  ppu="4"
+></image>
+
+<image
+  name="button_up"
+  file="buttons/button_up.png"
+  ppu="4"
+></image>
+
+<image
+  name="button_down"
+  file="buttons/button_down.png"
+  ppu="4"
+></image>
+
+<image
+  name="scrollblock_top"
+  file="buttons/scrollblock_top.png"
+  ppu="4"
+></image>
+
+<image
+  name="scrollblock_middle"
+  file="buttons/scrollblock_middle.png"
+  ppu="4"
+></image>
+
+<image
+  name="scrollblock_bottom"
+  file="buttons/scrollblock_bottom.png"
+  ppu="4"
+></image>
+
+
+<image
+  name="textfield_left"
+  file="buttons/textfield_left.png"
+  ppu="4"
+></image>
+
+<image
+  name="textfield_right"
+  file="buttons/textfield_right.png"
+  ppu="4"
+></image>
+
+<image
+  name="textfield_center"
+  file="buttons/textfield_center.png"
+  ppu="4"
+></image>
+
+
+<image
+  name="textfield_left_disabled"
+  file="buttons/textfield_left.png"
+  ppu="4"
+></image>
+
+<image
+  name="textfield_right_disabled"
+  file="buttons/textfield_right.png"
+  ppu="4"
+></image>
+
+<image
+  name="textfield_center_disabled"
+  file="buttons/textfield_center_disabled.png"
+  ppu="4"
+></image>
+
+
+<image
+  name="slider_button"
+  file="buttons/slider_button.png"
+  ppu="4"
+></image>
+
+<image
+  name="slider_left"
+  file="buttons/slider_left.png"
+  ppu="4"
+></image>
+
+<image
+  name="slider_right"
+  file="buttons/slider_right.png"
+  ppu="4"
+></image>
+
+<image
+  name="slider_center"
+  file="buttons/slider_center.png"
+  ppu="4"
+></image>
+
+</graphics>

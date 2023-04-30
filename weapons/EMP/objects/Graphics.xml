@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<image 
+  name="EMP_generator"
+  file="EMP_generator.png"
+></image>
+
+<animation 
+  name="pulse"
+  file="pulse.png"
+  width="128" 
+  height="128" 
+  frames="1"
+  time="0.5"
+  start_scale="0.05"
+  end_scale="5.0"
+  blend_style="add"
+></animation>
+
+</graphics>

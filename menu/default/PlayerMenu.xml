@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="player_PLAYER_NUM">
+
+<label 
+  text="Player PLAYER_NUM"
+  class="text_1"
+  x="10"
+  y="3"
+></label>
+
+
+  <list
+    x="50"
+    y="105"
+    width="350"
+    height="300"
+    x_space="175"
+    y_space="55"
+  >
+
+    <panel>
+      <label text="Name" font="menufont"></label>
+      <text_field
+        name="player_name"
+        command="name $value"
+        info_command="name"
+        image_left="textfield_left"
+        image_right="textfield_right"
+        image_center="textfield_center"
+        font="menufont"
+        text_color="255, 255, 255, 255"
+        text_x="5"
+        text_y="9"
+        width="164"
+        x="130"
+      ></text_field>
+    </panel>
+
+
+    <panel>
+    <label 
+      text="Ship"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <list_box
+      name="ship"
+      class="list_box_1"
+      command=""
+      info_command=""
+      list_command=""
+      x="130"
+      size="10"
+    ></list_box>
+    </panel>
+
+    <button 
+      name="playerkeys"
+      text="Define keys"
+      class="text_button_1"
+      command="@mainmenu @options_frames @options1 select playerkeys_PLAYER_NUM"
+      y="3"
+    ></button>
+
+  </list>
+
+</panel>

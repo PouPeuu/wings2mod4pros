@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<sounds>
+
+<sound
+  name="cb_shoot"
+  file="cb_shoot.wav"
+  volume="100"
+></sound>
+
+<sound
+  name="cb_hit"
+  file="cb_hit.wav"
+></sound>
+
+</sounds>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<sounds>
+
+<sound
+  name="pulse_shoot"
+  file="pulse.wav"
+  volume="28"
+></sound>
+
+<sound
+  name="pulse_hit"
+  file="pulse_hit.wav"
+  volume="32"
+></sound>
+
+</sounds>
+

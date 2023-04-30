@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<image 
+  name="firebomb_1"
+  file="firebomb_1.png"
+></image>
+
+<animation 
+  name="firebomb_2"
+  file="firebomb_2.png"
+  width="12" 
+  height="12"
+  frames="4"
+  time="0.2"
+></animation>
+
+</graphics>

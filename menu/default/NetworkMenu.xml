@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel
+  name="network_menu"
+  image="menuframe"
+  x="150"
+  y="50"
+  width="472"
+  height="387"
+>
+
+  <if info_command="is_online" req_value="false">
+  
+  <tab_list name="tabs"
+    info_command="@network_menu @network_tab_panel @network_tabs selected_name"
+    default_selection_command="network_menu_default_selection"
+    next_key="right"
+    prev_key="left"
+  >
+
+    <button 
+      name="network_client"
+      text="Client"
+      class="text_button_2"
+      command="@network_menu @network_tab_panel @network_tabs select network_client"
+      x="30"
+      y="320"
+    ></button>
+
+    <button 
+      name="network_server"
+      text="Server"
+      class="text_button_2"
+      command="@network_menu @network_tab_panel @network_tabs select network_server"
+      x="110"
+      y="320"
+    ></button>
+
+    <button 
+      name="network_config"
+      text="Config"
+      class="text_button_2"
+      command="@network_menu @network_tab_panel @network_tabs select network_config"
+      x="200" ox="290"
+      y="320"
+    ></button>
+
+  </tab_list>
+  
+  </if>
+
+  <if info_command="is_online" req_value="true">
+  
+    <if info_command="is_server" req_value="true">
+
+      <tab_list name="tabs"
+        info_command="@network_menu @network_tab_panel @network_tabs selected_name"
+        next_key="right"
+        prev_key="left"
+      >
+
+      <button 
+        name="network_players"
+        text="Game"
+        class="text_button_2"
+        command="@network_menu @network_tab_panel @network_tabs select network_players"
+        x="30"
+        y="320"
+      ></button>
+
+      <button 
+        name="network_server"
+        text="Server"
+        class="text_button_2"
+        command="@network_menu @network_tab_panel @network_tabs select network_server"
+        x="95"
+        y="320"
+      ></button>
+
+      <button 
+        name="network_client"
+        text="Client"
+        class="text_button_2"
+        command="@network_menu @network_tab_panel @network_tabs select network_client"
+        x="170"
+        y="320"
+      ></button>
+
+      <button 
+        name="network_weapons"
+        text="Weapons"
+        class="text_button_2"
+        command="@network_menu @network_tab_panel @network_tabs select network_weapons"
+        x="235"
+        y="320"
+      ></button>
+
+      <button 
+        name="network_game_settings1"
+        text="Settings 1"
+        class="text_button_2"
+        border_width="0"
+        command="@network_menu @network_tab_panel @network_tabs select network_game_settings1"
+        x="320"
+        y="324"
+      ></button>
+
+      <button 
+        name="network_game_settings2"
+        text="Settings 2"
+        class="text_button_2"
+        border_width="0"
+        command="@network_menu @network_tab_panel @network_tabs select network_game_settings2"
+        x="320"
+        y="339"
+      ></button>
+
+
+
+
+      </tab_list>
+
+    </if>
+
+    <if info_command="is_server" req_value="false">
+
+      <tab_list name="tabs"
+        info_command="@network_menu @network_tab_panel @network_tabs selected_name"
+        next_key="right"
+        prev_key="left"
+      >
+
+      <button 
+        name="network_players"
+        text="Game"
+        class="text_button_2"
+        command="@network_menu @network_tab_panel @network_tabs select network_players"
+        x="30"
+        y="320"
+      ></button>
+
+      <button 
+        name="network_client"
+        text="Client"
+        class="text_button_2"
+        command="@network_menu @network_tab_panel @network_tabs select network_client"
+        x="110"
+        y="320"
+      ></button>
+
+      <button 
+        name="network_weapons"
+        text="Weapons"
+        class="text_button_2"
+        command="@network_menu @network_tab_panel @network_tabs select network_weapons"
+        x="195	"
+        y="320"
+      ></button>
+
+      <button 
+        name="network_game_settings1"
+        text="Settings 1"
+        class="text_button_2"
+        border_width="0"
+        command="@network_menu @network_tab_panel @network_tabs select network_game_settings1"
+        x="295"
+        y="324"
+      ></button>
+
+      <button 
+        name="network_game_settings2"
+        text="Settings 2"
+        class="text_button_2"
+        border_width="0"
+        command="@network_menu @network_tab_panel @network_tabs select network_game_settings2"
+        x="295"
+        y="339"
+      ></button>
+
+
+      </tab_list>
+
+    </if>
+
+  </if>
+
+
+
+  <panel name="network_tab_panel">
+  <view name="network_tabs" type="2">
+
+    <include
+      file="Network_Client.xml" 
+    ></include>
+
+    <include 
+      file="Network_Server.xml"
+    ></include>
+
+    <include 
+      file="Network_Players.xml"
+    ></include>
+
+    <include 
+      file="Network_Config.xml"
+    ></include>
+
+    <include 
+      file="Network_Weapons.xml"
+    ></include>
+
+    <include 
+      file="Network_Game_Settings1.xml"
+    ></include>
+
+    <include 
+      file="Network_Game_Settings2.xml"
+    ></include>
+
+  </view>
+  </panel>
+
+</panel>

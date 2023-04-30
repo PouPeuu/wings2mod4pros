@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<panel name="game_page2">
+
+<label 
+  text="Game settings 2"
+  class="heading"
+  x="10"
+  y="4"
+></label>
+
+<list
+  x="50"
+  y="33"
+  width="350"
+  height="300"
+  x_space="175"
+  y_space="26"
+>
+
+<!--
+  <panel>
+  <label 
+    text="Game mode:"
+    class="text_1"
+    y="3"
+  ></label>
+  <label 
+    text_command="game_mode"
+    class="text_1"
+    x="100"
+    y="3"
+  ></label>
+  </panel>
+-->
+
+
+  <panel>
+  <label 
+    text="Game mode"
+    class="text_1"
+    y="3"
+  ></label>
+
+  <list_box
+    name="game_mode"
+    class="list_box_1"
+    command="game_mode $value"
+    info_command="game_mode"
+    list_command="game_modes"
+    x="100"
+    size="10"
+  >
+    <!--
+    <item name="Base defence" value="BaseDefence"></item>
+    <item name="Deathmatch" value="Deathmatch"></item>
+    <item name="Flag capture" value="CaptureTheFlag"></item>
+    <item name="Last man standing" value="LastManStanding"></item>
+    <item name="The Hunt" value="Hunt"></item>
+    -->
+  </list_box>
+
+  </panel>
+
+
+
+  <panel>
+    <label 
+      text="Max teams"
+      class="text_1"
+      y="3"
+    ></label>
+
+  <if info_command="game_mode" fail_value="BaseDefence">
+  <if info_command="game_mode" fail_value="Hunt">
+  <list_box
+    name="max_teams"
+    class="list_box_1"
+    command="max_teams $value"
+    info_command="max_teams"
+    x="100"
+    size="2"
+  >
+    <item name="1" value="1"></item>
+    <item name="2" value="2"></item>
+    <item name="3" value="3"></item>
+    <item name="4" value="4"></item>
+    <item name="5" value="5"></item>
+    <item name="6" value="6"></item>
+    <item name="7" value="7"></item>
+    <item name="8" value="8"></item>
+  </list_box>
+  </if>
+  </if>
+  <if info_command="game_mode" req_value="BaseDefence">
+    <label class="text_1" text="2" x="100" y="3"/>
+  </if>
+  <if info_command="game_mode" req_value="Hunt">
+    <label class="text_1" text="-" x="100" y="3"/>
+  </if>
+
+  </panel>
+
+
+
+
+  <panel>
+    <label 
+      text="Buildings"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <checkbox
+      name="buildings"
+      check_command="buildings on"
+      clear_command="buildings off"
+      info_command="buildings"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="100"
+    ></checkbox>
+
+    <button 
+      name="limited_view_info"
+      text="Info"
+      class="text_button_1"
+      command="@game_page2 @info_view select buildings_info"
+      x="135"
+      y="0"
+    ></button>
+  </panel>
+
+  <panel>
+    <label 
+      text="Balancing"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <checkbox
+      name="team_balancing"
+      check_command="team_balancing on"
+      clear_command="team_balancing off"
+      info_command="team_balancing"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="100"
+    ></checkbox>
+
+    <button 
+      name="balancing_info"
+      text="Info"
+      class="text_button_1"
+      command="@game_page2 @info_view select balancing_info"
+      x="135"
+      y="0"
+    ></button>
+  </panel>
+
+
+  <panel>
+    <label 
+      text="Limited view"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <checkbox
+      name="limited_view"
+      check_command="limited_view on"
+      clear_command="limited_view off"
+      info_command="limited_view"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="100"
+    ></checkbox>
+
+    <button 
+      name="limited_view_info"
+      text="Info"
+      class="text_button_1"
+      command="@game_page2 @info_view select limited_view_info"
+      x="135"
+      y="0"
+    ></button>
+  </panel>
+
+
+  <panel>
+    <label 
+      text="Ships"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <checkbox
+      name="ships"
+      check_command="ships on"
+      clear_command="ships off"
+      info_command="ships"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="100"
+    ></checkbox>
+
+    <button 
+      name="limited_view_info"
+      text="Info"
+      class="text_button_1"
+      command="@game_page2 @info_view select ships_info"
+      x="135"
+      y="0"
+    ></button>
+  </panel>
+
+
+<!--  <panel/> -->
+
+
+  <panel>
+    <label 
+      text="Select teams automatically"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <checkbox
+      name="auto_teams"
+      check_command="auto_teams on"
+      clear_command="auto_teams off"
+      info_command="auto_teams"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="200"
+    ></checkbox>
+  </panel>
+
+
+  <panel>
+    <label 
+      text="Reset teams after game"
+      class="text_1"
+      y="3"
+    ></label>
+
+    <checkbox
+      name="auto_teams"
+      check_command="reset_teams_after_game on"
+      clear_command="reset_teams_after_game off"
+      info_command="reset_teams_after_game"
+      image="checkbox"
+      check_image="checkbox_ok"
+      x="200"
+    ></checkbox>
+  </panel>
+
+
+  <panel>
+  <label 
+    text="Loading speed"
+    class="text_1"
+    y="3"
+  ></label>
+  
+  <list_box
+    name="loading_speed"
+    class="list_box_1"
+    command="loading_speed_and_recoil $value"
+    info_command="loading_speed"
+    x="135"
+    size="4"
+  >
+    <item name="25%" value="25"></item>
+    <item name="50%" value="50"></item>
+    <item name="60%" value="60"></item>
+    <item name="70%" value="70"></item>
+    <item name="80%" value="80"></item>
+    <item name="90%" value="90"></item>
+    <item name="100%" value="100"></item>
+    <item name="110%" value="110"></item>
+    <item name="120%" value="120"></item>
+    <item name="130%" value="130"></item>
+    <item name="140%" value="140"></item>
+    <item name="150%" value="150"></item>
+    <item name="175%" value="175"></item>
+    <item name="200%" value="200"></item>
+    <item name="250%" value="250"></item>
+    <item name="300%" value="300"></item>
+    <item name="400%" value="400"></item>
+    <item name="500%" value="500"></item>
+    <item name="600%" value="600"></item>
+    <item name="700%" value="700"></item>
+    <item name="800%" value="800"></item>
+    <item name="900%" value="900"></item>
+    <item name="1000%" value="1000"></item>
+  </list_box>
+  </panel>
+
+  <panel>
+  <label 
+    text="Ship strength"
+    class="text_1"
+    y="3"
+  ></label>
+  
+  <list_box
+    name="ship_strength"
+    class="list_box_1"
+    command="ship_strength $value"
+    info_command="ship_strength"
+    x="135"
+    size="4"
+  >
+    <item name="1%" value="1"></item>
+    <item name="10%" value="10"></item>
+    <item name="20%" value="20"></item>
+    <item name="30%" value="30"></item>
+    <item name="40%" value="40"></item>
+    <item name="50%" value="50"></item>
+    <item name="60%" value="60"></item>
+    <item name="70%" value="70"></item>
+    <item name="80%" value="80"></item>
+    <item name="90%" value="90"></item>
+    <item name="100%" value="100"></item>
+    <item name="110%" value="110"></item>
+    <item name="120%" value="120"></item>
+    <item name="130%" value="130"></item>
+    <item name="140%" value="140"></item>
+    <item name="150%" value="150"></item>
+    <item name="175%" value="175"></item>
+    <item name="200%" value="200"></item>
+    <item name="250%" value="250"></item>
+    <item name="300%" value="300"></item>
+    <item name="400%" value="400"></item>
+    <item name="500%" value="500"></item>
+    <item name="600%" value="600"></item>
+    <item name="700%" value="700"></item>
+    <item name="800%" value="800"></item>
+    <item name="900%" value="900"></item>
+    <item name="1000%" value="1000"></item>
+  </list_box>
+  </panel>
+
+
+
+
+  </list>
+
+
+  <view name="info_view">
+    <view name="buildings_info" type="2">
+      <panel
+        name="buildings_info"
+        image="gamemode_settings"
+        x="180"
+        y="109"
+		width="200"
+		height="206"
+      >
+        <text_area
+          name=""
+          class="text_area_1"
+          font="chat_font"
+          color="0, 0, 0, 0"
+          border_color="0, 0, 0, 0"
+          text_color="255, 255, 255, 255"
+          x_margin="0"
+          y_margin="0"
+          width="165"
+          height="200"
+          x="20"
+          y="20"
+          dir="top_down"
+          paragraph_style="true"
+          scrollbar="false"
+          _text="Enables cannons, turrets, troopers, walkers, mines, laser walls, walls, concrete and bumpers."
+          text_command="buildings_info"
+          static="true"
+        ></text_area>
+      </panel>
+    </view>
+    <view name="balancing_info" type="2">
+      <panel
+        name="balancing_view_info"
+        image="gamemode_settings"
+        x="180"
+        y="135"
+		width="200"
+		height="206"
+      >
+        <text_area
+          name=""
+          class="text_area_1"
+          font="chat_font"
+          color="0, 0, 0, 0"
+          border_color="0, 0, 0, 0"
+          text_color="255, 255, 255, 255"
+          x_margin="0"
+          y_margin="0"
+          width="165"
+          height="200"
+          x="20"
+          y="20"
+          dir="top_down"
+          paragraph_style="true"
+          scrollbar="false"
+          text="Teams with less players get faster loading times and stronger ships."
+          static="true"
+        ></text_area>
+      </panel>
+    </view>
+    <view name="limited_view_info" type="2">
+      <panel
+        name="limited_view_info"
+        image="gamemode_settings"
+        x="180"
+        y="161"
+		width="200"
+		height="206"
+      >
+        <text_area
+          name=""
+          class="text_area_1"
+          font="chat_font"
+          color="0, 0, 0, 0"
+          border_color="0, 0, 0, 0"
+          text_color="255, 255, 255, 255"
+          x_margin="0"
+          y_margin="0"
+          width="165"
+          height="200"
+          x="20"
+          y="20"
+          dir="top_down"
+          paragraph_style="true"
+          scrollbar="false"
+          text="Only views of players in the same team can be selected. Radar range is limited. Pilots are not shown in the radar. This setting only affects network game."
+          static="true"
+        ></text_area>
+      </panel>
+    </view>
+    <view name="ships_info" type="2">
+      <panel
+        name="ships_info"
+        image="gamemode_settings"
+        x="180"
+        y="187"
+		width="200"
+		height="206"
+      >
+        <text_area
+          name=""
+          class="text_area_1"
+          font="chat_font"
+          color="0, 0, 0, 0"
+          border_color="0, 0, 0, 0"
+          text_color="255, 255, 255, 255"
+          x_margin="0"
+          y_margin="0"
+          width="165"
+          height="200"
+          x="20"
+          y="20"
+          dir="top_down"
+          paragraph_style="true"
+          scrollbar="false"
+          text="Enables ships."
+          static="true"
+        ></text_area>
+      </panel>
+    </view>
+
+  </view>
+
+
+</panel>
