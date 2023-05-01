@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<graphics>
+
+<image
+  name="pipis" 
+  file="pipis.png"
+></image>
+
+<animation 
+  name="spamton_head" 
+  file="spamton_head.png"
+  width="28" 
+  height="22" 
+  frames="4"
+  time="1"
+></animation>
+
+</graphics>
