@@ -38,12 +38,6 @@ function on_hit_ground(cx, cy)
   explode()
 end
 
-function on_hit_water(cx, cy)
-  set_thrust(0)
-  set_effect("smoke_trail", false)
-  network_update(1)
-end
-
 function on_hit_object(id)
   if get_object_max_condition(id) >= 20 then
     set_vel(0, 0)
