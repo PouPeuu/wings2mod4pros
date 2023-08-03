@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<level name="Best level :)">
+
+<author name="Miika"></author>
+
+<date value="15.8.2003"></date>
+
+<comment>
+Best level
+</comment>
+
+<data 
+  file="ground_data.png"
+></data>
+
+<image 
+  file="ground.png"
+></image>
+
+<stars value="off"></stars>
+
+<water_color
+  normal="30, 110, 240, 64"
+  fall="0, 150, 250, 64"
+  move="0, 150, 250, 64"
+></water_color>
+
+<background 
+  file="ground_bg.png"
+  distance="2"
+></background>
+
+<default_flags num="5"/>
+<flag pos="260, 125"/>
+<flag pos="280, 125"/>
+
+
+<!-- If there is more than one factory postion in the same side of the level, one is selected randomly. -->
+<factory pos="40, 195"/>
+<factory pos="355, 388"/>
+<factory pos="310, 382"/>
+
+
+</level>
+

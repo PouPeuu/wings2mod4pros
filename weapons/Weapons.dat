@@ -9,15 +9,18 @@ Weapons:
   Bumper
   Cannon
   Cannonball
+  Car
   ChainShot
   Collapser
   Concrete
   Digger
   Dirtball
+  DiveBomb
   DoubleBall
   Dumbfire
   EMP
   Explosives
+  Fart
   Flamethrower
   ForceGrid
   Freezer
@@ -35,12 +38,16 @@ Weapons:
   Mine
   Net
   Nucleus
+  Pipe
+  PipeNode
   Pipis
   Piss
   PlasmaGun
   PlasticExplosive
   PulseCannon
   Rocket
+  Rooper
+  RooperSpawner
   Rope
   Ship
   Shield
@@ -68,11 +75,13 @@ Ship weapons:
   Bumper
   Cannon
   Cannonball
+  Car
   ChainShot
   Collapser
   Concrete
   Digger
   Dirtball
+  DiveBomb
   DoubleBall
   Dumbfire
   EMP
@@ -91,11 +100,15 @@ Ship weapons:
   Mine
   Net
   Nucleus
+  Pipe
+  PipeNode
   Pipis
   PlasmaGun
   PlasticExplosive
   PulseCannon
   Rocket
+  Rooper
+  RooperSpawner
   Shield
   Shotgun
   Shuriken
@@ -115,7 +128,9 @@ Pilot weapons:
   Blade
   Bubble
   Concrete
+  DiveBomb
   Explosives
+  Fart
   Flamethrower
   Glider
   Grenade

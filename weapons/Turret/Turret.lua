@@ -3,7 +3,7 @@ required_objects = { "turret", "turret_gun", "fragment", "emp_effect", "freezer_
 max_energy = 260
 req_energy = 260
 limited_object = "turret"
-limit = 5
+--limit = 5
 
 function launch()
   dir = get_platform_dir()

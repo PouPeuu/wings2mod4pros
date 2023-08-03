@@ -5,8 +5,6 @@ num_shots = 4
 shot_energy = 10
 recoil = 2500
 
-
-
 function launch()
   play_sound("shotgun")
   dir = get_platform_dir()

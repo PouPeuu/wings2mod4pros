@@ -1,3 +1,4 @@
+
 required_objects = {}
 
 max_energy = 1

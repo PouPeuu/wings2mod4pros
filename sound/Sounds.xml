@@ -166,7 +166,10 @@
   file="explosion3.wav"
 ></sound>
 
-
+<sound
+  name="fard1"
+  file="fard1.wav"
+></sound>
 
 
 </sounds>

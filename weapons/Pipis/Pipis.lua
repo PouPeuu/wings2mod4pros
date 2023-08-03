@@ -1,7 +1,7 @@
 required_objects = { "pipis" }
 
-max_energy = 85
-req_energy = 85
+max_energy = 500
+req_energy = 500
 
 function launch()
   dir = get_platform_dir()
